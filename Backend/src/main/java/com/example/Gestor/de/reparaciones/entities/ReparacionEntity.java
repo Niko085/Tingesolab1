@@ -16,4 +16,11 @@ public class ReparacionEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    private String descripcion;
+
+    private int gasolina;
+    private int diesel;
+    private int hibrido;
+    private int electrico;
+
 }

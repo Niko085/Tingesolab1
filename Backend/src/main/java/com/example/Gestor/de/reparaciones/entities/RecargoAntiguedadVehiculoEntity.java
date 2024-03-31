@@ -22,6 +22,9 @@ public class RecargoAntiguedadVehiculoEntity {
     //@Column(name = "rango_antiguedad_maximo")
     private int rangoAntiguedadMaximo;
 
-    //@Column(name = "porcentaje_recargo")
-    private double porcentajeRecargo;
+    private double porcentajeSedan;
+    private double porcentajeHatchback;
+    private double porcentajeSuv;
+    private double porcentajePickup;
+    private double porcentajeFurgoneta;
 }

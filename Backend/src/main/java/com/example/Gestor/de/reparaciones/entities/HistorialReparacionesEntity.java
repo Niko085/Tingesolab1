@@ -42,6 +42,7 @@ public class HistorialReparacionesEntity {
     //@Column(name = "hora_entrega_cliente")
     private String horaEntregaCliente;//Hora en la que el cliente se llevó el vehículo
 
+    //Revisar
     @ManyToOne
     @JoinColumn(name = "automovil_id")
     private AutomovilEntity automovil;

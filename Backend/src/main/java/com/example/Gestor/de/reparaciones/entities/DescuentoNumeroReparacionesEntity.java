@@ -16,9 +16,14 @@ public class DescuentoNumeroReparacionesEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    //@Column(name = "numero_reparaciones")
-    private int numeroReparaciones;
+    private int rangoCantidadReparcionesMinimo;
+    private int rangoCantidadReparcionesMaximo;
 
-    //@Column(name = "porcentaje_descuento")
-    private double porcentajeDescuento;
+    //@Column(name = "numero_reparaciones")
+    //private int numeroReparaciones;
+
+    private double gasolina;
+    private double diesel;
+    private double hibrido;
+    private double electrico;
 }

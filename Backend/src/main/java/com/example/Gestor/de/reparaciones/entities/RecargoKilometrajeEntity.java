@@ -23,6 +23,9 @@ public class RecargoKilometrajeEntity {
     //@Column(name = "rango_kilometraje_maximo")
     private int rangoKilometrajeMaximo;
 
-    //@Column(name = "porcentaje_recargo")
-    private double porcentajeRecargo;
+    private double porcentajeSedan;
+    private double porcentajeHatchback;
+    private double porcentajeSuv;
+    private double porcentajePickup;
+    private double porcentajeFurgoneta;
 }
