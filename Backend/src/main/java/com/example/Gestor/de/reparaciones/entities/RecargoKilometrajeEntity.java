@@ -6,25 +6,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "descuentos_dia_atencion")
+@Table(name = "recargos_kilometraje")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DescuentoDiaAtencion {
+public class RecargoKilometrajeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
-    //@Column(name = "dia_semana")
-    private String diaSemana;
+    //@Column(name = "rango_kilometraje_minimo")
+    private int rangoKilometrajeMinimo;
 
-    //@Column(name = "hora_inicio")
-    private String horaInicio;
+    //@Column(name = "rango_kilometraje_maximo")
+    private int rangoKilometrajeMaximo;
 
-    //@Column(name = "hora_fin")
-    private String horaFin;
-
-    //@Column(name = "porcentaje_descuento")
-    private double porcentajeDescuento;
+    //@Column(name = "porcentaje_recargo")
+    private double porcentajeRecargo;
 }
