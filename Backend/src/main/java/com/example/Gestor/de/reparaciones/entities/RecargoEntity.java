@@ -31,13 +31,16 @@ public class RecargoEntity {
     private int rangoKilometrajeMaximo;
 
     //Porcentajes de recargo dependiendo del tipo de vehiculo
-    private double porcentajeSedan;
-    private double porcentajeHatchback;
-    private double porcentajeSuv;
-    private double porcentajePickup;
-    private double porcentajeFurgoneta;
+    //private double porcentajeSedan;
+    //private double porcentajeHatchback;
+    //private double porcentajeSuv;
+    //private double porcentajePickup;
+    //private double porcentajeFurgoneta;
+    private String tipoVehiculo;
 
     //Recargo por retraso en recogida del vehiculo
-    private double PorcentajePorRetraso;
+    //private double PorcentajePorRetraso;
+
+    private double porcentajeRecargo;
 
 }

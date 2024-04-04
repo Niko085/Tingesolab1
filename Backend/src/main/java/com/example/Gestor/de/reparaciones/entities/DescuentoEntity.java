@@ -23,32 +23,41 @@ public class DescuentoEntity {
 
     //Descuento por número de reparaciones//
     //Rango en enteros mayores a 0
-    private int rangoCantidadReparcionesMinimo;
-    private int rangoCantidadReparcionesMaximo;
+    //Ultimos 12 meses
+    private int cantReparcionesMin;
+    private int cantReparcionesMax;
 
-    private double gasolina;
-    private double diesel;
-    private double hibrido;
-    private double electrico;
+    //private double gasolina;
+    //private double diesel;
+    //private double hibrido;
+    //private double electrico;
+
+    private String marcaVehiculo;
+
+    private String tipoMotor;
 
     //Descuento por bonos
     //Monto de bono Ej: 70000
-    private int bonoToyota;
-    private int bonoFord;
-    private int bonoHyundai;
-    private int bonoHonda;
+    //private int bonoToyota;
+    //private int bonoFord;
+    //private int bonoHyundai;
+    //private int bonoHonda;
 
     //Cantidad de bonos que se entregan
-    private int cantidadBonosToyota;
-    private int cantidadBonosFord;
-    private int cantidadBonosHyundai;
-    private int cantidadBonosHonda;
+    //private int cantidadBonosToyota;
+    //private int cantidadBonosFord;
+    //private int cantidadBonosHyundai;
+    //private int cantidadBonosHonda;
 
+    private int cantidadBonos;
+
+    private int montoBono;
 
     //Descuento por día de atención
     private Date diaInicioDescuento;
     private Date diaFinDescuento;
-    private double porcentajeDescuentoDia;
+    //private double porcentajeDescuentoDia;
     //Falta hora inicio y hora de finalización
 
+    private double porcentajeDescuento;
 }
