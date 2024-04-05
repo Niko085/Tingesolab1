@@ -17,5 +17,4 @@ public class ConstanteEntity {
     private Long id;
 
     private double iva;
-    //private double recargoPorRetrasoEnRecogidaVehiculo;
 }

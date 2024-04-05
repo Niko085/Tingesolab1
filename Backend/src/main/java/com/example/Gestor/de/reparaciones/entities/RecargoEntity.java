@@ -17,30 +17,12 @@ public class RecargoEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    //Tipo de recargo
-    private String tipoRecargo;
-
-    //Rangos de recargo por antiguedad
-    //En años
-    private int rangoAntiguedadMinimo;
-    private int rangoAntiguedadMaximo;
-
-    //Rangos de recargo por kilometraje
-    //En kilometros
-    private int rangoKilometrajeMinimo;
-    private int rangoKilometrajeMaximo;
-
-    //Porcentajes de recargo dependiendo del tipo de vehiculo
-    //private double porcentajeSedan;
-    //private double porcentajeHatchback;
-    //private double porcentajeSuv;
-    //private double porcentajePickup;
-    //private double porcentajeFurgoneta;
-    private String tipoVehiculo;
-
-    //Recargo por retraso en recogida del vehiculo
-    //private double PorcentajePorRetraso;
-
-    private double porcentajeRecargo;
+    private String tipo_recargo;
+    private int rango_antiguedad_minimo;
+    private int rango_antiguedad_maximo;
+    private int rango_kilometraje_minimo;
+    private int rango_kilometraje_maximo;
+    private String tipo_vehiculo;
+    private double porcentaje_recargo;
 
 }
