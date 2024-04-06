@@ -2,13 +2,13 @@ package com.example.Gestor.de.reparaciones.entities;
 
 import java.util.Date;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "reparaciones")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReparacionEntity {
@@ -16,19 +16,20 @@ public class ReparacionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Long id;
+    Long id;
 
-    private Date fechaIngresoTaller;
-    private String horaIngresoTaller;
-    private String tipoReparacion;
-    private double montoTotalReparacion;
-    private Date fechaSalidaReparacion;
-    private String horaSalidaReparacion;
+    Date fechaIngresoTaller;
+    String horaIngresoTaller;
+    String tipoReparacion;
+    double montoTotalReparacion;
+    Date fechaSalidaReparacion;
+    String horaSalidaReparacion;
 
     //Con esto calcular el recargo por recogida
-    private Date fechaEntregaCliente;//Fecha en que el cliente se llevó el vehículo
-    private String horaEntregaCliente;//Hora en la que el cliente se llevó el vehículo
+    Date fechaEntregaCliente;//Fecha en que el cliente se llevó el vehículo
+    String horaEntregaCliente;//Hora en la que el cliente se llevó el vehículo
 
+    int id_automovil;
     //Revisar
     //@ManyToOne
     //@JoinColumn(name = "automovil_id")
