@@ -18,8 +18,9 @@ public class AutomovilEntity {
 
     private String patente;//4 letras y 2 números
     private String marca;//Toyota, Kia, Honda, Ford, Chevrolet, Hyundai, etc.
-    private String tipo_auto;//Sedan, Hatchback, SUV, Pickup, Furgoneta)
-    private int anio_fabricacion;
-    private String tipo_motor;//gasolina, diésel, híbrido, eléctrico
-    private int cant_asientos;
+    private String modelo;
+    private String tipo;//Sedan, Hatchback, SUV, Pickup, Furgoneta)
+    private int anioFabricacion;
+    private String motor;//gasolina, diésel, híbrido, eléctrico
+    private int cantAsientos;
 }

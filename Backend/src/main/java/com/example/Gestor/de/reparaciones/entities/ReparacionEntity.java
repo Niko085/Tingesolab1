@@ -16,7 +16,7 @@ public class ReparacionEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private String tipo_reparacion;
+    private String tipoReparacion;
     private int monto;
 
     //Foranea

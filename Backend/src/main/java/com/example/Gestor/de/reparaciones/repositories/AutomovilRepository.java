@@ -8,5 +8,11 @@ import java.util.List;
 @Repository
 public interface AutomovilRepository extends JpaRepository<AutomovilEntity, Long> {
     public AutomovilEntity findByPatente(String patente);
+
+    public AutomovilEntity findByAnioFabricacion(int anioFabricacion);
+
+
+
+
     //List<AutomovilEntity> findByAnio_fabricacion(int anio_fabricacion);
 }
