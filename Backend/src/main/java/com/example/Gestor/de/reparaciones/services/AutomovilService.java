@@ -38,6 +38,7 @@ public class AutomovilService {
         nuevoAutomovil.setAnio_fabricacion(body.getAnio_fabricacion());
         nuevoAutomovil.setTipo_motor(body.getTipo_motor());
         nuevoAutomovil.setCant_asientos(body.getCant_asientos());
+        nuevoAutomovil.setKilometraje(body.getKilometraje());
 
         return automovilRepository.save(nuevoAutomovil);
     }

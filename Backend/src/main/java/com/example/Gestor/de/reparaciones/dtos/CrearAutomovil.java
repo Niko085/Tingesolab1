@@ -16,4 +16,5 @@ public class CrearAutomovil {
     int anio_fabricacion;
     String tipo_motor; //gasolina, diésel, híbrido, eléctrico
     String cant_asientos;
+    int kilometraje;
 }
