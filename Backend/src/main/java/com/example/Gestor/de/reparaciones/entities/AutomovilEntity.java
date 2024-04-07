@@ -23,4 +23,8 @@ public class AutomovilEntity {
     private int anioFabricacion;
     private String motor;//gasolina, diésel, híbrido, eléctrico
     private int cantAsientos;
+    private int kilometraje;
+
+    //Provisorio
+    private int cantReparaciones;
 }
