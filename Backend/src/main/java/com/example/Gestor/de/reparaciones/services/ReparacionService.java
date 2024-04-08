@@ -25,6 +25,10 @@ public class ReparacionService {
         return reparacionRepository.findById(id).get();
     }
 
+    public List<ReparacionEntity> getReparacionesByPatente(String patente) {
+        return reparacionRepository.findByPatente(patente);
+    }
+
    // public List<ReparacionEntity> getExtraHourByRut(String rut){
    //     return (List<ReparacionEntity>) reparacionRepository.findByRut(rut);
    // }

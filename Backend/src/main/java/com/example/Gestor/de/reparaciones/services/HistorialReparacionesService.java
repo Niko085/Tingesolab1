@@ -1,6 +1,7 @@
 package com.example.Gestor.de.reparaciones.services;
 
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
+import com.example.Gestor.de.reparaciones.entities.ReparacionEntity;
 import com.example.Gestor.de.reparaciones.repositories.HistorialReparacionesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,12 @@ public class HistorialReparacionesService {
         return (ArrayList<HistorialReparacionesEntity>) historialReparacionesRepository.findAll();
     }
 
-    public HistorialReparacionesEntity savePaycheck(HistorialReparacionesEntity historialReparaciones){
+    public HistorialReparacionesEntity saveHistorialReparaciones(HistorialReparacionesEntity historialReparaciones){
         return historialReparacionesRepository.save(historialReparaciones);
+    }
+
+    public List<HistorialReparacionesEntity> getHistorialReparacionesByPatente(String patente) {
+        return historialReparacionesRepository.findByPatente(patente);
     }
 
 /*

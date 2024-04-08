@@ -19,16 +19,16 @@ public class HistorialReparacionesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-    private Date fecha_ingreso_al_taller;
-    private LocalTime hora_ingreso_al_taller;
+    private Date fechaIngresoTaller;
+    private LocalTime horaIngresoTaller;
 
     //private String tipo_reparacion;
 
-    private int monto_total_reparacion;
-    private Date fecha_salida_del_taller;
-    private LocalDate hora_salida_del_taller;
-    private Date fecha_cliente_se_lleva_vehiculo;
-    private LocalTime hora_cliente_se_lleva_vehiculo;
+    private int montoTotalReparacion;
+    private Date fechaSalidaTaller;
+    private LocalTime horaSalidaTaller;
+    private Date fechaClienteSeLlevaVehiculo;
+    private LocalTime horaClienteSeLlevaVehiculo;
 
     //Foranea
     private String patente;

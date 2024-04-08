@@ -16,9 +16,11 @@ public class ReparacionEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private String tipoReparacion;
+    private int tipoReparacion;
+    private String descripcion;
     private int monto;
 
     //Foranea
-    private int idHistorialReparaciones;
+    //private int idHistorialReparaciones;
+    private String patente;
 }

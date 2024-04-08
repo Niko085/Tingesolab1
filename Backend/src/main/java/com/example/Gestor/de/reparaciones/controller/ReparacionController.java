@@ -16,7 +16,7 @@ public class ReparacionController {
     ReparacionService reparacionService;
 
     @GetMapping("/")
-    public ResponseEntity<List<ReparacionEntity>> listExtraHours() {
+    public ResponseEntity<List<ReparacionEntity>> listReparaciones() {
         List<ReparacionEntity> reparaciones = reparacionService.getReparaciones();
         return ResponseEntity.ok(reparaciones);
 
@@ -25,6 +25,12 @@ public class ReparacionController {
     @GetMapping("/{id}")
     public ResponseEntity<ReparacionEntity> getReparacionesById(@PathVariable Long id) {
         ReparacionEntity reparaciones = reparacionService.getReparacionById(id);
+        return ResponseEntity.ok(reparaciones);
+    }
+
+    @GetMapping("/{patente}")
+    public ResponseEntity<List<ReparacionEntity>> getReparacionesByPatente(@PathVariable String patente) {
+        List<ReparacionEntity> reparaciones = reparacionService.getReparacionesByPatente(patente);
         return ResponseEntity.ok(reparaciones);
     }
 
