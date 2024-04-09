@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface ReparacionRepository extends JpaRepository<ReparacionEntity, Long> {
-    public List<ReparacionEntity> findById(int id);
+    //public List<ReparacionEntity> findById(int id);
     public List<ReparacionEntity> findByPatente(String patente);
 
 /*

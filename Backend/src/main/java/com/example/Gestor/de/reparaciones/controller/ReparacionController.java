@@ -1,5 +1,6 @@
 package com.example.Gestor.de.reparaciones.controller;
 
+import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
 import com.example.Gestor.de.reparaciones.entities.ReparacionEntity;
 import com.example.Gestor.de.reparaciones.services.ReparacionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,14 @@ public class ReparacionController {
         return ResponseEntity.ok(reparaciones);
 
     }
-
+/*
     @GetMapping("/{id}")
-    public ResponseEntity<ReparacionEntity> getReparacionesById(@PathVariable Long id) {
-        ReparacionEntity reparaciones = reparacionService.getReparacionById(id);
-        return ResponseEntity.ok(reparaciones);
+    public ResponseEntity<ReparacionEntity> getReparacionById(@PathVariable Long id) {
+        ReparacionEntity reparacion = reparacionService.getReparacionById(id);
+        return ResponseEntity.ok(reparacion);
     }
+
+ */
 
     @GetMapping("/{patente}")
     public ResponseEntity<List<ReparacionEntity>> getReparacionesByPatente(@PathVariable String patente) {
