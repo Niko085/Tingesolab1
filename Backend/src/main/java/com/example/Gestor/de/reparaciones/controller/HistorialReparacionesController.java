@@ -29,9 +29,19 @@ public class HistorialReparacionesController {
         return ResponseEntity.ok(reparaciones);
     }
 
+    /*
     @GetMapping("/calculate")
     public ResponseEntity<Void> calculatehistorial() {
         historialReparacionesService.calcularMontoTotalPagar();
+        return ResponseEntity.noContent().build();
+    }
+
+
+     */
+    //http://localhost:8090/api/historialreparaciones/calculate?patente=CFYF55
+    @GetMapping("/calculate")
+    public ResponseEntity<Void> calculatehistorial(@RequestParam("patente") String patente) {
+        historialReparacionesService.calcularMontoTotalPagar(patente);
         return ResponseEntity.noContent().build();
     }
 /*

@@ -94,6 +94,7 @@ public class HistorialReparacionesService {
     }
 
      */
+/*
     public Boolean calcularMontoTotalPagar() {
         // Obtener todos los automóviles
         List<AutomovilEntity> automoviles = automovilService.getAutomoviles();
@@ -108,7 +109,6 @@ public class HistorialReparacionesService {
             for (ReparacionEntity reparacion : reparaciones) {
                 montoTotal += reparacion.getMonto();
             }
-
             // Obtener el historial de reparaciones asociado a este automóvil
             List<HistorialReparacionesEntity> historiales = historialReparacionesRepository.findByPatente(automovil.getPatente());
 
@@ -120,7 +120,6 @@ public class HistorialReparacionesService {
             } else {
                 historial = historiales.get(0); // Obtener el primer historial encontrado
             }
-
             // Actualizar el monto total en el historial
             historial.setMontoTotalPagar(montoTotal);
 
@@ -131,6 +130,44 @@ public class HistorialReparacionesService {
         return true;
     }
 
+
+
+ */
+
+    //Función modificada para que clacule el monto total a pagar de un auto en particular
+    public Boolean calcularMontoTotalPagar(String patente) {
+        AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
+        double montoTotal = 0;
+
+        List<ReparacionEntity> reparaciones = reparacionService.getReparacionesByPatente(patente);
+
+        for (ReparacionEntity reparacion : reparaciones) {
+            montoTotal += reparacion.getMonto();
+        }
+        List<HistorialReparacionesEntity> historiales = historialReparacionesRepository.findByPatente(patente);
+
+        // Si no hay historial para el auto, se crea uno
+        HistorialReparacionesEntity historial;
+        if (historiales.isEmpty()) {
+            historial = new HistorialReparacionesEntity();
+            historial.setPatente(patente);
+        } else {
+            historial = historiales.get(0); // Obtener el primer historial encontrado
+        }
+        // Actualizar el monto total en el historial
+        historial.setMontoTotalPagar(montoTotal);
+        historial.setDescuentos(10);
+        historial.setRecargos(20);
+        historial.setIva(0.19);
+
+        //Corregir esto
+        //historial.setMontoTotalPagar((montoTotal+ historial.getRecargos() - historial.getDescuentos())+historial.getIva());
+
+        // Guardar el historial (o actualizarlo)
+        historialReparacionesRepository.save(historial);
+
+        return true;
+    }
 
 }
 
