@@ -29,7 +29,11 @@ public class HistorialReparacionesController {
         return ResponseEntity.ok(reparaciones);
     }
 
-
+    @GetMapping("/calculate")
+    public ResponseEntity<Void> calculatehistorial() {
+        historialReparacionesService.calcularMontoTotalPagar();
+        return ResponseEntity.noContent().build();
+    }
 /*
     @GetMapping("/calculate")
     public ResponseEntity<Void> calculatePaychecks(@RequestParam("year") int year, @RequestParam("month") int month) {

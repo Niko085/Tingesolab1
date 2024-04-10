@@ -13,9 +13,12 @@ public interface ReparacionRepository extends JpaRepository<ReparacionEntity, Lo
     //public List<ReparacionEntity> findById(int id);
     public List<ReparacionEntity> findByPatente(String patente);
 
+
 /*
     @Query(value = "SELECT * FROM reparaciones WHERE reparaciones.patente = :patente", nativeQuery = true)
     List<ReparacionEntity> getReparacionesByPatente(@Param("patente") String patente);
 
  */
+    @Query("SELECT SUM(r.monto) FROM ReparacionEntity r WHERE r.patente = :patente")
+    Double sumReparacionesByPatente(@Param("patente") String patente);
 }

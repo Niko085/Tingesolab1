@@ -24,7 +24,7 @@ public class HistorialReparacionesEntity {
 
     //private String tipo_reparacion;
 
-    private int montoTotalReparacion;
+    private double montoTotalPagar;
     private Date fechaSalidaTaller;
     private LocalTime horaSalidaTaller;
     private Date fechaClienteSeLlevaVehiculo;

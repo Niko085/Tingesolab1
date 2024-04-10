@@ -32,28 +32,10 @@ public class ReparacionService {
         return reparacionRepository.findByPatente(patente);
     }
 
-   // public List<ReparacionEntity> getExtraHourByRut(String rut){
-   //     return (List<ReparacionEntity>) reparacionRepository.findByRut(rut);
-   // }
-
     public ReparacionEntity updateReparacion(ReparacionEntity reparacion) {
         return reparacionRepository.save(reparacion);
     }
 
-    //public List<ReparacionEntity> getExtraHoursByRutYearMonth(String rut, int year, int month) {
-    //    return (List<ReparacionEntity>) reparacionRepository.getExtraHoursByRutYearMonth(rut, year, month);
-    //}
-/*
-    public int getTotalExtraHoursByRutYearMonth(String rut, int year, int month) {
-        List<ReparacionEntity> extraHours = reparacionRepository.getExtraHoursByRutYearMonth(rut, year, month);
-        int sumExtraHours = 0;
-        for (ReparacionEntity extraHour : extraHours) {
-            sumExtraHours = sumExtraHours + extraHour.getNumExtraHours();
-        }
-        return sumExtraHours;
-    }
-
- */
 
     public boolean deleteReparacion(Long id) throws Exception {
         try{
@@ -64,5 +46,8 @@ public class ReparacionService {
         }
     }
 
+    public Double sumReparacionesByPatente(String patente) {
+        return reparacionRepository.sumReparacionesByPatente(patente);
+    }
 
 }

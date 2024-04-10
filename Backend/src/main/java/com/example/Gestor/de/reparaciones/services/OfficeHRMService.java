@@ -85,25 +85,10 @@ public class OfficeHRMService {
  */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void aplicarRecargoKilometraje(AutomovilEntity automovil, HistorialReparacionesEntity historialReparaciones){
+    public double getRecargoKilometraje(AutomovilEntity automovil, HistorialReparacionesEntity historialReparaciones){
         int kilometraje = automovil.getKilometraje();
         String tipoAuto = automovil.getTipo();
-        int montoTotalReparacion = historialReparaciones.getMontoTotalReparacion();
+        double montoTotalReparacion = historialReparaciones.getMontoTotalPagar();
         double porcentajeRecargo = 0.0;
 
         if (kilometraje >= 0 && kilometraje <= 5000){
@@ -167,134 +152,115 @@ public class OfficeHRMService {
                 porcentajeRecargo = 1.2;
             }
         }
+        return porcentajeRecargo;
 
-        int nuevoMontoTotalReparacion = (int) (montoTotalReparacion * porcentajeRecargo);
-        historialReparaciones.setMontoTotalReparacion(nuevoMontoTotalReparacion);
+        //double nuevoMontoTotalReparacion = (double) (montoTotalReparacion * porcentajeRecargo);
+        //historialReparaciones.setMontoTotalReparacion(nuevoMontoTotalReparacion);
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public double aplicarRecargoAntiguedad(AutomovilEntity automovil){
+    public double getRecargoAntiguedad(AutomovilEntity automovil){
         int edad = 2024 - automovil.getAnioFabricacion();
         String tipoAuto = automovil.getTipo();
+        double porcentajeRecargo = 0.0;
         if (edad >= 0 && edad <= 5){
             if(tipoAuto.equals("Sedan")){
-                return 1;
+                porcentajeRecargo = 1;
             }else if(tipoAuto.equals("Diesel")){
-                return 1;
+                porcentajeRecargo = 1;
             }else if(tipoAuto.equals("Hatchback")){
-                return 1;
+                porcentajeRecargo = 1;
             }else if(tipoAuto.equals("Pickup")){
-                return 1;
+                porcentajeRecargo = 1;
             }else if(tipoAuto.equals("Furgoneta")){
-                return 1;
+                porcentajeRecargo = 1;
             }
         }else if (edad >= 6 && edad <= 10){
             if(tipoAuto.equals("Sedan")){
-                return 0.05;
+                porcentajeRecargo = 1.05;
             }else if(tipoAuto.equals("Diesel")){
-                return 0.05;
+                porcentajeRecargo = 1.05;
             }else if(tipoAuto.equals("Hatchback")){
-                return 0.07;
+                porcentajeRecargo = 1.07;
             }else if(tipoAuto.equals("Pickup")){
-                return 0.07;
+                porcentajeRecargo = 1.07;
             }else if(tipoAuto.equals("Furgoneta")){
-                return 0.07;
+                porcentajeRecargo = 1.07;
             }
         }else if (edad >= 11 && edad <= 15){
             if(tipoAuto.equals("Sedan")){
-                return 0.09;
+                porcentajeRecargo = 1.09;
             }else if(tipoAuto.equals("Diesel")){
-                return 0.09;
+                porcentajeRecargo = 1.09;
             }else if(tipoAuto.equals("Hatchback")){
-                return 0.11;
+                porcentajeRecargo = 1.11;
             }else if(tipoAuto.equals("Pickup")){
-                return 0.11;
+                porcentajeRecargo = 1.11;
             }else if(tipoAuto.equals("Furgoneta")){
-                return 0.11;
+                porcentajeRecargo = 1.11;
             }
         }else if (edad >= 16){
             if(tipoAuto.equals("Sedan")){
-                return 0.15;
+                porcentajeRecargo = 1.15;
             }else if(tipoAuto.equals("Diesel")){
-                return 0.15;
+                porcentajeRecargo = 1.15;
             }else if(tipoAuto.equals("Hatchback")){
-                return 0.2;
+                porcentajeRecargo = 1.2;
             }else if(tipoAuto.equals("Pickup")){
-                return 0.2;
+                porcentajeRecargo = 1.2;
             }else if(tipoAuto.equals("Furgoneta")){
-                return 0.2;
+                porcentajeRecargo = 1.2;
             }
         }
-        return 0;
+        return porcentajeRecargo;
     }
 
 
-    public double aplicarDescuentoCantidadReparaciones(AutomovilEntity automovil){
+    public double getDescuentoCantidadReparaciones(AutomovilEntity automovil){
         int cantidadReparaciones = automovil.getCantReparaciones();
         String tipoMotor = automovil.getMotor();
+        double porcentajeRecargo = 0.0;
         if (cantidadReparaciones >= 1 && cantidadReparaciones <= 2){
             if(tipoMotor.equals("Gasolina")){
-                return 0.05;
+                porcentajeRecargo = 0.95;
             }else if(tipoMotor.equals("Diesel")){
-                return 0.07;
+                porcentajeRecargo = 0.93;
             }else if(tipoMotor.equals("Hibrido")){
-                return 0.1;
+                porcentajeRecargo = 0.9;
             }else if(tipoMotor.equals("Electrico")){
-                return 0.08;
+                porcentajeRecargo = 0.92;
             }
         }else if (cantidadReparaciones >= 3 && cantidadReparaciones <= 5){
             if(tipoMotor.equals("Gasolina")){
-                return 0.1;
+                porcentajeRecargo = 0.9;
             }else if(tipoMotor.equals("Diesel")){
-                return 0.12;
+                porcentajeRecargo = 0.88;
             }else if(tipoMotor.equals("Hibrido")){
-                return 0.15;
+                porcentajeRecargo = 0.85;
             }else if(tipoMotor.equals("Electrico")){
-                return 0.13;
+                porcentajeRecargo = 0.87;
             }
         }else if (cantidadReparaciones >= 6 && cantidadReparaciones <= 9){
             if(tipoMotor.equals("Gasolina")){
-                return 0.15;
+                porcentajeRecargo = 0.85;
             }else if(tipoMotor.equals("Diesel")){
-                return 0.17;
+                porcentajeRecargo = 0.83;
             }else if(tipoMotor.equals("Hibrido")){
-                return 0.2;
+                porcentajeRecargo = 0.8;
             }else if(tipoMotor.equals("Electrico")){
-                return 0.18;
+                porcentajeRecargo = 0.82;
             }
         }else if (cantidadReparaciones >= 10){
             if(tipoMotor.equals("Gasolina")){
-                return 0.2;
+                porcentajeRecargo = 0.8;
             }else if(tipoMotor.equals("Diesel")){
-                return 0.22;
+                porcentajeRecargo = 0.78;
             }else if(tipoMotor.equals("Hibrido")){
-                return 0.25;
+                porcentajeRecargo = 0.75;
             }else if(tipoMotor.equals("Electrico")){
-                return 0.23;
+                porcentajeRecargo = 0.77;
             }
         }
-        return 0;
+        return porcentajeRecargo;
     }
 }
