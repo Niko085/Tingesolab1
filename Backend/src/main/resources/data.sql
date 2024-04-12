@@ -8,7 +8,7 @@ VALUES (1, 'CFYF55', 'Hyundai', 'Getz', 'Sedan', 2010, 'gasolina', 5,1,15000),
 
 --Insertar historial
 INSERT INTO public.historial_reparaciones(id, patente,fecha_ingreso_taller,hora_ingreso_taller, monto_total_pagar, fecha_salida_taller, hora_salida_taller, fecha_cliente_se_lleva_vehiculo, hora_cliente_se_lleva_vehiculo, descuentos, recargos,iva)
-VALUES (1, 'CFYF55','2022-04-15','15:30:00', 0,'2022-04-19','12:30:00', '2022-04-20','15:25:00',0,0,1.19);
+VALUES (1, 'CFYF55','2022-04-15','15:30:00', 0,'2022-04-19','12:30:00', '2022-04-21','15:25:00',0,0,1.19);
   --     (2, 'TW6977','2023-05-15','12:55:00', 0,'2023-05-19','13:30:00', '2023-05-21','13:27:00',0,0,1.19);
 --INSERT INTO public.historial_reparaciones(id, patente,fecha_ingreso_taller,hora_ingreso_taller, monto_total_pagar, fecha_salida_taller, hora_salida_taller, fecha_cliente_se_lleva_vehiculo, hora_cliente_se_lleva_vehiculo)
 --VALUES (1, 'CFYF55','2022-04-15','15:30:00', 270000,'2022-04-19','12:30:00', '2022-04-20','15:25:00'),

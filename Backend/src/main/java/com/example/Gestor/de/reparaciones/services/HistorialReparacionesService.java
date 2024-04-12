@@ -154,12 +154,23 @@ public class HistorialReparacionesService {
 
         historial.setMontoTotalPagar(montoTotal);
         double recargoKilometraje = officeHRMService.getPorcentajeRecargoKilometraje(automovil) * montoTotal;
-        double recargoAntiguedad = officeHRMService.getPorcentajeRecargoAntiguedad(automovil)* montoTotal;
+        double recargoAntiguedad = officeHRMService.getPorcentajeRecargoAntiguedad(automovil) * montoTotal;
+        double recargoRetraso = officeHRMService.getPorcentajeRecargoRetraso(historial) * montoTotal;
+
+        //Descuentos
+        double descuentos = 0;
         historial.setDescuentos(10);
-        //historial.setRecargos(recargoKilometraje);
-        historial.setRecargos(recargoAntiguedad);
-        historial.setRecargos(recargoAntiguedad + recargoKilometraje);
-        historial.setIva(1.19);
+
+        //Recargos
+        //historial.setRecargos(recargoAntiguedad);
+        double recargos = recargoAntiguedad + recargoKilometraje + recargoRetraso;
+        historial.setRecargos(recargos);
+
+        //double iva = (montoTotal + recargos - descuentos) * 0.19;
+        double iva = montoTotal * 0.19;
+        historial.setIva(iva);
+
+        historial.setMontoTotalPagar((montoTotal + recargos - descuentos) + iva);
 
         // Guardar o actualizar el historial en la base de datos
         historialReparacionesRepository.save(historial);

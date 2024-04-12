@@ -28,9 +28,9 @@ public class HistorialReparacionesEntity {
     private double recargos;
     private double descuentos;
     private double iva;
-    private Date fechaSalidaTaller;
+    private LocalDate fechaSalidaTaller;
     private LocalTime horaSalidaTaller;
-    private Date fechaClienteSeLlevaVehiculo;
+    private LocalDate fechaClienteSeLlevaVehiculo;
     private LocalTime horaClienteSeLlevaVehiculo;
 
     //Foranea

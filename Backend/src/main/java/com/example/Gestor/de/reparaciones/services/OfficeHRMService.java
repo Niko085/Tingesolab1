@@ -4,6 +4,10 @@ import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
 @Service
 public class OfficeHRMService {
     public double getPorcentajeRecargoKilometraje(AutomovilEntity automovil){
@@ -131,6 +135,42 @@ public class OfficeHRMService {
         }
         return porcentajeRecargo;
     }
+
+    public double getPorcentajeRecargoRetraso(HistorialReparacionesEntity historialReparaciones){
+        LocalDate fechasSalida = historialReparaciones.getFechaSalidaTaller();
+        LocalDate fechaRetirada = historialReparaciones.getFechaClienteSeLlevaVehiculo();
+
+        //Calcular diferencia entre fechas
+        long diferenciaEnDias = ChronoUnit.DAYS.between(fechasSalida, fechaRetirada);
+
+        //Si hay retraso, calcular el recargo
+        double recargo = 0;
+        if (diferenciaEnDias > 0) {
+            recargo = 0.05 * diferenciaEnDias; // 5% del monto total por cada día de retraso
+        }
+        return recargo;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public double getDescuentoCantidadReparaciones(AutomovilEntity automovil){
