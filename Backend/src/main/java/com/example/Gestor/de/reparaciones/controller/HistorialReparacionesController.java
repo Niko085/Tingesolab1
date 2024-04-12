@@ -1,7 +1,7 @@
 package com.example.Gestor.de.reparaciones.controller;
 
+import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
-import com.example.Gestor.de.reparaciones.entities.ReparacionEntity;
 import com.example.Gestor.de.reparaciones.services.HistorialReparacionesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +28,13 @@ public class HistorialReparacionesController {
         List<HistorialReparacionesEntity> reparaciones = historialReparacionesService.getHistorialReparacionesByPatente(patente);
         return ResponseEntity.ok(reparaciones);
     }
+
+    @PostMapping("/")
+    public ResponseEntity<HistorialReparacionesEntity> saveHistorial(@RequestBody HistorialReparacionesEntity historial) {
+        HistorialReparacionesEntity historialNew = historialReparacionesService.saveHistorialReparaciones(historial);
+        return ResponseEntity.ok(historialNew);
+    }
+
 
     /*
     @GetMapping("/calculate")

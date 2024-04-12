@@ -1,6 +1,6 @@
 package com.example.Gestor.de.reparaciones.services;
 
-import com.example.Gestor.de.reparaciones.entities.ReparacionEntity;
+import com.example.Gestor.de.reparaciones.entities.ReparacionAutoEntity;
 import com.example.Gestor.de.reparaciones.repositories.ReparacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,11 +13,11 @@ public class ReparacionService {
     @Autowired
     ReparacionRepository reparacionRepository;
 
-    public ArrayList<ReparacionEntity> getReparaciones(){
-        return (ArrayList<ReparacionEntity>) reparacionRepository.findAll();
+    public ArrayList<ReparacionAutoEntity> getReparaciones(){
+        return (ArrayList<ReparacionAutoEntity>) reparacionRepository.findAll();
     }
 
-    public ReparacionEntity saveReparacion(ReparacionEntity reparacion){
+    public ReparacionAutoEntity saveReparacion(ReparacionAutoEntity reparacion){
         return reparacionRepository.save(reparacion);
     }
 
@@ -28,11 +28,11 @@ public class ReparacionService {
 
      */
 
-    public List<ReparacionEntity> getReparacionesByPatente(String patente) {
+    public List<ReparacionAutoEntity> getReparacionesByPatente(String patente) {
         return reparacionRepository.findByPatente(patente);
     }
 
-    public ReparacionEntity updateReparacion(ReparacionEntity reparacion) {
+    public ReparacionAutoEntity updateReparacion(ReparacionAutoEntity reparacion) {
         return reparacionRepository.save(reparacion);
     }
 

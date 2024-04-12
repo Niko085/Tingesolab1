@@ -2,12 +2,11 @@ package com.example.Gestor.de.reparaciones.services;
 
 import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
-import com.example.Gestor.de.reparaciones.entities.ReparacionEntity;
+import com.example.Gestor.de.reparaciones.entities.ReparacionAutoEntity;
 import com.example.Gestor.de.reparaciones.repositories.HistorialReparacionesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +32,11 @@ public class HistorialReparacionesService {
     public List<HistorialReparacionesEntity> getHistorialReparacionesByPatente(String patente) {
         return historialReparacionesRepository.findByPatente(patente);
     }
+
+    public HistorialReparacionesEntity getHistorialAutoByPatente(String patente){
+        return historialReparacionesRepository.findHistorialByPatente(patente);
+    }
+
 
 
     /*
@@ -134,40 +138,35 @@ public class HistorialReparacionesService {
 
  */
 
-    //Función modificada para que clacule el monto total a pagar de un auto en particular
+    //Función modificada para que caLcule el monto total a pagar de un auto en particular, en un historial ya creado
     public Boolean calcularMontoTotalPagar(String patente) {
-        AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
         double montoTotal = 0;
 
-        List<ReparacionEntity> reparaciones = reparacionService.getReparacionesByPatente(patente);
+        List<ReparacionAutoEntity> reparaciones = reparacionService.getReparacionesByPatente(patente);
 
-        for (ReparacionEntity reparacion : reparaciones) {
+        for (ReparacionAutoEntity reparacion : reparaciones) {
             montoTotal += reparacion.getMonto();
         }
-        List<HistorialReparacionesEntity> historiales = historialReparacionesRepository.findByPatente(patente);
 
-        // Si no hay historial para el auto, se crea uno
-        HistorialReparacionesEntity historial;
-        if (historiales.isEmpty()) {
-            historial = new HistorialReparacionesEntity();
-            historial.setPatente(patente);
-        } else {
-            historial = historiales.get(0); // Obtener el primer historial encontrado
-        }
-        // Actualizar el monto total en el historial
+        // Buscar el historial existente por patente
+        HistorialReparacionesEntity historial = historialReparacionesRepository.findHistorialByPatente(patente);
+        AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
+
         historial.setMontoTotalPagar(montoTotal);
+        double recargoKilometraje = officeHRMService.getPorcentajeRecargoKilometraje(automovil) * montoTotal;
+        double recargoAntiguedad = officeHRMService.getPorcentajeRecargoAntiguedad(automovil)* montoTotal;
         historial.setDescuentos(10);
-        historial.setRecargos(20);
-        historial.setIva(0.19);
+        //historial.setRecargos(recargoKilometraje);
+        historial.setRecargos(recargoAntiguedad);
+        historial.setRecargos(recargoAntiguedad + recargoKilometraje);
+        historial.setIva(1.19);
 
-        //Corregir esto
-        //historial.setMontoTotalPagar((montoTotal+ historial.getRecargos() - historial.getDescuentos())+historial.getIva());
-
-        // Guardar el historial (o actualizarlo)
+        // Guardar o actualizar el historial en la base de datos
         historialReparacionesRepository.save(historial);
-
         return true;
     }
+
+
 
 }
 
