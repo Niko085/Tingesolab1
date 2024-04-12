@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "reparaciones")
 @Data
@@ -21,7 +23,7 @@ public class ReparacionAutoEntity {
     private int monto;
 
     //Foranea
-    //private int idHistorialReparaciones;
+    private int idHistorialReparaciones;
     private String patente;
     private int idReparac;
 }

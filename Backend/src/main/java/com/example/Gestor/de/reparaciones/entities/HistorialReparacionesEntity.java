@@ -19,7 +19,7 @@ public class HistorialReparacionesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-    private Date fechaIngresoTaller;
+    private LocalDate fechaIngresoTaller;
     private LocalTime horaIngresoTaller;
 
     //private String tipo_reparacion;

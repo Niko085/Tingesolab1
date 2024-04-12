@@ -8,7 +8,7 @@ VALUES (1, 'CFYF55', 'Hyundai', 'Getz', 'Sedan', 2010, 'gasolina', 5,1,15000),
 
 --Insertar historial
 INSERT INTO public.historial_reparaciones(id, patente,fecha_ingreso_taller,hora_ingreso_taller, monto_total_pagar, fecha_salida_taller, hora_salida_taller, fecha_cliente_se_lleva_vehiculo, hora_cliente_se_lleva_vehiculo, descuentos, recargos,iva)
-VALUES (1, 'CFYF55','2022-04-15','15:30:00', 0,'2022-04-19','12:30:00', '2022-04-21','15:25:00',0,0,1.19);
+VALUES (1, 'CFYF55','2024-04-18','10:30:00', 0,'2022-04-19','12:30:00', '2022-04-21','15:25:00',0,0,1.19);
   --     (2, 'TW6977','2023-05-15','12:55:00', 0,'2023-05-19','13:30:00', '2023-05-21','13:27:00',0,0,1.19);
 --INSERT INTO public.historial_reparaciones(id, patente,fecha_ingreso_taller,hora_ingreso_taller, monto_total_pagar, fecha_salida_taller, hora_salida_taller, fecha_cliente_se_lleva_vehiculo, hora_cliente_se_lleva_vehiculo)
 --VALUES (1, 'CFYF55','2022-04-15','15:30:00', 270000,'2022-04-19','12:30:00', '2022-04-20','15:25:00'),
@@ -102,12 +102,12 @@ VALUES (41, 'Reparacioon de pequeñas grietas en el parabrisas o reemplazo compl
 
 
 --Insertar reparaciones
-INSERT INTO public.reparaciones(id, patente, descripcion, tipo_reparacion, monto, id_reparac)
-VALUES (1, 'CFYF55','Reparacion sistema electrico', 5, 150000,5),
-       (2, 'CFYF55','Reparacion sistema de frenos', 1,120000,1),
-       (3, 'TW6977','Reparacion sistema de refrigeracion', 2, 130000,2),
-       (4, 'TW6977','Reparacion sistema de combustible', 10, 130000,10),
-       (5, 'KDJW65','Reparacion sistema de refrigeracion', 2, 130000,2);
+INSERT INTO public.reparaciones(id, patente, descripcion, tipo_reparacion, monto, id_reparac, id_historial_reparaciones)
+VALUES (1, 'CFYF55','Reparacion sistema electrico', 5, 150000,5,1),
+       (2, 'CFYF55','Reparacion sistema de frenos', 1,120000,1,1),
+       (3, 'TW6977','Reparacion sistema de refrigeracion', 2, 130000,2,1),
+       (4, 'TW6977','Reparacion sistema de combustible', 10, 130000,10,1),
+       (5, 'KDJW65','Reparacion sistema de refrigeracion', 2, 130000,2,1);
 
 
 

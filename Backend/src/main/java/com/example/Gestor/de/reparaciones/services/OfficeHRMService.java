@@ -2,11 +2,15 @@ package com.example.Gestor.de.reparaciones.services;
 
 import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
+import com.example.Gestor.de.reparaciones.entities.ReparacionAutoEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class OfficeHRMService {
@@ -14,7 +18,6 @@ public class OfficeHRMService {
         int kilometraje = automovil.getKilometraje();
         String tipoAuto = automovil.getTipo();
         double porcentajeRecargo = 0.0;
-
         if (kilometraje >= 0 && kilometraje <= 5000){
             if(tipoAuto.equals("Sedan")){
                 porcentajeRecargo = 0;
@@ -136,6 +139,7 @@ public class OfficeHRMService {
         return porcentajeRecargo;
     }
 
+
     public double getPorcentajeRecargoRetraso(HistorialReparacionesEntity historialReparaciones){
         LocalDate fechasSalida = historialReparaciones.getFechaSalidaTaller();
         LocalDate fechaRetirada = historialReparaciones.getFechaClienteSeLlevaVehiculo();
@@ -152,27 +156,24 @@ public class OfficeHRMService {
     }
 
 
+    public double getPorcentajeDescuentoDia(LocalDate fechaEntrada, LocalTime horaEntrada){
+        DayOfWeek diaDeLaSemana = fechaEntrada.getDayOfWeek();
+        int horaDeEntrada = horaEntrada.getHour();
+
+        //Verificar día de la semana
+        if((diaDeLaSemana == DayOfWeek.MONDAY || diaDeLaSemana == DayOfWeek.THURSDAY) && (horaDeEntrada >= 9 && horaDeEntrada < 12)){
+            return 0.1;
+        }
+        else{
+            return 0;
+        }
+    }
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /*
     public double getDescuentoCantidadReparaciones(AutomovilEntity automovil){
         int cantidadReparaciones = automovil.getCantReparaciones();
         String tipoMotor = automovil.getMotor();
@@ -219,5 +220,38 @@ public class OfficeHRMService {
             }
         }
         return porcentajeRecargo;
+    }
+
+     */
+
+
+
+    //Cuenta la cantidad de reparaciones de los últimos 12 meses
+    /*
+    public int contarReparaciones(List<ReparacionAutoEntity> reparaciones){
+        //Fecha actual
+        LocalDate fechaActual = LocalDate.now();
+        //La fecha actual, pero hace 1 año
+        LocalDate fechaHace12Meses = fechaActual.minus(12,ChronoUnit.MONTHS);
+
+        int cantidadReparaciones = 0;
+        for (ReparacionAutoEntity reparacionAuto : reparaciones){
+            LocalDate fechaReparacion = reparacionAuto.
+        }
+    }
+
+     */
+
+
+    public int encontrarReparaciones(List<HistorialReparacionesEntity> historialReparaciones){
+        //Fecha actual
+        LocalDate fechaActual = LocalDate.now();
+        //La fecha actual, pero hace 1 año
+        LocalDate fechaHace12Meses = fechaActual.minus(12,ChronoUnit.MONTHS);
+
+        int cantidadReparaciones = 0;
+        for (HistorialReparacionesEntity Reparacion : historialReparaciones){
+            LocalDate fechaReparacion = reparacionAuto.
+        }
     }
 }

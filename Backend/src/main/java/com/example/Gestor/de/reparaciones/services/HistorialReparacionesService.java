@@ -158,8 +158,8 @@ public class HistorialReparacionesService {
         double recargoRetraso = officeHRMService.getPorcentajeRecargoRetraso(historial) * montoTotal;
 
         //Descuentos
-        double descuentos = 0;
-        historial.setDescuentos(10);
+        double descuentoDia = (officeHRMService.getPorcentajeDescuentoDia(historial.getFechaIngresoTaller(), historial.getHoraIngresoTaller()) * montoTotal);
+        historial.setDescuentos(descuentoDia);
 
         //Recargos
         //historial.setRecargos(recargoAntiguedad);
@@ -168,9 +168,9 @@ public class HistorialReparacionesService {
 
         //double iva = (montoTotal + recargos - descuentos) * 0.19;
         double iva = montoTotal * 0.19;
-        historial.setIva(iva);
-
-        historial.setMontoTotalPagar((montoTotal + recargos - descuentos) + iva);
+        //historial.setIva(iva);
+        //historial.setIva(officeHRMService.getPorcentajeDescuentoDia(historial.getFechaIngresoTaller(), historial.getHoraIngresoTaller()));
+        historial.setMontoTotalPagar((montoTotal + recargos - descuentoDia) + iva);
 
         // Guardar o actualizar el historial en la base de datos
         historialReparacionesRepository.save(historial);
