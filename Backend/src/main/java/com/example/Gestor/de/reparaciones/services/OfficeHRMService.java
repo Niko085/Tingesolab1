@@ -3,8 +3,6 @@ package com.example.Gestor.de.reparaciones.services;
 import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
 import com.example.Gestor.de.reparaciones.entities.DatosBonosEntity;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
-import com.example.Gestor.de.reparaciones.entities.ReparacionAutoEntity;
-import com.example.Gestor.de.reparaciones.repositories.DatosBonosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +10,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
-import java.util.List;
 
 @Service
 public class OfficeHRMService {

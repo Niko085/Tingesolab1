@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "valorreparaciones")
+@Table(name = "reparaciones")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,12 +16,10 @@ public class ReparacionEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private String tipoReparacion;//Ej: reparacion sistema electrico
-    private int identificadorReparacion;//reparacion tipo 1, 2, ..., 11
+    private int tipoReparacion;
     private String descripcion;
-    private int monto;
-    private String tipoMotor;
 
+    //Foranea
+    private int idHistorialReparaciones;
+    private String patente;
 }
-
-

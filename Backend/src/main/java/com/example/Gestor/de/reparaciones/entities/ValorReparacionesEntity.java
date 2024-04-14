@@ -5,25 +5,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Entity
-@Table(name = "reparaciones")
+@Table(name = "valorreparaciones")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReparacionAutoEntity {
+public class ValorReparacionesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private int tipoReparacion;
+    private String tipoReparacion;//Ej: reparacion sistema electrico
+    private int numeroReparacion;//reparacion tipo 1, 2, ..., 11
     private String descripcion;
     private int monto;
+    private String tipoMotor;
 
-    //Foranea
-    private int idHistorialReparaciones;
-    private String patente;
-    private int idReparacion;
 }
+
+
