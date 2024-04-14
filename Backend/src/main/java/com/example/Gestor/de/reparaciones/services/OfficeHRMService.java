@@ -173,8 +173,6 @@ public class OfficeHRMService {
 
 
 
-
-
     public double getDescuentoCantidadReparaciones(AutomovilEntity automovil, int cantidadReparaciones){
         String tipoMotor = automovil.getMotor();
         double porcentajeRecargo = 0.0;

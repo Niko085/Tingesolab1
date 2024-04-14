@@ -21,12 +21,12 @@ public class ReparacionAutoService {
         return reparacionAutoRepository.save(reparacion);
     }
 
-    /*
-    public ReparacionEntity getReparacionById(Long id){
-        return reparacionRepository.findById(id).get();
+
+    public List<ReparacionAutoEntity> getReparacionByIdHistorialReparaciones(long id){
+        return reparacionAutoRepository.findByIdHistorialReparaciones(id);
     }
 
-     */
+
 
     public List<ReparacionAutoEntity> getReparacionesByPatente(String patente) {
         return reparacionAutoRepository.findByPatente(patente);

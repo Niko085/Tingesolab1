@@ -12,6 +12,10 @@ public interface HistorialReparacionesRepository extends JpaRepository<Historial
 
     public List<HistorialReparacionesEntity> findByPatente(String patente);
 
+    //public List<HistorialReparacionesEntity> findByPatenteAndAndPagadoIsFalse(String patente);
+
+    public HistorialReparacionesEntity findByPatenteAndAndPagadoIsFalse(String patente);
+
     public HistorialReparacionesEntity findHistorialByPatente(String patente);
 
     @Query("SELECT MAX(hr.id) FROM HistorialReparacionesEntity hr")

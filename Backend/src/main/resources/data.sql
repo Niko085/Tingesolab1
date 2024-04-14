@@ -8,9 +8,9 @@ VALUES (1, 'CFYF55', 'Hyundai', 'Getz', 'Sedan', 2010, 'Gasolina', 5,1,15000),
 
 --Insertar historial
 INSERT INTO public.historial_reparaciones(id, patente,fecha_ingreso_taller,hora_ingreso_taller, monto_total_pagar, fecha_salida_taller, hora_salida_taller, fecha_cliente_se_lleva_vehiculo, hora_cliente_se_lleva_vehiculo, descuentos, recargos,iva, pagado)
-VALUES (1, 'CFYF55','2024-01-18','10:30:00', 0,'2022-04-19','12:30:00', '2022-04-21','15:25:00',0,0,0, true),
+VALUES (1, 'CFYF55','2024-01-18','10:30:00', 0,'2022-04-19','12:30:00', '2022-04-21','15:25:00',0,0,0, false),
        (2, 'TW6977','2023-12-15','12:55:00', 0,'2023-05-19','13:30:00', '2023-05-21','13:27:00',0,0,0, false),
-       (3, 'CFYF55','2024-03-18','10:30:00', 0,'2022-04-19','12:30:00', '2022-04-21','15:25:00',0,0,0,false);
+       (3, 'CFYF55','2024-03-18','10:30:00', 0,'2022-04-19','12:30:00', '2022-04-21','15:25:00',0,0,0,true);
 --INSERT INTO public.historial_reparaciones(id, patente,fecha_ingreso_taller,hora_ingreso_taller, monto_total_pagar, fecha_salida_taller, hora_salida_taller, fecha_cliente_se_lleva_vehiculo, hora_cliente_se_lleva_vehiculo)
 --VALUES (1, 'CFYF55','2024-01-15','15:30:00', 270000,'2022-04-19','12:30:00', '2022-04-20','15:25:00'),
   --     (2, 'TW6977','2023-01-15','12:55:00', 260000,'2023-05-19','13:30:00', '2023-05-21','13:27:00');

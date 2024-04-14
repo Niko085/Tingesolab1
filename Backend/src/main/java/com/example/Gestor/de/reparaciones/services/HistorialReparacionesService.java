@@ -35,6 +35,10 @@ public class HistorialReparacionesService {
         return historialReparacionesRepository.findByPatente(patente);
     }
 
+    public HistorialReparacionesEntity getHistorialReparacionesNoPagadasByPatente(String patente) {
+        return historialReparacionesRepository.findByPatenteAndAndPagadoIsFalse(patente);
+    }
+
     public HistorialReparacionesEntity getHistorialAutoByPatente(String patente){
         return historialReparacionesRepository.findHistorialByPatente(patente);
     }
@@ -140,19 +144,19 @@ public class HistorialReparacionesService {
 
  */
 
-    //Función modificada para que caLcule el monto total a pagar de un auto en particular, en un historial ya creado
+    //Función modificada para que calcule el monto total a pagar de un auto en particular, en un historial ya creado
     public Boolean calcularMontoTotalPagar(String patente) {
         double montoTotal = 0;
 
-        List<ReparacionAutoEntity> reparaciones = reparacionAutoService.getReparacionesByPatente(patente);
+        // Buscar el historial existente por patente que esté sin pagar
+        HistorialReparacionesEntity historial = historialReparacionesRepository.findByPatenteAndAndPagadoIsFalse(patente);
+        long idhistorial = historial.getId();
+        List<ReparacionAutoEntity> reparaciones = reparacionAutoService.getReparacionByIdHistorialReparaciones(idhistorial);
 
         //Calculo del monto de reparaciones, sin descuentos, recargos ni iva
         for (ReparacionAutoEntity reparacion : reparaciones) {
             montoTotal += reparacion.getMonto();
         }
-
-        // Buscar el historial existente por patente
-        HistorialReparacionesEntity historial = historialReparacionesRepository.findHistorialByPatente(patente);
 
         //Buscar historiales por patente
         List<HistorialReparacionesEntity> historiales = historialReparacionesRepository.findByPatente(patente);
@@ -164,6 +168,7 @@ public class HistorialReparacionesService {
         //Descuentos
         double descuentoDia = (officeHRMService.getPorcentajeDescuentoDia(historial.getFechaIngresoTaller(), historial.getHoraIngresoTaller()) * montoTotal);
         double descuentoCantidadReparaciones = (officeHRMService.getDescuentoCantidadReparaciones(automovil,encontrarReparacionesPorFecha(historiales)))* montoTotal;
+
         double descuentos = descuentoDia + descuentoCantidadReparaciones;
         //historial.setDescuentos(descuentoCantidadReparaciones);
 
@@ -182,6 +187,7 @@ public class HistorialReparacionesService {
         historial.setDescuentos(descuentos);
         historial.setIva(iva);
         historial.setMontoTotalPagar((montoTotal + recargos - descuentos) + iva);
+        //historial.setPagado(true);
 
         // Guardar o actualizar el historial en la base de datos
         historialReparacionesRepository.save(historial);
