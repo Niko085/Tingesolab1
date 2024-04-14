@@ -1,18 +1,19 @@
 -- Insertar automovil
 INSERT INTO public.automoviles(id, patente, marca, modelo, tipo, anio_fabricacion, motor, cant_asientos, cant_reparaciones, kilometraje)
-VALUES (1, 'CFYF55', 'Hyundai', 'Getz', 'Sedan', 2010, 'gasolina', 5,1,15000),
-       (2, 'TW6977', 'Hyundai', 'Grand i10', 'Hatchback', 2021, 'gasolina', 5,3,4000),
-       (3, 'FHKJ23', 'Toyota', 'Corolla', 'Sedan', 2015, 'hibrido', 5,2,10000),
-       (4, 'NMQP98', 'Ford', 'Ranger', 'Pickup', 2018, 'diesel', 5,6,35000),
-       (5, 'KDJW65', 'Chevrolet', 'Spark', 'Hatchback', 2019, 'gasolina', 4,9,50000);
+VALUES (1, 'CFYF55', 'Hyundai', 'Getz', 'Sedan', 2010, 'Gasolina', 5,1,15000),
+       (2, 'TW6977', 'Hyundai', 'Grand i10', 'Hatchback', 2021, 'Gasolina', 5,3,4000),
+       (3, 'FHKJ23', 'Toyota', 'Corolla', 'Sedan', 2015, 'Hibrido', 5,2,10000),
+       (4, 'NMQP98', 'Ford', 'Ranger', 'Pickup', 2018, 'Diesel', 5,6,35000),
+       (5, 'KDJW65', 'Chevrolet', 'Spark', 'Hatchback', 2019, 'Gasolina', 4,9,50000);
 
 --Insertar historial
 INSERT INTO public.historial_reparaciones(id, patente,fecha_ingreso_taller,hora_ingreso_taller, monto_total_pagar, fecha_salida_taller, hora_salida_taller, fecha_cliente_se_lleva_vehiculo, hora_cliente_se_lleva_vehiculo, descuentos, recargos,iva)
-VALUES (1, 'CFYF55','2024-04-18','10:30:00', 0,'2022-04-19','12:30:00', '2022-04-21','15:25:00',0,0,1.19);
-  --     (2, 'TW6977','2023-05-15','12:55:00', 0,'2023-05-19','13:30:00', '2023-05-21','13:27:00',0,0,1.19);
+VALUES (1, 'CFYF55','2024-01-18','10:30:00', 0,'2022-04-19','12:30:00', '2022-04-21','15:25:00',0,0,0),
+       (2, 'TW6977','2023-12-15','12:55:00', 0,'2023-05-19','13:30:00', '2023-05-21','13:27:00',0,0,0),
+       (3, 'CFYF55','2024-03-18','10:30:00', 0,'2022-04-19','12:30:00', '2022-04-21','15:25:00',0,0,0);
 --INSERT INTO public.historial_reparaciones(id, patente,fecha_ingreso_taller,hora_ingreso_taller, monto_total_pagar, fecha_salida_taller, hora_salida_taller, fecha_cliente_se_lleva_vehiculo, hora_cliente_se_lleva_vehiculo)
---VALUES (1, 'CFYF55','2022-04-15','15:30:00', 270000,'2022-04-19','12:30:00', '2022-04-20','15:25:00'),
---(2, 'TWEQ77','2023-05-15','12:55:00', 260000,'2023-05-19','13:30:00', '2023-05-21','13:27:00');
+--VALUES (1, 'CFYF55','2024-01-15','15:30:00', 270000,'2022-04-19','12:30:00', '2022-04-20','15:25:00'),
+  --     (2, 'TW6977','2023-01-15','12:55:00', 260000,'2023-05-19','13:30:00', '2023-05-21','13:27:00');
 
 
 
@@ -105,9 +106,11 @@ VALUES (41, 'Reparacioon de pequeñas grietas en el parabrisas o reemplazo compl
 INSERT INTO public.reparaciones(id, patente, descripcion, tipo_reparacion, monto, id_reparac, id_historial_reparaciones)
 VALUES (1, 'CFYF55','Reparacion sistema electrico', 5, 150000,5,1),
        (2, 'CFYF55','Reparacion sistema de frenos', 1,120000,1,1),
-       (3, 'TW6977','Reparacion sistema de refrigeracion', 2, 130000,2,1),
-       (4, 'TW6977','Reparacion sistema de combustible', 10, 130000,10,1),
-       (5, 'KDJW65','Reparacion sistema de refrigeracion', 2, 130000,2,1);
+       (3, 'TW6977','Reparacion sistema de refrigeracion', 2, 130000,2,2),
+       (4, 'TW6977','Reparacion sistema de combustible', 10, 130000,10,2),
+       (5, 'KDJW65','Reparacion sistema de refrigeracion', 2, 130000,2,2),
+       (6, 'CFYF55','Reparacion sistema electrico', 5, 150000,5,3),
+       (7, 'CFYF55','Reparacion sistema de combustible', 1,130000,1,3);
 
 
 

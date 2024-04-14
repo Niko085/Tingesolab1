@@ -14,6 +14,7 @@ import java.util.List;
 
 @Service
 public class OfficeHRMService {
+
     public double getPorcentajeRecargoKilometraje(AutomovilEntity automovil){
         int kilometraje = automovil.getKilometraje();
         String tipoAuto = automovil.getTipo();
@@ -173,85 +174,57 @@ public class OfficeHRMService {
 
 
 
-    /*
-    public double getDescuentoCantidadReparaciones(AutomovilEntity automovil){
-        int cantidadReparaciones = automovil.getCantReparaciones();
+
+    public double getDescuentoCantidadReparaciones(AutomovilEntity automovil, int cantidadReparaciones){
         String tipoMotor = automovil.getMotor();
         double porcentajeRecargo = 0.0;
         if (cantidadReparaciones >= 1 && cantidadReparaciones <= 2){
             if(tipoMotor.equals("Gasolina")){
-                porcentajeRecargo = 0.95;
+                porcentajeRecargo = 0.05;
             }else if(tipoMotor.equals("Diesel")){
-                porcentajeRecargo = 0.93;
+                porcentajeRecargo = 0.07;
             }else if(tipoMotor.equals("Hibrido")){
-                porcentajeRecargo = 0.9;
+                porcentajeRecargo = 0.1;
             }else if(tipoMotor.equals("Electrico")){
-                porcentajeRecargo = 0.92;
+                porcentajeRecargo = 0.08;
             }
         }else if (cantidadReparaciones >= 3 && cantidadReparaciones <= 5){
             if(tipoMotor.equals("Gasolina")){
-                porcentajeRecargo = 0.9;
+                porcentajeRecargo = 0.1;
             }else if(tipoMotor.equals("Diesel")){
-                porcentajeRecargo = 0.88;
+                porcentajeRecargo = 0.12;
             }else if(tipoMotor.equals("Hibrido")){
-                porcentajeRecargo = 0.85;
+                porcentajeRecargo = 0.15;
             }else if(tipoMotor.equals("Electrico")){
-                porcentajeRecargo = 0.87;
+                porcentajeRecargo = 0.13;
             }
         }else if (cantidadReparaciones >= 6 && cantidadReparaciones <= 9){
             if(tipoMotor.equals("Gasolina")){
-                porcentajeRecargo = 0.85;
+                porcentajeRecargo = 0.15;
             }else if(tipoMotor.equals("Diesel")){
-                porcentajeRecargo = 0.83;
+                porcentajeRecargo = 0.17;
             }else if(tipoMotor.equals("Hibrido")){
-                porcentajeRecargo = 0.8;
+                porcentajeRecargo = 0.2;
             }else if(tipoMotor.equals("Electrico")){
-                porcentajeRecargo = 0.82;
+                porcentajeRecargo = 0.18;
             }
         }else if (cantidadReparaciones >= 10){
             if(tipoMotor.equals("Gasolina")){
-                porcentajeRecargo = 0.8;
+                porcentajeRecargo = 0.2;
             }else if(tipoMotor.equals("Diesel")){
-                porcentajeRecargo = 0.78;
+                porcentajeRecargo = 0.22;
             }else if(tipoMotor.equals("Hibrido")){
-                porcentajeRecargo = 0.75;
+                porcentajeRecargo = 0.25;
             }else if(tipoMotor.equals("Electrico")){
-                porcentajeRecargo = 0.77;
+                porcentajeRecargo = 0.23;
             }
         }
         return porcentajeRecargo;
     }
 
-     */
 
 
 
-    //Cuenta la cantidad de reparaciones de los últimos 12 meses
-    /*
-    public int contarReparaciones(List<ReparacionAutoEntity> reparaciones){
-        //Fecha actual
-        LocalDate fechaActual = LocalDate.now();
-        //La fecha actual, pero hace 1 año
-        LocalDate fechaHace12Meses = fechaActual.minus(12,ChronoUnit.MONTHS);
-
-        int cantidadReparaciones = 0;
-        for (ReparacionAutoEntity reparacionAuto : reparaciones){
-            LocalDate fechaReparacion = reparacionAuto.
-        }
-    }
-
-     */
 
 
-    public int encontrarReparaciones(List<HistorialReparacionesEntity> historialReparaciones){
-        //Fecha actual
-        LocalDate fechaActual = LocalDate.now();
-        //La fecha actual, pero hace 1 año
-        LocalDate fechaHace12Meses = fechaActual.minus(12,ChronoUnit.MONTHS);
-
-        int cantidadReparaciones = 0;
-        for (HistorialReparacionesEntity Reparacion : historialReparaciones){
-            LocalDate fechaReparacion = reparacionAuto.
-        }
-    }
 }

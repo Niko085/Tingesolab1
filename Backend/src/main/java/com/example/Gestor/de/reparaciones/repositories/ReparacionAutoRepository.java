@@ -9,9 +9,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ReparacionRepository extends JpaRepository<ReparacionAutoEntity, Long> {
+public interface ReparacionAutoRepository extends JpaRepository<ReparacionAutoEntity, Long> {
     //public List<ReparacionEntity> findById(int id);
     public List<ReparacionAutoEntity> findByPatente(String patente);
+    //public List<ReparacionAutoEntity> findByIdHistorialReparaciones(int id);
+
+    @Query("SELECT COUNT(r) FROM ReparacionAutoEntity r WHERE r.idHistorialReparaciones = :idHistorialReparaciones")
+    Integer countReparacionesByIdHistorialReparaciones(@Param("idHistorialReparaciones") Long idHistorialReparaciones);
 
 
 /*
@@ -21,4 +25,14 @@ public interface ReparacionRepository extends JpaRepository<ReparacionAutoEntity
  */
     @Query("SELECT SUM(r.monto) FROM ReparacionAutoEntity r WHERE r.patente = :patente")
     Double sumReparacionesByPatente(@Param("patente") String patente);
+
+    //@Query("SELECT COUNT(r) FROM ReparacionAutoEntity r WHERE r.idHistorialReparaciones = :idHistorial")
+    //Integer countReparacionesByHistorial(@Param("idHistorial") Long idHistorial);
+
+    @Query("SELECT COUNT(r) FROM ReparacionAutoEntity r WHERE r.idHistorialReparaciones = :idHistorial")
+    Integer countReparacionesByHistorial(@Param("idHistorial") Long idHistorial);
+
+
+
+
 }

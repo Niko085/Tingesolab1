@@ -1,7 +1,7 @@
 package com.example.Gestor.de.reparaciones.controller;
 
 import com.example.Gestor.de.reparaciones.entities.ReparacionAutoEntity;
-import com.example.Gestor.de.reparaciones.services.ReparacionService;
+import com.example.Gestor.de.reparaciones.services.ReparacionAutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +13,11 @@ import java.util.List;
 @CrossOrigin("*")
 public class ReparacionController {
     @Autowired
-    ReparacionService reparacionService;
+    ReparacionAutoService reparacionAutoService;
 
     @GetMapping("/")
     public ResponseEntity<List<ReparacionAutoEntity>> listReparaciones() {
-        List<ReparacionAutoEntity> reparaciones = reparacionService.getReparaciones();
+        List<ReparacionAutoEntity> reparaciones = reparacionAutoService.getReparaciones();
         return ResponseEntity.ok(reparaciones);
 
     }
@@ -32,13 +32,13 @@ public class ReparacionController {
 
     @GetMapping("/{patente}")
     public ResponseEntity<List<ReparacionAutoEntity>> getReparacionesByPatente(@PathVariable String patente) {
-        List<ReparacionAutoEntity> reparaciones = reparacionService.getReparacionesByPatente(patente);
+        List<ReparacionAutoEntity> reparaciones = reparacionAutoService.getReparacionesByPatente(patente);
         return ResponseEntity.ok(reparaciones);
     }
 
     @PostMapping("/")
     public ResponseEntity<ReparacionAutoEntity> saveReparacion(@RequestBody ReparacionAutoEntity reparacion) {
-        ReparacionAutoEntity reparacionNew = reparacionService.saveReparacion(reparacion);
+        ReparacionAutoEntity reparacionNew = reparacionAutoService.saveReparacion(reparacion);
         return ResponseEntity.ok(reparacionNew);
     }
 /*
@@ -52,13 +52,13 @@ public class ReparacionController {
 
     @PutMapping("/")
     public ResponseEntity<ReparacionAutoEntity> updateReparacion(@RequestBody ReparacionAutoEntity reparacion){
-        ReparacionAutoEntity reparacionUpdated = reparacionService.updateReparacion(reparacion);
+        ReparacionAutoEntity reparacionUpdated = reparacionAutoService.updateReparacion(reparacion);
         return ResponseEntity.ok(reparacionUpdated);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> deleteReparacionById(@PathVariable Long id) throws Exception {
-        var isDeleted = reparacionService.deleteReparacion(id);
+        var isDeleted = reparacionAutoService.deleteReparacion(id);
         return ResponseEntity.noContent().build();
     }
 }

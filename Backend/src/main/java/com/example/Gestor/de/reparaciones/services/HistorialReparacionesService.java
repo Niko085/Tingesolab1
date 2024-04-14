@@ -7,6 +7,8 @@ import com.example.Gestor.de.reparaciones.repositories.HistorialReparacionesRepo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class HistorialReparacionesService {
     @Autowired
     OfficeHRMService officeHRMService;
     @Autowired
-    ReparacionService reparacionService;
+    ReparacionAutoService reparacionAutoService;
 
     public ArrayList<HistorialReparacionesEntity> getHistorialReparaciones() {
         return (ArrayList<HistorialReparacionesEntity>) historialReparacionesRepository.findAll();
@@ -142,35 +144,44 @@ public class HistorialReparacionesService {
     public Boolean calcularMontoTotalPagar(String patente) {
         double montoTotal = 0;
 
-        List<ReparacionAutoEntity> reparaciones = reparacionService.getReparacionesByPatente(patente);
+        List<ReparacionAutoEntity> reparaciones = reparacionAutoService.getReparacionesByPatente(patente);
 
+        //Calculo del monto de reparaciones, sin descuentos, recargos ni iva
         for (ReparacionAutoEntity reparacion : reparaciones) {
             montoTotal += reparacion.getMonto();
         }
 
         // Buscar el historial existente por patente
         HistorialReparacionesEntity historial = historialReparacionesRepository.findHistorialByPatente(patente);
+
+        //Buscar historiales por patente
+        List<HistorialReparacionesEntity> historiales = historialReparacionesRepository.findByPatente(patente);
+
+        //Buscar automovil por patente
         AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
 
-        historial.setMontoTotalPagar(montoTotal);
-        double recargoKilometraje = officeHRMService.getPorcentajeRecargoKilometraje(automovil) * montoTotal;
-        double recargoAntiguedad = officeHRMService.getPorcentajeRecargoAntiguedad(automovil) * montoTotal;
-        double recargoRetraso = officeHRMService.getPorcentajeRecargoRetraso(historial) * montoTotal;
 
         //Descuentos
         double descuentoDia = (officeHRMService.getPorcentajeDescuentoDia(historial.getFechaIngresoTaller(), historial.getHoraIngresoTaller()) * montoTotal);
-        historial.setDescuentos(descuentoDia);
+        double descuentoCantidadReparaciones = (officeHRMService.getDescuentoCantidadReparaciones(automovil,encontrarReparacionesPorFecha(historiales)))* montoTotal;
+        double descuentos = descuentoDia + descuentoCantidadReparaciones;
+        //historial.setDescuentos(descuentoCantidadReparaciones);
+
 
         //Recargos
         //historial.setRecargos(recargoAntiguedad);
+        double recargoKilometraje = officeHRMService.getPorcentajeRecargoKilometraje(automovil) * montoTotal;
+        double recargoAntiguedad = officeHRMService.getPorcentajeRecargoAntiguedad(automovil) * montoTotal;
+        double recargoRetraso = officeHRMService.getPorcentajeRecargoRetraso(historial) * montoTotal;
         double recargos = recargoAntiguedad + recargoKilometraje + recargoRetraso;
-        historial.setRecargos(recargos);
 
-        //double iva = (montoTotal + recargos - descuentos) * 0.19;
-        double iva = montoTotal * 0.19;
-        //historial.setIva(iva);
-        //historial.setIva(officeHRMService.getPorcentajeDescuentoDia(historial.getFechaIngresoTaller(), historial.getHoraIngresoTaller()));
-        historial.setMontoTotalPagar((montoTotal + recargos - descuentoDia) + iva);
+        double iva = (montoTotal + recargos - descuentos) * 0.19;
+
+        //Setters de nuevos valores
+        historial.setRecargos(recargos);
+        historial.setDescuentos(descuentos);
+        historial.setIva(iva);
+        historial.setMontoTotalPagar((montoTotal + recargos - descuentos) + iva);
 
         // Guardar o actualizar el historial en la base de datos
         historialReparacionesRepository.save(historial);
@@ -178,7 +189,21 @@ public class HistorialReparacionesService {
     }
 
 
+    public int encontrarReparacionesPorFecha(List<HistorialReparacionesEntity> historialReparaciones){
+        int cantidad = 0;
+        //Fecha actual
+        LocalDate fechaActual = LocalDate.now();
+        //La fecha actual, pero hace 1 año
+        LocalDate fechaHace12Meses = fechaActual.minus(12, ChronoUnit.MONTHS);
 
+        int cantidadReparaciones = 0;
+        for (HistorialReparacionesEntity historialReparacion : historialReparaciones){
+            if((historialReparacion.getFechaIngresoTaller()).isAfter(fechaHace12Meses) || (historialReparacion.getFechaIngresoTaller()).isEqual(fechaHace12Meses)){
+                cantidad += reparacionAutoService.contarReparacionesPorHistorial(historialReparacion.getId());
+            }
+        }
+        return cantidad;
+    }
 }
 
 
