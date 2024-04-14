@@ -25,5 +25,5 @@ public class ReparacionAutoEntity {
     //Foranea
     private int idHistorialReparaciones;
     private String patente;
-    private int idReparac;
+    private int idReparacion;
 }

@@ -1,8 +1,11 @@
 package com.example.Gestor.de.reparaciones.services;
 
 import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
+import com.example.Gestor.de.reparaciones.entities.DatosBonosEntity;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
 import com.example.Gestor.de.reparaciones.entities.ReparacionAutoEntity;
+import com.example.Gestor.de.reparaciones.repositories.DatosBonosRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -14,6 +17,8 @@ import java.util.List;
 
 @Service
 public class OfficeHRMService {
+    @Autowired
+    private DatosBonosService datosBonosService;
 
     public double getPorcentajeRecargoKilometraje(AutomovilEntity automovil){
         int kilometraje = automovil.getKilometraje();
@@ -172,7 +177,6 @@ public class OfficeHRMService {
 
 
 
-
     public double getDescuentoCantidadReparaciones(AutomovilEntity automovil, int cantidadReparaciones){
         String tipoMotor = automovil.getMotor();
         double porcentajeRecargo = 0.0;
@@ -220,7 +224,14 @@ public class OfficeHRMService {
         return porcentajeRecargo;
     }
 
-
+    public int getMontoDescuentoBonos(AutomovilEntity automovil){
+        String marca = automovil.getMarca();
+        DatosBonosEntity datosBono = datosBonosService.getDatosBonosByMarca(marca);
+        if(datosBono.getCantidadBonos()>0){
+            datosBono.setCantidadBonos(datosBono.getCantidadBonos()-1);
+            return datosBono.getMontoBono();
+        }else return 0;
+    }
 
 
 

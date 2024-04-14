@@ -27,6 +27,14 @@ public class AutomovilController {
         return ResponseEntity.ok(automovil);
     }
 
+
+    @GetMapping("/patente/{patente}")
+    public ResponseEntity<AutomovilEntity> getAutomovilByPatente(@PathVariable String patente) {
+        AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
+        return ResponseEntity.ok(automovil);
+    }
+
+
     @PostMapping("/")
     public ResponseEntity<AutomovilEntity> saveAutomovil(@RequestBody AutomovilEntity automovil) {
         AutomovilEntity automovilNew = automovilService.saveAutomovil(automovil);

@@ -25,6 +25,4 @@ public class AutomovilEntity {
     private int cantAsientos;
     private int kilometraje;
 
-    //Provisorio
-    private int cantReparaciones;
 }
