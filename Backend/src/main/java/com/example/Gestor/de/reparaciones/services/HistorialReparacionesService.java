@@ -111,4 +111,14 @@ public class HistorialReparacionesService {
         }
         return cantidad;
     }
+
+    public int getCantidadTipoReparaciones(int tipoReparacion){
+        List<String> tipoAutos = new ArrayList<>();
+        List<ReparacionEntity> reparaciones = reparacionService.getReparacionesByTipoReparacion(tipoReparacion);
+
+        for(ReparacionEntity reparacion : reparaciones){
+            String patente = reparacion.getPatente();
+            List<AutomovilEntity> autos = automovilService.getAutomovilByPatente(patente);
+        }
+    }
 }

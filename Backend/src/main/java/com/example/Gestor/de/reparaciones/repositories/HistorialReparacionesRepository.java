@@ -1,5 +1,6 @@
 package com.example.Gestor.de.reparaciones.repositories;
 
+import com.example.Gestor.de.reparaciones.dtos.ReparacionesvsTipoAutos;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -27,5 +28,7 @@ public interface HistorialReparacionesRepository extends JpaRepository<Historial
     List<PaycheckEntity> getPaychecksByYearMonth(@Param("year") int year, @Param("month") int month);
 
      */
+
+
 
 }

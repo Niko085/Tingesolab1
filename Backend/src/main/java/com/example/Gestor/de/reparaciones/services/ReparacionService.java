@@ -1,5 +1,6 @@
 package com.example.Gestor.de.reparaciones.services;
 
+import com.example.Gestor.de.reparaciones.dtos.ReparacionesvsTipoAutos;
 import com.example.Gestor.de.reparaciones.entities.ReparacionEntity;
 import com.example.Gestor.de.reparaciones.repositories.ReparacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,10 @@ public class ReparacionService {
         return reparacionRepository.findByPatente(patente);
     }
 
+    public List<ReparacionEntity> getReparacionesByTipoReparacion(int tipoReparacion) {
+        return reparacionRepository.findByTipoReparacion(tipoReparacion);
+    }
+
     /*
     public List<ReparacionAutoEntity> getReparacionesByIdHistorial(int id) {
         return reparacionAutoRepository.findByIdHistorialReparaciones(id);
@@ -53,13 +58,34 @@ public class ReparacionService {
         }
     }
 
-    //public Double sumReparacionesByPatente(String patente) {
-    //    return reparacionRepository.sumReparacionesByPatente(patente);
-    //}
 
     public int contarReparacionesPorHistorial(Long idHistorial) {
         // Llamar al método definido en el repositorio para contar las reparaciones por historial
         return reparacionRepository.countReparacionesByHistorial(idHistorial);
     }
+
+    public int ContarReparacionesPorTipo(int tipoReparacion){
+        return reparacionRepository.countReparacionesByTipoReparacion(tipoReparacion);
+    }
+
+
+    public List<ReparacionesvsTipoAutos> reporteReparacionesvsTipoAutos{
+        List<ReparacionesvsTipoAutos> reparacionesvsTipoAutos = new ArrayList<>();
+
+        for(int tipoReparacion= 1; tipoReparacion <= 11; tipoReparacion++){
+            reparacionRepository.countReparacionesByTipoReparacion(tipoReparacion);
+
+            ReparacionesvsTipoAutos reparacionPorTipoAuto = new ReparacionesvsTipoAutos(tipoReparacion, numeroTiposAutos, montoTotal);
+            reparacionesvsTipoAutos.add(reparacionPorTipoAuto);
+        }
+    }
+
+
+
+
+
+
+
+
 
 }

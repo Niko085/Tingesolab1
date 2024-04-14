@@ -12,6 +12,10 @@ import java.util.List;
 public interface ReparacionRepository extends JpaRepository<ReparacionEntity, Long> {
     public List<ReparacionEntity> findByIdHistorialReparaciones(long id);
     public List<ReparacionEntity> findByPatente(String patente);
+
+    public List<ReparacionEntity> findByTipoReparacion(int tipoReparacion);
+
+
     //public List<ReparacionAutoEntity> findByIdHistorialReparaciones(int id);
 
     //@Query("SELECT COUNT(r) FROM ReparacionEntity r WHERE r.idHistorialReparaciones = :idHistorialReparaciones")
@@ -32,7 +36,8 @@ public interface ReparacionRepository extends JpaRepository<ReparacionEntity, Lo
     @Query("SELECT COUNT(r) FROM ReparacionEntity r WHERE r.idHistorialReparaciones = :idHistorial")
     Integer countReparacionesByHistorial(@Param("idHistorial") Long idHistorial);
 
-
+    @Query("SELECT COUNT(r) FROM ReparacionEntity r WHERE r.tipoReparacion = :tipoReparacion")
+    Integer countReparacionesByTipoReparacion(@Param("tipoReparacion") int tipoReparacion);
 
 
 }
