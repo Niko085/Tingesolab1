@@ -19,67 +19,52 @@ public class OfficeHRMService {
     public double getPorcentajeRecargoKilometraje(AutomovilEntity automovil){
         int kilometraje = automovil.getKilometraje();
         String tipoAuto = automovil.getTipo();
-        double porcentajeRecargo = 0.0;
+        double porcentajeRecargo = 0;
         if (kilometraje >= 0 && kilometraje <= 5000){
-            if(tipoAuto.equals("Sedan")){
-                porcentajeRecargo = 0;
-            }else if(tipoAuto.equals("Hatchback")){
-                porcentajeRecargo = 0;
-            }else if(tipoAuto.equals("SUV")){
-                porcentajeRecargo = 0;
-            }else if(tipoAuto.equals("Pickup")){
-                porcentajeRecargo = 0;
-            }else if(tipoAuto.equals("Furgoneta")){
-                porcentajeRecargo = 0;
-            }
+            porcentajeRecargo = switch (tipoAuto) {
+                case "Sedan" -> 0;
+                case "Hatchback" -> 0;
+                case "SUV" -> 0;
+                case "Pickup" -> 0;
+                case "Furgoneta" -> 0;
+                default -> porcentajeRecargo;
+            };
         }else if (kilometraje >= 5001 && kilometraje <= 12000){
-            if(tipoAuto.equals("Sedan")){
-                porcentajeRecargo = 0.03;
-            }else if(tipoAuto.equals("Hatchback")){
-                porcentajeRecargo = 0.03;
-            }else if(tipoAuto.equals("SUV")){
-                porcentajeRecargo = 0.05;
-            }else if(tipoAuto.equals("Pickup")){
-                porcentajeRecargo = 0.05;
-            }else if(tipoAuto.equals("Furgoneta")){
-                porcentajeRecargo = 0.05;
-            }
+            porcentajeRecargo = switch (tipoAuto) {
+                case "Sedan" -> 0.03;
+                case "Hatchback" -> 0.03;
+                case "SUV" -> 0.05;
+                case "Pickup" -> 0.05;
+                case "Furgoneta" -> 0.05;
+                default -> porcentajeRecargo;
+            };
         }else if (kilometraje >= 12001 && kilometraje <= 25000){
-            if(tipoAuto.equals("Sedan")){
-                porcentajeRecargo = 0.07;
-            }else if(tipoAuto.equals("Hatchback")){
-                porcentajeRecargo = 0.07;
-            }else if(tipoAuto.equals("SUV")){
-                porcentajeRecargo = 0.09;
-            }else if(tipoAuto.equals("Pickup")){
-                porcentajeRecargo = 0.09;
-            }else if(tipoAuto.equals("Furgoneta")){
-                porcentajeRecargo = 0.09;
-            }
+            porcentajeRecargo = switch (tipoAuto) {
+                case "Sedan" -> 0.07;
+                case "Hatchback" -> 0.07;
+                case "SUV" -> 0.09;
+                case "Pickup" -> 0.09;
+                case "Furgoneta" -> 0.09;
+                default -> porcentajeRecargo;
+            };
         }else if (kilometraje >= 25001 && kilometraje <= 40000){
-            if(tipoAuto.equals("Sedan")){
-                porcentajeRecargo = 0.12;
-            }else if(tipoAuto.equals("Hatchback")){
-                porcentajeRecargo = 0.12;
-            }else if(tipoAuto.equals("SUV")){
-                porcentajeRecargo = 0.12;
-            }else if(tipoAuto.equals("Pickup")){
-                porcentajeRecargo = 0.12;
-            }else if(tipoAuto.equals("Furgoneta")){
-                porcentajeRecargo = 0.12;
-            }
+            porcentajeRecargo = switch (tipoAuto) {
+                case "Sedan" -> 0.12;
+                case "Hatchback" -> 0.12;
+                case "SUV" -> 0.12;
+                case "Pickup" -> 0.12;
+                case "Furgoneta" -> 0.12;
+                default -> porcentajeRecargo;
+            };
         }else if (kilometraje >= 40001){
-            if(tipoAuto.equals("Sedan")){
-                porcentajeRecargo = 0.2;
-            }else if(tipoAuto.equals("Hatchback")){
-                porcentajeRecargo = 0.2;
-            }else if(tipoAuto.equals("SUV")){
-                porcentajeRecargo = 0.2;
-            }else if(tipoAuto.equals("Pickup")){
-                porcentajeRecargo = 0.2;
-            }else if(tipoAuto.equals("Furgoneta")){
-                porcentajeRecargo = 0.2;
-            }
+            porcentajeRecargo = switch (tipoAuto) {
+                case "Sedan" -> 0.2;
+                case "Hatchback" -> 0.2;
+                case "SUV" -> 0.2;
+                case "Pickup" -> 0.2;
+                case "Furgoneta" -> 0.2;
+                default -> porcentajeRecargo;
+            };
         }
         return porcentajeRecargo;
     }
@@ -90,53 +75,41 @@ public class OfficeHRMService {
         String tipoAuto = automovil.getTipo();
         double porcentajeRecargo = 0.0;
         if (edad >= 0 && edad <= 5){
-            if(tipoAuto.equals("Sedan")){
-                porcentajeRecargo = 0;
-            }else if(tipoAuto.equals("Diesel")){
-                porcentajeRecargo = 0;
-            }else if(tipoAuto.equals("Hatchback")){
-                porcentajeRecargo = 0;
-            }else if(tipoAuto.equals("Pickup")){
-                porcentajeRecargo = 0;
-            }else if(tipoAuto.equals("Furgoneta")){
-                porcentajeRecargo = 0;
-            }
+            porcentajeRecargo = switch (tipoAuto) {
+                case "Sedan" -> 0;
+                case "Diesel" -> 0;
+                case "Hatchback" -> 0;
+                case "Pickup" -> 0;
+                case "Furgoneta" -> 0;
+                default -> porcentajeRecargo;
+            };
         }else if (edad >= 6 && edad <= 10){
-            if(tipoAuto.equals("Sedan")){
-                porcentajeRecargo = 0.05;
-            }else if(tipoAuto.equals("Diesel")){
-                porcentajeRecargo = 0.05;
-            }else if(tipoAuto.equals("Hatchback")){
-                porcentajeRecargo = 0.07;
-            }else if(tipoAuto.equals("Pickup")){
-                porcentajeRecargo = 0.07;
-            }else if(tipoAuto.equals("Furgoneta")){
-                porcentajeRecargo = 0.07;
-            }
+            porcentajeRecargo = switch (tipoAuto) {
+                case "Sedan" -> 0.05;
+                case "Diesel" -> 0.05;
+                case "Hatchback" -> 0.07;
+                case "Pickup" -> 0.07;
+                case "Furgoneta" -> 0.07;
+                default -> porcentajeRecargo;
+            };
         }else if (edad >= 11 && edad <= 15){
-            if(tipoAuto.equals("Sedan")){
-                porcentajeRecargo = 0.09;
-            }else if(tipoAuto.equals("Diesel")){
-                porcentajeRecargo = 0.09;
-            }else if(tipoAuto.equals("Hatchback")){
-                porcentajeRecargo = 0.11;
-            }else if(tipoAuto.equals("Pickup")){
-                porcentajeRecargo = 0.11;
-            }else if(tipoAuto.equals("Furgoneta")){
-                porcentajeRecargo = 0.11;
-            }
+            porcentajeRecargo = switch (tipoAuto) {
+                case "Sedan" -> 0.09;
+                case "Diesel" -> 0.09;
+                case "Hatchback" -> 0.11;
+                case "Pickup" -> 0.11;
+                case "Furgoneta" -> 0.11;
+                default -> porcentajeRecargo;
+            };
         }else if (edad >= 16){
-            if(tipoAuto.equals("Sedan")){
-                porcentajeRecargo = 0.15;
-            }else if(tipoAuto.equals("Diesel")){
-                porcentajeRecargo = 0.15;
-            }else if(tipoAuto.equals("Hatchback")){
-                porcentajeRecargo = 0.2;
-            }else if(tipoAuto.equals("Pickup")){
-                porcentajeRecargo = 0.2;
-            }else if(tipoAuto.equals("Furgoneta")){
-                porcentajeRecargo = 0.2;
-            }
+            porcentajeRecargo = switch (tipoAuto) {
+                case "Sedan" -> 0.15;
+                case "Diesel" -> 0.15;
+                case "Hatchback" -> 0.2;
+                case "Pickup" -> 0.2;
+                case "Furgoneta" -> 0.2;
+                default -> porcentajeRecargo;
+            };
         }
         return porcentajeRecargo;
     }
@@ -175,47 +148,39 @@ public class OfficeHRMService {
 
     public double getDescuentoCantidadReparaciones(AutomovilEntity automovil, int cantidadReparaciones){
         String tipoMotor = automovil.getMotor();
-        double porcentajeRecargo = 0.0;
+        double porcentajeRecargo = 0;
         if (cantidadReparaciones >= 1 && cantidadReparaciones <= 2){
-            if(tipoMotor.equals("Gasolina")){
-                porcentajeRecargo = 0.05;
-            }else if(tipoMotor.equals("Diesel")){
-                porcentajeRecargo = 0.07;
-            }else if(tipoMotor.equals("Hibrido")){
-                porcentajeRecargo = 0.1;
-            }else if(tipoMotor.equals("Electrico")){
-                porcentajeRecargo = 0.08;
-            }
+            porcentajeRecargo = switch (tipoMotor) {
+                case "Gasolina" -> 0.05;
+                case "Diesel" -> 0.07;
+                case "Hibrido" -> 0.1;
+                case "Electrico" -> 0.08;
+                default -> porcentajeRecargo;
+            };
         }else if (cantidadReparaciones >= 3 && cantidadReparaciones <= 5){
-            if(tipoMotor.equals("Gasolina")){
-                porcentajeRecargo = 0.1;
-            }else if(tipoMotor.equals("Diesel")){
-                porcentajeRecargo = 0.12;
-            }else if(tipoMotor.equals("Hibrido")){
-                porcentajeRecargo = 0.15;
-            }else if(tipoMotor.equals("Electrico")){
-                porcentajeRecargo = 0.13;
-            }
+            porcentajeRecargo = switch (tipoMotor) {
+                case "Gasolina" -> 0.1;
+                case "Diesel" -> 0.12;
+                case "Hibrido" -> 0.15;
+                case "Electrico" -> 0.13;
+                default -> porcentajeRecargo;
+            };
         }else if (cantidadReparaciones >= 6 && cantidadReparaciones <= 9){
-            if(tipoMotor.equals("Gasolina")){
-                porcentajeRecargo = 0.15;
-            }else if(tipoMotor.equals("Diesel")){
-                porcentajeRecargo = 0.17;
-            }else if(tipoMotor.equals("Hibrido")){
-                porcentajeRecargo = 0.2;
-            }else if(tipoMotor.equals("Electrico")){
-                porcentajeRecargo = 0.18;
-            }
+            porcentajeRecargo = switch (tipoMotor) {
+                case "Gasolina" -> 0.15;
+                case "Diesel" -> 0.17;
+                case "Hibrido" -> 0.2;
+                case "Electrico" -> 0.18;
+                default -> porcentajeRecargo;
+            };
         }else if (cantidadReparaciones >= 10){
-            if(tipoMotor.equals("Gasolina")){
-                porcentajeRecargo = 0.2;
-            }else if(tipoMotor.equals("Diesel")){
-                porcentajeRecargo = 0.22;
-            }else if(tipoMotor.equals("Hibrido")){
-                porcentajeRecargo = 0.25;
-            }else if(tipoMotor.equals("Electrico")){
-                porcentajeRecargo = 0.23;
-            }
+            porcentajeRecargo = switch (tipoMotor) {
+                case "Gasolina" -> 0.2;
+                case "Diesel" -> 0.22;
+                case "Hibrido" -> 0.25;
+                case "Electrico" -> 0.23;
+                default -> porcentajeRecargo;
+            };
         }
         return porcentajeRecargo;
     }
@@ -223,13 +188,9 @@ public class OfficeHRMService {
     public int getMontoDescuentoBonos(AutomovilEntity automovil){
         String marca = automovil.getMarca();
         DatosBonosEntity datosBono = datosBonosService.getDatosBonosByMarca(marca);
-        if(datosBono.getCantidadBonos()>0){
+        if(datosBono.getCantidadBonos() > 0){
             datosBono.setCantidadBonos(datosBono.getCantidadBonos()-1);
             return datosBono.getMontoBono();
         }else return 0;
     }
-
-
-
-
 }
