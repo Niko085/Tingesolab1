@@ -32,6 +32,7 @@ public class HistorialReparacionesEntity {
     private LocalTime horaSalidaTaller;
     private LocalDate fechaClienteSeLlevaVehiculo;
     private LocalTime horaClienteSeLlevaVehiculo;
+    private boolean pagado;
 
     //Foranea
     private String patente;
