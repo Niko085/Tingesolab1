@@ -1,5 +1,6 @@
 package com.example.Gestor.de.reparaciones.controller;
 
+import com.example.Gestor.de.reparaciones.dtos.ReparacionesvsTipoAutos;
 import com.example.Gestor.de.reparaciones.entities.ReparacionEntity;
 import com.example.Gestor.de.reparaciones.services.ReparacionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,4 +62,7 @@ public class ReparacionController {
         var isDeleted = reparacionService.deleteReparacion(id);
         return ResponseEntity.noContent().build();
     }
+
+
+
 }

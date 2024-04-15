@@ -69,16 +69,11 @@ public class ReparacionService {
     }
 
 
-    public List<ReparacionesvsTipoAutos> reporteReparacionesvsTipoAutos{
-        List<ReparacionesvsTipoAutos> reparacionesvsTipoAutos = new ArrayList<>();
 
-        for(int tipoReparacion= 1; tipoReparacion <= 11; tipoReparacion++){
-            reparacionRepository.countReparacionesByTipoReparacion(tipoReparacion);
 
-            ReparacionesvsTipoAutos reparacionPorTipoAuto = new ReparacionesvsTipoAutos(tipoReparacion, numeroTiposAutos, montoTotal);
-            reparacionesvsTipoAutos.add(reparacionPorTipoAuto);
-        }
-    }
+
+
+
 
 
 

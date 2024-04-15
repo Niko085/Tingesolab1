@@ -1,5 +1,6 @@
 package com.example.Gestor.de.reparaciones.controller;
 
+import com.example.Gestor.de.reparaciones.dtos.ReparacionesvsTipoAutos;
 import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
 import com.example.Gestor.de.reparaciones.services.HistorialReparacionesService;
@@ -43,14 +44,16 @@ public class HistorialReparacionesController {
         return ResponseEntity.noContent().build();
     }
 
-
      */
+
     //http://localhost:8090/api/historialreparaciones/calculate?patente=CFYF55
     @GetMapping("/calculate")
     public ResponseEntity<Void> calculatehistorial(@RequestParam("patente") String patente) {
         historialReparacionesService.calcularMontoTotalPagar(patente);
         return ResponseEntity.noContent().build();
     }
+
+
 /*
     @GetMapping("/calculate")
     public ResponseEntity<Void> calculatePaychecks(@RequestParam("year") int year, @RequestParam("month") int month) {
@@ -59,4 +62,10 @@ public class HistorialReparacionesController {
     }
 
  */
+    //http://localhost:8090/api/historialreparaciones/reporte/reparaciones-vs-tipo-autos
+    @GetMapping("/reporte/reparaciones-vs-tipo-autos")
+    public List<ReparacionesvsTipoAutos> getReporteReparacionesvsTipoAutos() {
+        return historialReparacionesService.reporteReparacionesvsTipoAutos();
+    }
+
 }

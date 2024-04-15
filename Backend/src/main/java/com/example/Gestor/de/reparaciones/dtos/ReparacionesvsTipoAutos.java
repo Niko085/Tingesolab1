@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReparacionesvsTipoAutos {
-    private String tipoReparacion;
+    private int tipoReparacion;
     private int numeroTiposAutos;
     private int montoTotalReparaciones;
 }

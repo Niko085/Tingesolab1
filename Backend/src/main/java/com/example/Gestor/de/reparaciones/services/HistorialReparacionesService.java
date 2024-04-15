@@ -1,5 +1,6 @@
 package com.example.Gestor.de.reparaciones.services;
 
+import com.example.Gestor.de.reparaciones.dtos.ReparacionesvsTipoAutos;
 import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
 import com.example.Gestor.de.reparaciones.entities.ReparacionEntity;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class HistorialReparacionesService {
@@ -112,13 +115,83 @@ public class HistorialReparacionesService {
         return cantidad;
     }
 
-    public int getCantidadTipoReparaciones(int tipoReparacion){
-        List<String> tipoAutos = new ArrayList<>();
-        List<ReparacionEntity> reparaciones = reparacionService.getReparacionesByTipoReparacion(tipoReparacion);
 
-        for(ReparacionEntity reparacion : reparaciones){
-            String patente = reparacion.getPatente();
-            List<AutomovilEntity> autos = automovilService.getAutomovilByPatente(patente);
+    public int getCantidadTipoReparaciones(int tipoReparacion) {
+        List<String> patentes = new ArrayList<>();
+        Set<String> tiposAutomovil = new HashSet<>(); // Cambiamos de List a Set para evitar duplicados
+        List<ReparacionEntity> reparaciones = reparacionService.getReparaciones();
+        for (ReparacionEntity reparacion : reparaciones) {
+            if (reparacion.getTipoReparacion() == tipoReparacion) {
+                patentes.add(reparacion.getPatente());
+            }
         }
+        for (String patente : patentes) {
+            AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
+            tiposAutomovil.add(automovil.getTipo());
+        }
+        return tiposAutomovil.size();
+    }
+
+ /*
+    public int getCantidadTipoReparaciones(int tipoReparacion) {
+        List<String> tiposAutomovil = new ArrayList<>(); // Utilizamos una lista en lugar de un Set
+
+        List<ReparacionEntity> reparaciones = reparacionService.getReparaciones();
+        for (ReparacionEntity reparacion : reparaciones) {
+            if (reparacion.getTipoReparacion() == tipoReparacion) {
+                String patente = reparacion.getPatente();
+                AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
+                String tipoAutomovil = automovil.getTipo();
+
+                // Si el tipo de automóvil no está en la lista, lo agregamos
+                if (!tiposAutomovil.contains(tipoAutomovil)) {
+                    tiposAutomovil.add(tipoAutomovil);
+                }
+            }
+        }
+
+        return tiposAutomovil.size();
+    }
+
+  */
+
+    public int getMontoTipoReparaciones(int tipoReparacion) {
+        List<String> tiposAutomovil = new ArrayList<>(); // Utilizamos una lista en lugar de un Set
+        List<String> tiposMotor = new ArrayList<>();
+
+        List<ReparacionEntity> reparaciones = reparacionService.getReparaciones();
+        for (ReparacionEntity reparacion : reparaciones) {
+            if (reparacion.getTipoReparacion() == tipoReparacion) {
+                String patente = reparacion.getPatente();
+                AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
+                String tipoAutomovil = automovil.getTipo();
+
+                // Si el tipo de automóvil no está en la lista, lo agregamos
+                if (!tiposAutomovil.contains(tipoAutomovil)) {
+                    tiposAutomovil.add(tipoAutomovil);
+                    tiposMotor.add(automovil.getMotor());
+                }
+            }
+        }
+        int sumaMontos = 0;
+        for(String tipoMotor : tiposMotor){
+            sumaMontos += valorReparacionesService.getMonto(tipoReparacion, tipoMotor);
+        }
+        return sumaMontos;
+    }
+
+
+
+    public List<ReparacionesvsTipoAutos> reporteReparacionesvsTipoAutos(){
+        List<ReparacionesvsTipoAutos> reparacionesvsTipoAutos = new ArrayList<>();
+        int cantidadReparaciones = 0;
+        int montoTotalReparaciones = 0;
+        for(int tipoReparacion= 1; tipoReparacion <= 11; tipoReparacion++){
+            cantidadReparaciones = getCantidadTipoReparaciones(tipoReparacion);
+            montoTotalReparaciones = getMontoTipoReparaciones(tipoReparacion);
+            ReparacionesvsTipoAutos reparacionPorTipoAuto = new ReparacionesvsTipoAutos(tipoReparacion, cantidadReparaciones, montoTotalReparaciones);
+            reparacionesvsTipoAutos.add(reparacionPorTipoAuto);
+        }
+        return reparacionesvsTipoAutos;
     }
 }
