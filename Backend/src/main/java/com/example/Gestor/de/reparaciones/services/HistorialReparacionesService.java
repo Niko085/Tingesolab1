@@ -2,6 +2,7 @@ package com.example.Gestor.de.reparaciones.services;
 
 import com.example.Gestor.de.reparaciones.dtos.ReparacionesvsTipoAutos;
 import com.example.Gestor.de.reparaciones.dtos.ReparacionesvsTipoMotor;
+import com.example.Gestor.de.reparaciones.dtos.TiemposPromedio;
 import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
 import com.example.Gestor.de.reparaciones.entities.ReparacionEntity;
@@ -9,7 +10,10 @@ import com.example.Gestor.de.reparaciones.repositories.HistorialReparacionesRepo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
@@ -217,8 +221,8 @@ public class HistorialReparacionesService {
             reparacionesvsTipoAutos.add(reparacionPorTipoAuto);
         }
 
-        // Ordenar la lista por montoTotalReparaciones de menor a mayor
-        Collections.sort(reparacionesvsTipoAutos, Comparator.comparingInt(ReparacionesvsTipoAutos::getMontoTotalReparaciones));
+        // Ordenar la lista por montoTotalReparaciones de mayor a menor
+        Collections.sort(reparacionesvsTipoAutos, Comparator.comparingInt(ReparacionesvsTipoAutos::getMontoTotalReparaciones).reversed());
 
         return reparacionesvsTipoAutos;
     }
@@ -311,8 +315,8 @@ public class HistorialReparacionesService {
             reparacionesvsTipoMotores.add(reparacionPorTipoMotor);
         }
 
-        // Ordenar la lista por montoTotalReparaciones de menor a mayor
-        Collections.sort(reparacionesvsTipoMotores, Comparator.comparingInt(ReparacionesvsTipoMotor::getMontoTotalReparaciones));
+        // Ordenar la lista por montoTotalReparaciones de mayor a menor
+        Collections.sort(reparacionesvsTipoMotores, Comparator.comparingInt(ReparacionesvsTipoMotor::getMontoTotalReparaciones).reversed());
 
         return reparacionesvsTipoMotores;
     }
@@ -352,5 +356,91 @@ public class HistorialReparacionesService {
     }
 
      */
+
+    private int calcularTiempoReparacion(HistorialReparacionesEntity historial) {
+        LocalDate fechaIngreso = historial.getFechaIngresoTaller();
+        LocalTime horaIngreso = historial.getHoraIngresoTaller();
+        LocalDate fechaSalida = historial.getFechaSalidaTaller();
+        LocalTime horaSalida = historial.getHoraSalidaTaller();
+
+        long diasReparacion = ChronoUnit.DAYS.between(fechaIngreso.atTime(horaIngreso), fechaSalida.atTime(horaSalida));
+        return (int) diasReparacion; // Convertimos de long a int ya que el tiempo promedio probablemente será un entero
+    }
+/*
+    public List<TiemposPromedio> reporteTiempoPromedioReparacion()
+        List<String> patentes = new ArrayList<>();
+        Set<String> marcas = new HashSet<>();
+        List<AutomovilEntity> automoviles = new ArrayList<>();
+        List<HistorialReparacionesEntity> historiales = getHistorialReparaciones();
+        //obtener una lista de patentes que hay en el historial
+        for(HistorialReparacionesEntity historial : historiales){
+            patentes.add(historial.getPatente());
+        }
+        //Obtener los autos por su patente
+        for(String patente : patentes){
+            AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
+            if (automovil != null) {
+                automoviles.add(automovil);
+            }
+        }
+        //Obtener las marcas sin repeticion
+        for (AutomovilEntity automovil : automoviles) {
+            marcas.add(automovil.getMarca());
+        }
+        //aquí necesito el tiempo promedio de reparación por cada una de las marcas de vehículo que encontré
+    }
+
+ */
+
+    public List<TiemposPromedio> reporteTiempoPromedioReparacion() {
+        List<HistorialReparacionesEntity> historiales = getHistorialReparaciones();
+        List<TiemposPromedio> tiemposPromedio = new ArrayList<>();
+
+        // Obtener la lista de patentes que hay en el historial
+        Set<String> patentes = new HashSet<>();
+        for (HistorialReparacionesEntity historial : historiales) {
+            patentes.add(historial.getPatente());
+        }
+
+        // Obtener los autos por su patente
+        for (String patente : patentes) {
+            List<HistorialReparacionesEntity> historialesPorPatente = new ArrayList<>();
+            for (HistorialReparacionesEntity historial : historiales) {
+                if (historial.getPatente().equals(patente)) {
+                    historialesPorPatente.add(historial);
+                }
+            }
+            double tiempoPromedio = calcularTiempoPromedioReparacion(historialesPorPatente);
+            AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
+            if (automovil != null) {
+                TiemposPromedio tiempoPromedioObj = new TiemposPromedio(automovil.getMarca(), tiempoPromedio);
+                tiemposPromedio.add(tiempoPromedioObj);
+            }
+        }
+        // Ordenar la lista por el tiempo promedio de reparación de menor a mayor
+        Collections.sort(tiemposPromedio, Comparator.comparingDouble(TiemposPromedio::getTiempoEnDias));
+
+
+        return tiemposPromedio;
+    }
+
+    private double calcularTiempoPromedioReparacion(List<HistorialReparacionesEntity> historiales) {
+        long totalHorasReparacion = 0;
+        int cantidadHistoriales = historiales.size();
+
+        for (HistorialReparacionesEntity historial : historiales) {
+            LocalDateTime fechaHoraIngreso = LocalDateTime.of(historial.getFechaIngresoTaller(), historial.getHoraIngresoTaller());
+            LocalDateTime fechaHoraSalida = LocalDateTime.of(historial.getFechaSalidaTaller(), historial.getHoraSalidaTaller());
+
+            Duration duracionReparacion = Duration.between(fechaHoraIngreso, fechaHoraSalida);
+            totalHorasReparacion += duracionReparacion.toHours();
+        }
+
+        if (cantidadHistoriales != 0) {
+            return (double) totalHorasReparacion / cantidadHistoriales / 24; // Convertir horas a días
+        } else {
+            return 0;
+        }
+    }
 
 }

@@ -2,6 +2,7 @@ package com.example.Gestor.de.reparaciones.controller;
 
 import com.example.Gestor.de.reparaciones.dtos.ReparacionesvsTipoAutos;
 import com.example.Gestor.de.reparaciones.dtos.ReparacionesvsTipoMotor;
+import com.example.Gestor.de.reparaciones.dtos.TiemposPromedio;
 import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
 import com.example.Gestor.de.reparaciones.services.HistorialReparacionesService;
@@ -73,6 +74,11 @@ public class HistorialReparacionesController {
     @GetMapping("/reporte/reparaciones-vs-tipo-motores")
     public List<ReparacionesvsTipoMotor> getReporteReparacionesvsTipoMotor() {
         return historialReparacionesService.reporteReparacionesvsTipoMotor();
+    }
+
+    @GetMapping("/reporte/marcas-vs-tiempo-promedio")
+    public List<TiemposPromedio> getReporteMarcasvsTiempoReparacion() {
+        return historialReparacionesService.reporteTiempoPromedioReparacion();
     }
 
 }
