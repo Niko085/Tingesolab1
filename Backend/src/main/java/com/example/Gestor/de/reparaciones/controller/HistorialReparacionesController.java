@@ -1,6 +1,7 @@
 package com.example.Gestor.de.reparaciones.controller;
 
 import com.example.Gestor.de.reparaciones.dtos.ReparacionesvsTipoAutos;
+import com.example.Gestor.de.reparaciones.dtos.ReparacionesvsTipoMotor;
 import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
 import com.example.Gestor.de.reparaciones.services.HistorialReparacionesService;
@@ -66,6 +67,12 @@ public class HistorialReparacionesController {
     @GetMapping("/reporte/reparaciones-vs-tipo-autos")
     public List<ReparacionesvsTipoAutos> getReporteReparacionesvsTipoAutos() {
         return historialReparacionesService.reporteReparacionesvsTipoAutos();
+    }
+
+    //http://localhost:8090/api/historialreparaciones/reporte/reparaciones-vs-tipo-motores
+    @GetMapping("/reporte/reparaciones-vs-tipo-motores")
+    public List<ReparacionesvsTipoMotor> getReporteReparacionesvsTipoMotor() {
+        return historialReparacionesService.reporteReparacionesvsTipoMotor();
     }
 
 }
