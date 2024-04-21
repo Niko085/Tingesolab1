@@ -15,7 +15,7 @@ const Home = () => {
         <a href="https://www.postgresql.org/">PostgreSQL</a> (para la base de
         datos).
       </p>
-      <img src={carImage} alt="Automovil" style={{ maxWidth: "50%" }} />
+      <img src={carImage} alt="Automovil" style={{ width: "500px" }} />
     </div>
   );
 };

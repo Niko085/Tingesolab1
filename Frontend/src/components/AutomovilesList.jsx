@@ -102,7 +102,7 @@ const AutomovilesList = () => {
               Tipo de motor
             </TableCell>
             <TableCell align="right" sx={{ fontWeight: "bold" }}>
-              Tipo cantidad de asientos
+              Cantidad de asientos
             </TableCell>
             <TableCell align="right" sx={{ fontWeight: "bold" }}>
               Kilometraje

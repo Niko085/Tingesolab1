@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import historialReparacionesService from "../services/historialReparaciones.service";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -33,8 +32,8 @@ const AddEditAutomovil = () => {
       automovilService
         .update(automovil)
         .then((response) => {
-          console.log("El eutomovil ha sido actualizado.", response.data);
-          navigate("/historialReparaciones/list");
+          console.log("El Automovil ha sido actualizado.", response.data);
+          navigate("/automovil/list");
         })
         .catch((error) => {
           console.log(
@@ -48,7 +47,7 @@ const AddEditAutomovil = () => {
         .create(automovil)
         .then((response) => {
           console.log("El automovil ha sido añadido.", response.data);
-          navigate("/historialReparaciones/list");
+          navigate("/automovil/list");
         })
         .catch((error) => {
           console.log(
@@ -228,7 +227,7 @@ const AddEditAutomovil = () => {
         </FormControl>
       </form>
       <hr />
-      <Link to="/historialReparaciones/list">Volver a la lista de automoviles</Link>
+      <Link to="/automovil/list">Volver a la lista de automoviles</Link>
     </Box>
   );  
 };

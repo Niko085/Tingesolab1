@@ -5,6 +5,8 @@ import Home from './components/Home';
 import AutomovilesList from './components/AutomovilesList';
 import AddEditAutomovil from './components/AddEditAutomovil';
 import NotFound from './components/NotFound';
+import HistorialesReparacionesList from './components/HistorialReparacionesList';
+import AddEditHistorialReparaciones from './components/AddEditAutomovil';
 
 function App() {
   return (
@@ -16,7 +18,9 @@ function App() {
               <Route path="/home" element={<Home/>} />
               <Route path="/automovil/list" element={<AutomovilesList/>} />
               <Route path="/automovil/add" element={<AddEditAutomovil/>} />
-              <Route path="/automovil/edit/:id" element={<AddEditAutomovil/>} />
+              <Route path="/automovil/edit/:id" element={<AddEditHistorialReparaciones/>} />
+              <Route path="/historialReparaciones/list" element={<HistorialesReparacionesList/>} />
+
               <Route path="*" element={<NotFound/>} />
             </Routes>
           </div>

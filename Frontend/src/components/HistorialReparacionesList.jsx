@@ -13,13 +13,13 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const HistorialesReparacionesList = () => {
+const HistorialReparacionesList = () => {
   const [HistorialReparaciones, setHistorialReparaciones] = useState([]);
 
   const navigate = useNavigate();
 
   const init = () => {
-    historialReparacionesServiceService
+    historialReparacionesService
       .getAll()
       .then((response) => {
         console.log("Mostrando listado de todos los historiales de reparación de automoviles.", response.data);
@@ -43,7 +43,7 @@ const HistorialesReparacionesList = () => {
       "¿Esta seguro que desea borrar este historial?"
     );
     if (confirmDelete) {
-      historialReparacionesServiceService
+      historialReparacionesService
         .remove(id)
         .then((response) => {
           console.log("El historial ha sido eliminado.", response.data);
@@ -112,52 +112,50 @@ const HistorialesReparacionesList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {historialesReparaciones.map((historialReparaciones) => (
+        {HistorialReparaciones.map((historialReparaciones) => (
             <TableRow
-              key={historialReparaciones.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                key={historialReparaciones.id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="left">{historialReparaciones.fechaIngresoTaller}</TableCell>
-              <TableCell align="left">{historialReparaciones.horaIngresoTaller}</TableCell>
-              <TableCell align="right">{historialReparaciones.fechaSalidaTaller}</TableCell>
-              <TableCell align="right">{historialReparaciones.horaSalidaTaller}</TableCell>
-              <TableCell align="right">{historialReparaciones.anioFabricacion}</TableCell>
-              <TableCell align="right">{historialReparaciones.fechaClienteSeLlevaVehiculo}</TableCell>
-              <TableCell align="right">{historialReparaciones.horaClienteSeLlevaVehiculo}</TableCell>
-              <TableCell align="right">{historialReparaciones.recargos}</TableCell>
-              <TableCell align="right">{historialReparaciones.descuentos}</TableCell>
-              <TableCell align="right">{historialReparaciones.iva}</TableCell>
-              <TableCell align="right">{historialReparaciones.montoTotalPagar}</TableCell>
-              <TableCell>
+                <TableCell align="left">{historialReparaciones.fechaIngresoTaller}</TableCell>
+                <TableCell align="left">{historialReparaciones.horaIngresoTaller}</TableCell>
+                <TableCell align="right">{historialReparaciones.fechaSalidaTaller}</TableCell>
+                <TableCell align="right">{historialReparaciones.horaSalidaTaller}</TableCell>
+                <TableCell align="right">{historialReparaciones.fechaClienteSeLlevaVehiculo}</TableCell>
+                <TableCell align="right">{historialReparaciones.horaClienteSeLlevaVehiculo}</TableCell>
+                <TableCell align="right">{historialReparaciones.recargos}</TableCell>
+                <TableCell align="right">{historialReparaciones.descuentos}</TableCell>
+                <TableCell align="right">{historialReparaciones.iva}</TableCell>
+                <TableCell align="right">{historialReparaciones.montoTotalPagar}</TableCell>
+                <TableCell>
                 <Button
-                //variant es el recuadro en azul
-                  variant="contained"
-                  color="info"
-                  size="small"
-                  onClick={() => handleEdit(historialReparaciones.id)}
-                  style={{ marginLeft: "0.5rem" }}
-                  startIcon={<EditIcon />}
+                    variant="contained"
+                    color="info"
+                    size="small"
+                    onClick={() => handleEdit(historialReparaciones.id)}
+                    style={{ marginLeft: "0.5rem" }}
+                    startIcon={<EditIcon />}
                 >
-                  Editar
+                    Editar
                 </Button>
 
                 <Button
-                  variant="contained"
-                  color="error"
-                  size="small"
-                  onClick={() => handleDelete(historialReparaciones.id)}
-                  style={{ marginLeft: "0.5rem" }}
-                  startIcon={<DeleteIcon />}
+                    variant="contained"
+                    color="error"
+                    size="small"
+                    onClick={() => handleDelete(historialReparaciones.id)}
+                    style={{ marginLeft: "0.5rem" }}
+                    startIcon={<DeleteIcon />}
                 >
-                  Eliminar
+                    Eliminar
                 </Button>
-              </TableCell>
+                </TableCell>
             </TableRow>
-          ))}
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
 };
 
-export default HistorialesReparacionesList;
+export default HistorialReparacionesList;
