@@ -174,7 +174,7 @@ const AddEditAutomovil = () => {
           />
         </FormControl>
 
-        <div style={{ display: "flex", gap: "2rem" }}>
+        <div style={{ display: "flex",padding: "0.5rem", gap: "2rem" }}>
           <FormControl fullWidth>
             <TextField
               id="tipo"

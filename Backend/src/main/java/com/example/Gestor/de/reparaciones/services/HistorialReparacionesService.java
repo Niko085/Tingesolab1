@@ -366,31 +366,7 @@ public class HistorialReparacionesService {
         long diasReparacion = ChronoUnit.DAYS.between(fechaIngreso.atTime(horaIngreso), fechaSalida.atTime(horaSalida));
         return (int) diasReparacion; // Convertimos de long a int ya que el tiempo promedio probablemente será un entero
     }
-/*
-    public List<TiemposPromedio> reporteTiempoPromedioReparacion()
-        List<String> patentes = new ArrayList<>();
-        Set<String> marcas = new HashSet<>();
-        List<AutomovilEntity> automoviles = new ArrayList<>();
-        List<HistorialReparacionesEntity> historiales = getHistorialReparaciones();
-        //obtener una lista de patentes que hay en el historial
-        for(HistorialReparacionesEntity historial : historiales){
-            patentes.add(historial.getPatente());
-        }
-        //Obtener los autos por su patente
-        for(String patente : patentes){
-            AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
-            if (automovil != null) {
-                automoviles.add(automovil);
-            }
-        }
-        //Obtener las marcas sin repeticion
-        for (AutomovilEntity automovil : automoviles) {
-            marcas.add(automovil.getMarca());
-        }
-        //aquí necesito el tiempo promedio de reparación por cada una de las marcas de vehículo que encontré
-    }
 
- */
 
     public List<TiemposPromedio> reporteTiempoPromedioReparacion() {
         List<HistorialReparacionesEntity> historiales = getHistorialReparaciones();
