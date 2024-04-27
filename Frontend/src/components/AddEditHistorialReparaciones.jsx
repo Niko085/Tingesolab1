@@ -13,7 +13,13 @@ const AddEditHistorialReparaciones = () => {
   const [horaIngresoTaller, setHoraIngresoTaller] = useState("");
   const [montoTotalPagar, setMontoTotalPagar] = useState("");
   const [recargos, setRecargos] = useState("");
-
+  const [descuentos, setDescuentos] = useState("");
+  const [iva, setIva] = useState("");
+  const [fechaSalidaTaller, setFechaSalidaTaller] = useState("");
+  const [horaSalidaTaller, setHoraSalidaTaller] = useState("");
+  const [fechaClienteSeLlevaVehiculo, setFechaClienteSeLlevaVehiculo] = useState("");
+  const [horaClienteSeLlevaVehiculo, setHoraClienteSeLlevaVehiculo] = useState("");
+  const [pagado, setPagado] = useState(false);
   const { id } = useParams();
   const [titleHistorialReparacionesForm, setTitleHistorialReparacionesForm] = useState("");
   const navigate = useNavigate();
@@ -26,7 +32,13 @@ const AddEditHistorialReparaciones = () => {
       horaIngresoTaller,
       montoTotalPagar,
       recargos,
-
+      descuentos,
+      iva,
+      fechaSalidaTaller,
+      horaSalidaTaller,
+      fechaClienteSeLlevaVehiculo,
+      horaClienteSeLlevaVehiculo,
+      pagado,
       id
     };
 
@@ -63,7 +75,13 @@ const AddEditHistorialReparaciones = () => {
           setHoraIngresoTaller(historialReparaciones.data.horaIngresoTaller);
           setMontoTotalPagar(historialReparaciones.data.montoTotalPagar);
           setRecargos(historialReparaciones.data.recargos);
-  
+          setDescuentos(historialReparaciones.data.descuentos);
+          setIva(historialReparaciones.data.iva);
+          setFechaSalidaTaller(historialReparaciones.data.fechaSalidaTaller);
+          setHoraSalidaTaller(historialReparaciones.data.horaSalidaTaller);
+          setFechaClienteSeLlevaVehiculo(historialReparaciones.data.fechaClienteSeLlevaVehiculo);
+          setHoraClienteSeLlevaVehiculo(historialReparaciones.data.horaClienteSeLlevaVehiculo);
+          setPagado(historialReparaciones.data.pagado);
         })
         .catch((error) => {
           console.log("Se ha producido un error.", error);
