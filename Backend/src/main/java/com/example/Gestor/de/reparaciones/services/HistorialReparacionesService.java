@@ -50,6 +50,11 @@ public class HistorialReparacionesService {
         return historialReparacionesRepository.findHistorialByPatente(patente);
     }
 
+    public HistorialReparacionesEntity getHistorialAutoById(Long id){
+        return historialReparacionesRepository.findById(id).get();
+    }
+
+
     public HistorialReparacionesEntity updateHistorial(HistorialReparacionesEntity historial) {
         return historialReparacionesRepository.save(historial);
     }

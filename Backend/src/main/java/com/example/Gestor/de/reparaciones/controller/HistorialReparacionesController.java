@@ -25,12 +25,23 @@ public class HistorialReparacionesController {
         List<HistorialReparacionesEntity> historialReparaciones = historialReparacionesService.getHistorialReparaciones();
         return ResponseEntity.ok(historialReparaciones);
     }
-
+/*
     @GetMapping("/{patente}")
     public ResponseEntity<List<HistorialReparacionesEntity>> getHistorialReparacionesByPatente(@PathVariable String patente) {
         List<HistorialReparacionesEntity> reparaciones = historialReparacionesService.getHistorialReparacionesByPatente(patente);
         return ResponseEntity.ok(reparaciones);
     }
+
+ */
+
+
+    @GetMapping("/{id}")
+    public HistorialReparacionesEntity getHistorialReparacionesById(@PathVariable Long id) {
+        HistorialReparacionesEntity reparaciones = historialReparacionesService.getHistorialAutoById(id);
+        return ResponseEntity.ok(reparaciones).getBody();
+    }
+
+
 
     @PostMapping("/")
     public ResponseEntity<HistorialReparacionesEntity> saveHistorial(@RequestBody HistorialReparacionesEntity historial) {
