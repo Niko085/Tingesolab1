@@ -75,7 +75,7 @@ const HistorialReparacionesList = () => {
           color="primary"
           startIcon={<PersonAddIcon />}
         >
-          Ingresar automovil
+          Ingreso de automovil al taller
         </Button>
       </Link>
       <br /> <br />
@@ -112,46 +112,48 @@ const HistorialReparacionesList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-        {HistorialReparaciones.map((historialReparaciones) => (
+          {HistorialReparaciones.map((historialReparaciones) => (
             <TableRow
-                key={historialReparaciones.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              key={historialReparaciones.id}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-                <TableCell align="left">{historialReparaciones.fechaIngresoTaller}</TableCell>
-                <TableCell align="left">{historialReparaciones.horaIngresoTaller}</TableCell>
-                <TableCell align="right">{historialReparaciones.fechaSalidaTaller}</TableCell>
-                <TableCell align="right">{historialReparaciones.horaSalidaTaller}</TableCell>
-                <TableCell align="right">{historialReparaciones.fechaClienteSeLlevaVehiculo}</TableCell>
-                <TableCell align="right">{historialReparaciones.horaClienteSeLlevaVehiculo}</TableCell>
-                <TableCell align="right">{historialReparaciones.recargos}</TableCell>
-                <TableCell align="right">{historialReparaciones.descuentos}</TableCell>
-                <TableCell align="right">{historialReparaciones.iva}</TableCell>
-                <TableCell align="right">{historialReparaciones.montoTotalPagar}</TableCell>
-                <TableCell>
+              <TableCell align="left">{historialReparaciones.fechaIngresoTaller}</TableCell>
+              <TableCell align="left">{historialReparaciones.horaIngresoTaller}</TableCell>
+              <TableCell align="right">{historialReparaciones.fechaSalidaTaller}</TableCell>
+              <TableCell align="right">{historialReparaciones.horaSalidaTaller}</TableCell>
+              <TableCell align="right">{historialReparaciones.anioFabricacion}</TableCell>
+              <TableCell align="right">{historialReparaciones.fechaClienteSeLlevaVehiculo}</TableCell>
+              <TableCell align="right">{historialReparaciones.horaClienteSeLlevaVehiculo}</TableCell>
+              <TableCell align="right">{historialReparaciones.recargos}</TableCell>
+              <TableCell align="right">{historialReparaciones.descuentos}</TableCell>
+              <TableCell align="right">{historialReparaciones.iva}</TableCell>
+              <TableCell align="right">{historialReparaciones.montoTotalPagar}</TableCell>
+              <TableCell>
                 <Button
-                    variant="contained"
-                    color="info"
-                    size="small"
-                    onClick={() => handleEdit(historialReparaciones.id)}
-                    style={{ marginLeft: "0.5rem" }}
-                    startIcon={<EditIcon />}
+                //variant es el recuadro en azul
+                  variant="contained"
+                  color="info"
+                  size="small"
+                  onClick={() => handleEdit(historialReparaciones.id)}
+                  style={{ marginLeft: "0.5rem" }}
+                  startIcon={<EditIcon />}
                 >
-                    Editar
+                  Editar
                 </Button>
 
                 <Button
-                    variant="contained"
-                    color="error"
-                    size="small"
-                    onClick={() => handleDelete(historialReparaciones.id)}
-                    style={{ marginLeft: "0.5rem" }}
-                    startIcon={<DeleteIcon />}
+                  variant="contained"
+                  color="error"
+                  size="small"
+                  onClick={() => handleDelete(historialReparaciones.id)}
+                  style={{ marginLeft: "0.5rem" }}
+                  startIcon={<DeleteIcon />}
                 >
-                    Eliminar
+                  Eliminar
                 </Button>
-                </TableCell>
+              </TableCell>
             </TableRow>
-            ))}
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

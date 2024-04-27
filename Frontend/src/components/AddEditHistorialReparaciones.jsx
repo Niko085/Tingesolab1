@@ -1,44 +1,41 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import automovilService from "../services/automovil.service";
+import historialReparacionesService from "../services/historialReparaciones.service";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import SaveIcon from "@mui/icons-material/Save";
-import historialReparacionesService from "../services/historialReparaciones.service";
 
 const AddEditHistorialReparaciones = () => {
   //Esto es para poder escribir en el formulario
-  const [fechaIngresoTaller, setFechaIngresoTaller] = useState("");
-  const [horaIngresoTaller, setHoraIngresoTaller] = useState("");
-  const [fechaSalidaTaller, setFechaSalidaTaller] = useState("");
-  const [horaSalidaTaller, setHoraSalidaTaller] = useState("");
-  const [fechaClienteSeLlevaVehiculo, setFechaClienteSeLlevaVehiculo] = useState("");
-  const [horaClienteSeLlevaVehiculo, setHoraClienteSeLlevaVehiculo] = useState("");
-  const [recargos, setRecargos] = useState("");
-  const [descuentos, setDescuentos] = useState("");
-  const [iva, setIva] = useState("");
-  const [montoTotalPagar, setMontoTotalPagar] = useState("");
+  const [patente, setPatente] = useState("");
+  const [marca, setMarca] = useState("");
+  const [modelo, setModelo] = useState("");
+  const [tipo, setTipo] = useState("");
+  const [anioFabricacion, setAnioFabricacion] = useState("");
+  const [motor, setMotor] = useState("");
+  const [cantAsientos, setCantAsientos] = useState("");
+  const [kilometraje, setKilometraje] = useState("");
   const { id } = useParams();
-  const [titleHistorialReparacionesForm, setTitleHistorialReparacionesForm] = useState("");
+  const [titleAutomovilForm, setTitleAutomovilForm] = useState("");
   const navigate = useNavigate();
 
-  const saveHistorialReparaciones = (a) => {
+  const saveHistorial = (a) => {
     a.preventDefault();
 
     //Objeto con los datos del auto
-    const HistorialReparaciones = { fechaIngresoTaller, horaIngresoTaller, fechaSalidaTaller, horaSalidaTaller, fechaClienteSeLlevaVehiculo, horaClienteSeLlevaVehiculo,
-        recargos, descuentos, iva, montoTotalPagar, id };
+    const automovil = { patente, marca, modelo, tipo, anioFabricacion, motor, cantAsientos, kilometraje, id };
     //Se verifica si el auto existe para actualizar o crear
     if (id) {
       //Actualizar Datos Automovil
-      historialReparacionesService
-        .update(HistorialReparaciones)
+      automovilService
+        .update(automovil)
         .then((response) => {
           console.log("El eutomovil ha sido actualizado.", response.data);
-          navigate("/historialReparaciones/list");
+          navigate("/automovil/list");
         })
         .catch((error) => {
           console.log(
@@ -52,7 +49,7 @@ const AddEditHistorialReparaciones = () => {
         .create(automovil)
         .then((response) => {
           console.log("El automovil ha sido añadido.", response.data);
-          navigate("/historialReparaciones/list");
+          navigate("/automovil/list");
         })
         .catch((error) => {
           console.log(
@@ -237,4 +234,4 @@ const AddEditHistorialReparaciones = () => {
   );  
 };
 
-export default AddEditAutomovil;
+export default AddEditHistorialReparaciones;
