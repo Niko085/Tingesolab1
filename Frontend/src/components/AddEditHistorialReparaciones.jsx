@@ -5,21 +5,16 @@ import historialReparacionesService from "../services/historialReparaciones.serv
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
-import MenuItem from "@mui/material/MenuItem";
 import SaveIcon from "@mui/icons-material/Save";
 
 const AddEditHistorialReparaciones = () => {
+  const [patente, setPatente] = useState("");
   const [fechaIngresoTaller, setFechaIngresoTaller] = useState("");
   const [horaIngresoTaller, setHoraIngresoTaller] = useState("");
-  const [montoTotalPagar, setMontoTotalPagar] = useState("");
-  const [recargos, setRecargos] = useState("");
-  const [descuentos, setDescuentos] = useState("");
-  const [iva, setIva] = useState("");
   const [fechaSalidaTaller, setFechaSalidaTaller] = useState("");
   const [horaSalidaTaller, setHoraSalidaTaller] = useState("");
   const [fechaClienteSeLlevaVehiculo, setFechaClienteSeLlevaVehiculo] = useState("");
   const [horaClienteSeLlevaVehiculo, setHoraClienteSeLlevaVehiculo] = useState("");
-  const [pagado, setPagado] = useState(false);
   const { id } = useParams();
   const [titleHistorialReparacionesForm, setTitleHistorialReparacionesForm] = useState("");
   const navigate = useNavigate();
@@ -28,17 +23,18 @@ const AddEditHistorialReparaciones = () => {
     e.preventDefault();
 
     const historialReparaciones = {
+      patente,
       fechaIngresoTaller,
       horaIngresoTaller,
-      montoTotalPagar,
-      recargos,
-      descuentos,
-      iva,
+      montoTotalPagar: 0,
+      recargos: 0,
+      descuentos: 0,
+      iva: 0,
       fechaSalidaTaller,
       horaSalidaTaller,
       fechaClienteSeLlevaVehiculo,
       horaClienteSeLlevaVehiculo,
-      pagado,
+      pagado: false,
       id
     };
 
@@ -71,17 +67,13 @@ const AddEditHistorialReparaciones = () => {
       historialReparacionesService
         .get(id)
         .then((historialReparaciones) => {
+          setFechaIngresoTaller(historialReparaciones.data.patente);
           setFechaIngresoTaller(historialReparaciones.data.fechaIngresoTaller);
           setHoraIngresoTaller(historialReparaciones.data.horaIngresoTaller);
-          setMontoTotalPagar(historialReparaciones.data.montoTotalPagar);
-          setRecargos(historialReparaciones.data.recargos);
-          setDescuentos(historialReparaciones.data.descuentos);
-          setIva(historialReparaciones.data.iva);
           setFechaSalidaTaller(historialReparaciones.data.fechaSalidaTaller);
           setHoraSalidaTaller(historialReparaciones.data.horaSalidaTaller);
           setFechaClienteSeLlevaVehiculo(historialReparaciones.data.fechaClienteSeLlevaVehiculo);
           setHoraClienteSeLlevaVehiculo(historialReparaciones.data.horaClienteSeLlevaVehiculo);
-          setPagado(historialReparaciones.data.pagado);
         })
         .catch((error) => {
           console.log("Se ha producido un error.", error);
@@ -90,8 +82,7 @@ const AddEditHistorialReparaciones = () => {
       setTitleHistorialReparacionesForm("Nuevo Historial de Reparaciones");
     }
   }, [id]);
-  
-  
+
   return (
     <Box
       display="flex"
@@ -104,7 +95,7 @@ const AddEditHistorialReparaciones = () => {
         borderRadius: "25px",
         boxShadow: "0px 0px 100px rgba(0, 0, 0, 0.3)",
         backgroundColor: "#f9f9f9",
-        maxWidth: "650px",
+        maxWidth: "490px",
         margin: "auto",
         marginTop: "30px",
       }}
@@ -114,62 +105,44 @@ const AddEditHistorialReparaciones = () => {
       <form>
         <FormControl fullWidth>
           <TextField
+            id="patente"
+            label="Patente"
+            value={patente}
+            variant="standard"
+            onChange={(e) => setPatente(e.target.value)}
+            helperText="Ej: CFTF45"
+            InputLabelProps={{
+            style: { position: 'absolute', top: 0, left: 230 } 
+            }}
+          />
+        </FormControl>
+        
+        <FormControl fullWidth>
+          <TextField
             id="fechaIngresoTaller"
             label="Fecha de ingreso al taller"
             type="date"
             value={fechaIngresoTaller}
+            variant="standard"
             onChange={(e) => setFechaIngresoTaller(e.target.value)}
+            InputLabelProps={{
+            style: { position: 'absolute', top: 0, left: 170 } 
+            }}
           />
         </FormControl>
 
         <FormControl fullWidth>
-          <TextField
+            <TextField
             id="horaIngresoTaller"
             label="Hora de ingreso al taller"
             type="time"
             value={horaIngresoTaller}
+            variant="standard"
             onChange={(e) => setHoraIngresoTaller(e.target.value)}
-          />
-        </FormControl>
-
-        <FormControl fullWidth>
-          <TextField
-            id="montoTotalPagar"
-            label="Monto total a pagar"
-            type="number"
-            value={montoTotalPagar}
-            onChange={(e) => setMontoTotalPagar(e.target.value)}
-          />
-        </FormControl>
-
-        <FormControl fullWidth>
-          <TextField
-            id="recargos"
-            label="Recargos"
-            type="number"
-            value={recargos}
-            onChange={(e) => setRecargos(e.target.value)}
-          />
-        </FormControl>
-
-        <FormControl fullWidth>
-          <TextField
-            id="descuentos"
-            label="Descuentos"
-            type="number"
-            value={descuentos}
-            onChange={(e) => setDescuentos(e.target.value)}
-          />
-        </FormControl>
-
-        <FormControl fullWidth>
-          <TextField
-            id="iva"
-            label="IVA"
-            type="number"
-            value={iva}
-            onChange={(e) => setIva(e.target.value)}
-          />
+            InputLabelProps={{
+            style: { position: 'absolute', top: 0, left: 175 } 
+            }}
+            />
         </FormControl>
 
         <FormControl fullWidth>
@@ -178,7 +151,11 @@ const AddEditHistorialReparaciones = () => {
             label="Fecha de salida del taller"
             type="date"
             value={fechaSalidaTaller}
+            variant="standard"
             onChange={(e) => setFechaSalidaTaller(e.target.value)}
+            InputLabelProps={{
+            style: { position: 'absolute', top: 0, left: 170 } 
+            }}
           />
         </FormControl>
 
@@ -188,7 +165,11 @@ const AddEditHistorialReparaciones = () => {
             label="Hora de salida del taller"
             type="time"
             value={horaSalidaTaller}
+            variant="standard"
             onChange={(e) => setHoraSalidaTaller(e.target.value)}
+            InputLabelProps={{
+            style: { position: 'absolute', top: 0, left: 175 } 
+            }}
           />
         </FormControl>
 
@@ -198,7 +179,11 @@ const AddEditHistorialReparaciones = () => {
             label="Fecha en que el cliente se lleva el vehículo"
             type="date"
             value={fechaClienteSeLlevaVehiculo}
+            variant="standard"
             onChange={(e) => setFechaClienteSeLlevaVehiculo(e.target.value)}
+            InputLabelProps={{
+            style: { position: 'absolute', top: 0, left: 101 } 
+            }}
           />
         </FormControl>
 
@@ -208,21 +193,12 @@ const AddEditHistorialReparaciones = () => {
             label="Hora en que el cliente se lleva el vehículo"
             type="time"
             value={horaClienteSeLlevaVehiculo}
+            variant="standard"
             onChange={(e) => setHoraClienteSeLlevaVehiculo(e.target.value)}
+            InputLabelProps={{
+            style: { position: 'absolute', top: 0, left: 102 } 
+            }}
           />
-        </FormControl>
-
-        <FormControl fullWidth>
-          <TextField
-            id="pagado"
-            label="Pagado"
-            select
-            value={pagado}
-            onChange={(e) => setPagado(e.target.value)}
-          >
-            <MenuItem value={true}>Sí</MenuItem>
-            <MenuItem value={false}>No</MenuItem>
-          </TextField>
         </FormControl>
 
         <FormControl>

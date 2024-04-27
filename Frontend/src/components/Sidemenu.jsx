@@ -53,12 +53,22 @@ export default function Sidemenu({ open, toggleDrawer }) {
           </ListItemIcon>
           <ListItemText primary="listado de historiales" />
         </ListItemButton>
+
+        <ListItemButton onClick={() => navigate("/IngresarAutomovil/")}>
+          <ListItemIcon>
+            <HistoryIcon />
+          </ListItemIcon>
+          <ListItemText primary="Ingresar automovil" />
+        </ListItemButton>
+
+        
         <ListItemButton onClick={() => navigate("/historialReparaciones/edit")}>
           <ListItemIcon>
             <AnalyticsIcon />
           </ListItemIcon>
           <ListItemText primary="Gráficos aaaaaaaillas" />
         </ListItemButton>
+
       </List>
 
       <Divider />
