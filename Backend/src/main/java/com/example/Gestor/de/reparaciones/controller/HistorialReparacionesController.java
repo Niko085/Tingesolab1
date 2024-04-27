@@ -38,6 +38,18 @@ public class HistorialReparacionesController {
         return ResponseEntity.ok(historialNew);
     }
 
+    @PutMapping("/")
+    public ResponseEntity<HistorialReparacionesEntity> updateHistorial(@RequestBody HistorialReparacionesEntity historial){
+        HistorialReparacionesEntity historialUpdated = historialReparacionesService.updateHistorial(historial);
+        return ResponseEntity.ok(historialUpdated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> deleteHistorialById(@PathVariable Long id) throws Exception {
+        var isDeleted = historialReparacionesService.deleteHistorial(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
     /*
     @GetMapping("/calculate")

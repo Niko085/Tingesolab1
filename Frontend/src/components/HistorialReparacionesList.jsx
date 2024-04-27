@@ -1,35 +1,31 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import historialReparacionesService from "../services/historialReparaciones.service";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import BuildIcon from "@mui/icons-material/Build";
 
 const HistorialReparacionesList = () => {
-  const [HistorialReparaciones, setHistorialReparaciones] = useState([]);
-
+  const [historialReparaciones, setHistorialReparaciones] = useState([]);
   const navigate = useNavigate();
 
   const init = () => {
     historialReparacionesService
       .getAll()
       .then((response) => {
-        console.log("Mostrando listado de todos los historiales de reparación de automoviles.", response.data);
+        console.log("Mostrando historial de reparaciones:", response.data);
         setHistorialReparaciones(response.data);
       })
       .catch((error) => {
-        console.log(
-          "Se ha producido un error al intentar mostrar listado de todos los historiales de reparación de automoviles.",
-          error
-        );
+        console.log("Error al cargar historial de reparaciones:", error);
       });
   };
 
@@ -38,99 +34,80 @@ const HistorialReparacionesList = () => {
   }, []);
 
   const handleDelete = (id) => {
-    console.log("Printing id", id);
+    console.log("Eliminando historial de reparaciones con ID:", id);
     const confirmDelete = window.confirm(
-      "¿Esta seguro que desea borrar este historial?"
+      "¿Estás seguro de que deseas eliminar este historial de reparaciones?"
     );
     if (confirmDelete) {
       historialReparacionesService
         .remove(id)
-        .then((response) => {
-          console.log("El historial ha sido eliminado.", response.data);
+        .then(() => {
+          console.log("Historial de reparaciones eliminado con éxito");
           init();
         })
         .catch((error) => {
-          console.log(
-            "Se ha producido un error al intentar eliminar el automovil",
-            error
-          );
+          console.log("Error al eliminar historial de reparaciones:", error);
         });
     }
   };
 
   const handleEdit = (id) => {
-    console.log("Printing id", id);
-    navigate(`/historialReparaciones/edit/${id}`);
+    console.log("Editando historial de reparaciones con ID:", id);
+    navigate(`/historialreparaciones/edit/${id}`);
   };
 
   return (
     <TableContainer component={Paper}>
       <br />
       <Link
-        to="/historialReparaciones/add"
+        to="/historialreparaciones/add"
         style={{ textDecoration: "none", marginBottom: "1rem" }}
       >
         <Button
           variant="contained"
           color="primary"
-          startIcon={<PersonAddIcon />}
+          startIcon={<BuildIcon />}
         >
-          Ingreso de automovil al taller
+          Añadir Historial de Reparaciones
         </Button>
       </Link>
       <br /> <br />
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table sx={{ minWidth: 650 }} size="small" aria-label="historial de reparaciones">
         <TableHead>
           <TableRow>
-            <TableCell align="left" sx={{ fontWeight: "bold" }}>
-              Patente
-            </TableCell>
-            <TableCell align="left" sx={{ fontWeight: "bold" }}>
-              Marca
-            </TableCell>
-            <TableCell align="right" sx={{ fontWeight: "bold" }}>
-              Modelo
-            </TableCell>
-            <TableCell align="right" sx={{ fontWeight: "bold" }}>
-              Tipo de auto
-            </TableCell>
-            <TableCell align="right" sx={{ fontWeight: "bold" }}>
-              Año de fabricación
-            </TableCell>
-            <TableCell align="right" sx={{ fontWeight: "bold" }}>
-              Tipo de motor
-            </TableCell>
-            <TableCell align="right" sx={{ fontWeight: "bold" }}>
-              Tipo cantidad de asientos
-            </TableCell>
-            <TableCell align="right" sx={{ fontWeight: "bold" }}>
-              Kilometraje
-            </TableCell>
-            <TableCell align="left" sx={{ fontWeight: "bold" }}>
-              Operaciones
-            </TableCell>
+            <TableCell align="left">Fecha Ingreso Taller</TableCell>
+            <TableCell align="left">Hora Ingreso Taller</TableCell>
+            <TableCell align="right">Monto Total a Pagar</TableCell>
+            <TableCell align="right">Recargos</TableCell>
+            <TableCell align="right">Descuentos</TableCell>
+            <TableCell align="right">IVA</TableCell>
+            <TableCell align="left">Fecha Salida Taller</TableCell>
+            <TableCell align="left">Hora Salida Taller</TableCell>
+            <TableCell align="left">Fecha Cliente se Lleva Vehículo</TableCell>
+            <TableCell align="left">Hora Cliente se Lleva Vehículo</TableCell>
+            <TableCell align="left">Pagado</TableCell>
+            <TableCell align="left">Operaciones</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {HistorialReparaciones.map((historialReparaciones) => (
+          {historialReparaciones.map((historialReparaciones) => (
             <TableRow
               key={historialReparaciones.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell align="left">{historialReparaciones.fechaIngresoTaller}</TableCell>
               <TableCell align="left">{historialReparaciones.horaIngresoTaller}</TableCell>
-              <TableCell align="right">{historialReparaciones.fechaSalidaTaller}</TableCell>
-              <TableCell align="right">{historialReparaciones.horaSalidaTaller}</TableCell>
-              <TableCell align="right">{historialReparaciones.anioFabricacion}</TableCell>
-              <TableCell align="right">{historialReparaciones.fechaClienteSeLlevaVehiculo}</TableCell>
-              <TableCell align="right">{historialReparaciones.horaClienteSeLlevaVehiculo}</TableCell>
+              <TableCell align="right">{historialReparaciones.montoTotalPagar}</TableCell>
               <TableCell align="right">{historialReparaciones.recargos}</TableCell>
               <TableCell align="right">{historialReparaciones.descuentos}</TableCell>
               <TableCell align="right">{historialReparaciones.iva}</TableCell>
-              <TableCell align="right">{historialReparaciones.montoTotalPagar}</TableCell>
+              <TableCell align="left">{historialReparaciones.fechaSalidaTaller}</TableCell>
+              <TableCell align="left">{historialReparaciones.horaSalidaTaller}</TableCell>
+              <TableCell align="left">{historialReparaciones.fechaClienteSeLlevaVehiculo}</TableCell>
+              <TableCell align="left">{historialReparaciones.horaClienteSeLlevaVehiculo}</TableCell>
+              <TableCell align="left">{historialReparaciones.pagado ? 'Sí' : 'No'}</TableCell>
               <TableCell>
                 <Button
-                //variant es el recuadro en azul
                   variant="contained"
                   color="info"
                   size="small"
@@ -140,7 +117,6 @@ const HistorialReparacionesList = () => {
                 >
                   Editar
                 </Button>
-
                 <Button
                   variant="contained"
                   color="error"

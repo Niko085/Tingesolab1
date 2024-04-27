@@ -1,9 +1,9 @@
 --Insertar Bonos
-INSERT INTO public.datos_bonos(id, marca_automovil, cantidad_bonos, monto_bono)
-VALUES (1, 'Toyota', 5, 70000),
-       (2, 'Ford', 2, 50000),
-       (3, 'Hyundai', 1, 30000),
-       (4, 'Honda', 7, 40000);
+INSERT INTO public.datos_bonos(marca_automovil, cantidad_bonos, monto_bono)
+VALUES ('Toyota', 5, 70000),
+       ('Ford', 2, 50000),
+       ('Hyundai', 1, 30000),
+       ('Honda', 7, 40000);
 
 
 
@@ -11,18 +11,18 @@ VALUES (1, 'Toyota', 5, 70000),
 
 
 -- Insertar automovil
-INSERT INTO public.automoviles(id, patente, marca, modelo, tipo, anio_fabricacion, motor, cant_asientos, kilometraje)
-VALUES (1, 'CFYF55', 'Hyundai', 'Getz', 'Sedan', 2010, 'Gasolina', 5,15000),
-       (2, 'TW6977', 'Ford', 'Grand i10', 'Hatchback', 2021, 'Gasolina', 5,4000),
-       (3, 'FHKJ23', 'Toyota', 'Corolla', 'Sedan', 2015, 'Hibrido', 5,10000),
-       (4, 'NMQP98', 'Ford', 'Ranger', 'Pickup', 2018, 'Diesel', 5,35000),
-       (5, 'KDJW65', 'Chevrolet', 'Spark', 'Hatchback', 2019, 'Gasolina', 4,50000);
+INSERT INTO public.automoviles(patente, marca, modelo, tipo, anio_fabricacion, motor, cant_asientos, kilometraje)
+VALUES ('CFYF55', 'Hyundai', 'Getz', 'Sedan', 2010, 'Gasolina', 5,15000),
+       ('TW6977', 'Ford', 'Grand i10', 'Hatchback', 2021, 'Gasolina', 5,4000),
+       ('FHKJ23', 'Toyota', 'Corolla', 'Sedan', 2015, 'Hibrido', 5,10000),
+       ('NMQP98', 'Ford', 'Ranger', 'Pickup', 2018, 'Diesel', 5,35000),
+       ('KDJW65', 'Chevrolet', 'Spark', 'Hatchback', 2019, 'Gasolina', 4,50000);
 
 --Insertar historial
-INSERT INTO public.historial_reparaciones(id, patente,fecha_ingreso_taller,hora_ingreso_taller, monto_total_pagar, fecha_salida_taller, hora_salida_taller, fecha_cliente_se_lleva_vehiculo, hora_cliente_se_lleva_vehiculo, descuentos, recargos,iva, pagado)
-VALUES (1, 'CFYF55','2022-01-18','10:30:00', 337008,'2022-01-20','10:30:00', '2022-01-21','15:25:00',43500,56700,53808, true),
-       (2, 'TW6977','2023-12-15','12:55:00', 0,'2023-12-19','13:30:00', '2023-12-20','13:27:00',0,0,0, false),
-       (3, 'CFYF55','2024-03-18','10:30:00', 0,'2024-03-19','10:30:00', '2024-03-21','15:25:00',0,0,0,false);
+INSERT INTO public.historial_reparaciones(patente,fecha_ingreso_taller,hora_ingreso_taller, monto_total_pagar, fecha_salida_taller, hora_salida_taller, fecha_cliente_se_lleva_vehiculo, hora_cliente_se_lleva_vehiculo, descuentos, recargos,iva, pagado)
+VALUES ('CFYF55','2022-01-18','10:30:00', 337008,'2022-01-20','10:30:00', '2022-01-21','15:25:00',43500,56700,53808, true),
+       ('TW6977','2023-12-15','12:55:00', 0,'2023-12-19','13:30:00', '2023-12-20','13:27:00',0,0,0, false),
+       ('CFYF55','2024-03-18','10:30:00', 0,'2024-03-19','10:30:00', '2024-03-21','15:25:00',0,0,0,false);
 --INSERT INTO public.historial_reparaciones(id, patente,fecha_ingreso_taller,hora_ingreso_taller, monto_total_pagar, fecha_salida_taller, hora_salida_taller, fecha_cliente_se_lleva_vehiculo, hora_cliente_se_lleva_vehiculo)
 --VALUES (1, 'CFYF55','2024-01-15','15:30:00', 270000,'2022-04-19','12:30:00', '2022-04-20','15:25:00'),
   --     (2, 'TW6977','2023-01-15','12:55:00', 260000,'2023-05-19','13:30:00', '2023-05-21','13:27:00');

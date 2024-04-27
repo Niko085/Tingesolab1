@@ -50,6 +50,20 @@ public class HistorialReparacionesService {
         return historialReparacionesRepository.findHistorialByPatente(patente);
     }
 
+    public HistorialReparacionesEntity updateHistorial(HistorialReparacionesEntity historial) {
+        return historialReparacionesRepository.save(historial);
+    }
+
+    public boolean deleteHistorial(Long id) throws Exception {
+        try{
+            historialReparacionesRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
 
     //Función modificada para que calcule el monto total a pagar de un auto en particular, en un historial ya creado
     public Boolean calcularMontoTotalPagar(String patente) {

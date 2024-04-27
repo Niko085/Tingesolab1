@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import automovilService from "../services/automovil.service";
-import historialReparacionesService from "../services/historialReparaciones.service";
 import Box from "@mui/material/Box";
+import historialReparacionesService from "../services/historialReparaciones.service";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
@@ -10,83 +9,72 @@ import MenuItem from "@mui/material/MenuItem";
 import SaveIcon from "@mui/icons-material/Save";
 
 const AddEditHistorialReparaciones = () => {
-  //Esto es para poder escribir en el formulario
-  const [patente, setPatente] = useState("");
-  const [marca, setMarca] = useState("");
-  const [modelo, setModelo] = useState("");
-  const [tipo, setTipo] = useState("");
-  const [anioFabricacion, setAnioFabricacion] = useState("");
-  const [motor, setMotor] = useState("");
-  const [cantAsientos, setCantAsientos] = useState("");
-  const [kilometraje, setKilometraje] = useState("");
+  const [fechaIngresoTaller, setFechaIngresoTaller] = useState("");
+  const [horaIngresoTaller, setHoraIngresoTaller] = useState("");
+  const [montoTotalPagar, setMontoTotalPagar] = useState("");
+  const [recargos, setRecargos] = useState("");
+
   const { id } = useParams();
-  const [titleAutomovilForm, setTitleAutomovilForm] = useState("");
+  const [titleHistorialReparacionesForm, setTitleHistorialReparacionesForm] = useState("");
   const navigate = useNavigate();
 
-  const saveHistorial = (a) => {
-    a.preventDefault();
+  const saveHistorial = (e) => {
+    e.preventDefault();
 
-    //Objeto con los datos del auto
-    const automovil = { patente, marca, modelo, tipo, anioFabricacion, motor, cantAsientos, kilometraje, id };
-    //Se verifica si el auto existe para actualizar o crear
+    const historialReparaciones = {
+      fechaIngresoTaller,
+      horaIngresoTaller,
+      montoTotalPagar,
+      recargos,
+
+      id
+    };
+
     if (id) {
-      //Actualizar Datos Automovil
-      automovilService
-        .update(automovil)
+      historialReparacionesService
+        .update(historialReparaciones)
         .then((response) => {
-          console.log("El eutomovil ha sido actualizado.", response.data);
-          navigate("/automovil/list");
+          console.log("El Historial de Reparaciones ha sido actualizado.", response.data);
+          navigate("/historialreparaciones/list");
         })
         .catch((error) => {
-          console.log(
-            "Ha ocurrido un error al intentar actualizar datos del automovil.",
-            error
-          );
+          console.log("Ha ocurrido un error al intentar actualizar datos del historial de reparaciones.", error);
         });
     } else {
-      //Crear nuevo Automovil
-      automovilService
-        .create(automovil)
+      historialReparacionesService
+        .create(historialReparaciones)
         .then((response) => {
-          console.log("El automovil ha sido añadido.", response.data);
-          navigate("/automovil/list");
+          console.log("El historial de reparaciones ha sido añadido.", response.data);
+          navigate("/historialreparaciones/list");
         })
         .catch((error) => {
-          console.log(
-            "Ha ocurrido un error al intentar crear un nuevo automovil.",
-            error
-          );
+          console.log("Ha ocurrido un error al intentar crear un nuevo historial de reparaciones.", error);
         });
     }
   };
 
   useEffect(() => {
     if (id) {
-      setTitleAutomovilForm("Editar Automovil");
-      automovilService
+      setTitleHistorialReparacionesForm("Editar Historial de Reparaciones");
+      historialReparacionesService
         .get(id)
-        .then((automovil) => {
-          //Se establecen los valores del auto en el formulario
-          setPatente(automovil.data.patente);
-          setMarca(automovil.data.marca);
-          setModelo(automovil.data.modelo);
-          setTipo(automovil.data.tipo);
-          setAnioFabricacion(automovil.data.anioFabricacion);
-          setMotor(automovil.data.motor);
-          setCantAsientos(automovil.data.cantAsientos);
-          setKilometraje(automovil.data.kilometraje);
+        .then((historialReparaciones) => {
+          setFechaIngresoTaller(historialReparaciones.data.fechaIngresoTaller);
+          setHoraIngresoTaller(historialReparaciones.data.horaIngresoTaller);
+          setMontoTotalPagar(historialReparaciones.data.montoTotalPagar);
+          setRecargos(historialReparaciones.data.recargos);
+  
         })
         .catch((error) => {
           console.log("Se ha producido un error.", error);
         });
     } else {
-      setTitleAutomovilForm("Nuevo Automovil");
+      setTitleHistorialReparacionesForm("Nuevo Historial de Reparaciones");
     }
-  }, []);
-
-  //Estilo del formulario
+  }, [id]);
+  
+  
   return (
-    //Recuadro
     <Box
       display="flex"
       flexDirection="column"
@@ -103,124 +91,128 @@ const AddEditHistorialReparaciones = () => {
         marginTop: "30px",
       }}
     >
-      <h3>{titleAutomovilForm}</h3>
+      <h3>{titleHistorialReparacionesForm}</h3>
       <hr />
       <form>
         <FormControl fullWidth>
           <TextField
-            id="patente"
-            label="Patente"
-            value={patente}
-            variant="standard"
-            onChange={(a) => setPatente(a.target.value)}
-            helperText="Ej: CFTF45"
-          />
-        </FormControl>
-  
-        <FormControl fullWidth>
-          <TextField
-            id="marca"
-            label="Marca"
-            value={marca}
-            variant="standard"
-            onChange={(a) => setMarca(a.target.value)}
-            helperText="Ej: Hyundai"
-          />
-        </FormControl>
-  
-        <FormControl fullWidth>
-          <TextField
-            id="modelo"
-            label="Modelo"
-            value={modelo}
-            variant="standard"
-            onChange={(a) => setModelo(a.target.value)}
-            helperText="Ej: Getz"
-          />
-        </FormControl>
-  
-        <FormControl fullWidth>
-          <TextField
-            id="anioFabricacion"
-            label="Año de fabricación"
-            type="number"
-            value={anioFabricacion}
-            variant="standard"
-            inputProps={{ min: "0" }} // Establece el valor mínimo permitido como 0
-            onChange={(a) => setAnioFabricacion(a.target.value)}
+            id="fechaIngresoTaller"
+            label="Fecha de ingreso al taller"
+            type="date"
+            value={fechaIngresoTaller}
+            onChange={(e) => setFechaIngresoTaller(e.target.value)}
           />
         </FormControl>
 
         <FormControl fullWidth>
           <TextField
-            id="cantAsientos"
-            label="Cantidad de asientos"
-            type="number"
-            value={cantAsientos}
-            variant="standard"
-            inputProps={{ min: "0" }}
-            onChange={(a) => setCantAsientos(a.target.value)}
+            id="horaIngresoTaller"
+            label="Hora de ingreso al taller"
+            type="time"
+            value={horaIngresoTaller}
+            onChange={(e) => setHoraIngresoTaller(e.target.value)}
           />
         </FormControl>
-  
+
         <FormControl fullWidth>
           <TextField
-            id="kilometraje"
-            label="Kilometraje"
+            id="montoTotalPagar"
+            label="Monto total a pagar"
             type="number"
-            value={kilometraje}
-            variant="standard"
-            inputProps={{ min: "0" }} 
-            onChange={(a) => setKilometraje(a.target.value)}
-            helperText="Ej: 120000"
+            value={montoTotalPagar}
+            onChange={(e) => setMontoTotalPagar(e.target.value)}
           />
         </FormControl>
 
-        <div style={{ display: "flex", gap: "2rem" }}>
-          <FormControl fullWidth>
-            <TextField
-              id="tipo"
-              label="Tipo de automóvil"
-              value={tipo}
-              select
-              variant="standard"
-              defaultValue="Sedan"
-              onChange={(a) => setTipo(a.target.value)}
-              style={{ flex: 1 }}
-            >
-              <MenuItem value={"Sedan"}>Sedán</MenuItem>
-              <MenuItem value={"Hatchback"}>Hatchback</MenuItem>
-              <MenuItem value={"Suv"}>SUV</MenuItem>
-              <MenuItem value={"Pickup"}>Pickup</MenuItem>
-              <MenuItem value={"Furgoneta"}>Furgoneta</MenuItem>
-            </TextField>
-          </FormControl>
+        <FormControl fullWidth>
+          <TextField
+            id="recargos"
+            label="Recargos"
+            type="number"
+            value={recargos}
+            onChange={(e) => setRecargos(e.target.value)}
+          />
+        </FormControl>
 
-          <FormControl fullWidth>
-            <TextField
-              id="motor"
-              label="Tipo de motor"
-              value={motor}
-              select
-              variant="standard"
-              defaultValue="Gasolina"
-              onChange={(a) => setMotor(a.target.value)}
-              style={{ flex: 1 }}
-            >
-              <MenuItem value={"Gasolina"}>Gasolina</MenuItem>
-              <MenuItem value={"Diesel"}>Diésel</MenuItem>
-              <MenuItem value={"Hibrido"}>Híbrido</MenuItem>
-              <MenuItem value={"Electrico"}>Eléctrico</MenuItem>
-            </TextField>
-          </FormControl>
-        </div>
+        <FormControl fullWidth>
+          <TextField
+            id="descuentos"
+            label="Descuentos"
+            type="number"
+            value={descuentos}
+            onChange={(e) => setDescuentos(e.target.value)}
+          />
+        </FormControl>
+
+        <FormControl fullWidth>
+          <TextField
+            id="iva"
+            label="IVA"
+            type="number"
+            value={iva}
+            onChange={(e) => setIva(e.target.value)}
+          />
+        </FormControl>
+
+        <FormControl fullWidth>
+          <TextField
+            id="fechaSalidaTaller"
+            label="Fecha de salida del taller"
+            type="date"
+            value={fechaSalidaTaller}
+            onChange={(e) => setFechaSalidaTaller(e.target.value)}
+          />
+        </FormControl>
+
+        <FormControl fullWidth>
+          <TextField
+            id="horaSalidaTaller"
+            label="Hora de salida del taller"
+            type="time"
+            value={horaSalidaTaller}
+            onChange={(e) => setHoraSalidaTaller(e.target.value)}
+          />
+        </FormControl>
+
+        <FormControl fullWidth>
+          <TextField
+            id="fechaClienteSeLlevaVehiculo"
+            label="Fecha en que el cliente se lleva el vehículo"
+            type="date"
+            value={fechaClienteSeLlevaVehiculo}
+            onChange={(e) => setFechaClienteSeLlevaVehiculo(e.target.value)}
+          />
+        </FormControl>
+
+        <FormControl fullWidth>
+          <TextField
+            id="horaClienteSeLlevaVehiculo"
+            label="Hora en que el cliente se lleva el vehículo"
+            type="time"
+            value={horaClienteSeLlevaVehiculo}
+            onChange={(e) => setHoraClienteSeLlevaVehiculo(e.target.value)}
+          />
+        </FormControl>
+
+        <FormControl fullWidth>
+          <TextField
+            id="pagado"
+            label="Pagado"
+            select
+            value={pagado}
+            onChange={(e) => setPagado(e.target.value)}
+          >
+            <MenuItem value={true}>Sí</MenuItem>
+            <MenuItem value={false}>No</MenuItem>
+          </TextField>
+        </FormControl>
 
         <FormControl>
           <br />
           <Button
             variant="contained"
             color="info"
-            onClick={(a) => saveAutomovil(a)}
+            onClick={(e) => saveHistorial(e)}
             style={{ marginLeft: "0.5rem" }}
             startIcon={<SaveIcon />}
           >
@@ -229,9 +221,9 @@ const AddEditHistorialReparaciones = () => {
         </FormControl>
       </form>
       <hr />
-      <Link to="/historialReparaciones/list">Volver a la lista de automoviles</Link>
+      <Link to="/historialreparaciones/list">Volver a la lista de historial de reparaciones</Link>
     </Box>
-  );  
+  );
 };
 
 export default AddEditHistorialReparaciones;
