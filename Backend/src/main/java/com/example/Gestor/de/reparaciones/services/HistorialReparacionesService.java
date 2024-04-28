@@ -39,6 +39,8 @@ public class HistorialReparacionesService {
         return historialReparacionesRepository.save(historialReparaciones);
     }
 
+
+
     public List<HistorialReparacionesEntity> getHistorialReparacionesByPatente(String patente) {
         return historialReparacionesRepository.findByPatente(patente);
     }
@@ -114,7 +116,7 @@ public class HistorialReparacionesService {
         historial.setDescuentos(descuentos);
         historial.setIva(iva);
         historial.setMontoTotalPagar((montoTotal + recargos - descuentos) + iva);
-        historial.setPagado(true);
+        //historial.setPagado(false); //está extra, pero por si las moscas
 
         // Guardar o actualizar el historial en la base de datos
         historialReparacionesRepository.save(historial);

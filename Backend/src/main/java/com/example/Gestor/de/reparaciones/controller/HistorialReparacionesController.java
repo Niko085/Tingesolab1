@@ -55,21 +55,24 @@ public class HistorialReparacionesController {
         return ResponseEntity.ok(historialUpdated);
     }
 
+    @PutMapping("/pagar/{id}")
+    public ResponseEntity<Void> updatePago(@PathVariable Long id) {
+        HistorialReparacionesEntity historial = historialReparacionesService.getHistorialAutoById(id);
+        if (historial == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        historial.setPagado(true);
+        historialReparacionesService.updateHistorial(historial);
+        return ResponseEntity.ok().build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> deleteHistorialById(@PathVariable Long id) throws Exception {
         var isDeleted = historialReparacionesService.deleteHistorial(id);
         return ResponseEntity.noContent().build();
     }
 
-
-    /*
-    @GetMapping("/calculate")
-    public ResponseEntity<Void> calculatehistorial() {
-        historialReparacionesService.calcularMontoTotalPagar();
-        return ResponseEntity.noContent().build();
-    }
-
-     */
 
     //http://localhost:8090/api/historialreparaciones/calculate?patente=CFYF55
     @GetMapping("/calculate")
@@ -79,16 +82,6 @@ public class HistorialReparacionesController {
     }
 
 
-
-
-/*
-    @GetMapping("/calculate")
-    public ResponseEntity<Void> calculatePaychecks(@RequestParam("year") int year, @RequestParam("month") int month) {
-        paycheckService.calculatePaychecks(year, month);
-        return ResponseEntity.noContent().build();
-    }
-
- */
     //http://localhost:8090/api/historialreparaciones/reporte/reparaciones-vs-tipo-autos
     @GetMapping("/reporte/reparaciones-vs-tipo-autos")
     public List<ReparacionesvsTipoAutos> getReporteReparacionesvsTipoAutos() {
