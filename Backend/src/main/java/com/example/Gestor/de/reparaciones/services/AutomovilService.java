@@ -14,6 +14,7 @@ public class AutomovilService {
     public ArrayList<AutomovilEntity> getAutomoviles(){
         return (ArrayList<AutomovilEntity>) automovilRepository.findAll();
     }
+
     public AutomovilEntity saveAutomovil(AutomovilEntity automovil){
         return automovilRepository.save(automovil);
     }
@@ -26,9 +27,6 @@ public class AutomovilService {
         return automovilRepository.findByPatente(patente);
     }
 
-    public AutomovilEntity getAutomovilByAnioFabricacion(int anioFabricacion){
-        return automovilRepository.findByAnioFabricacion(anioFabricacion);
-    }
 
     public AutomovilEntity updateAutomovil(AutomovilEntity automovil) {
         return automovilRepository.save(automovil);

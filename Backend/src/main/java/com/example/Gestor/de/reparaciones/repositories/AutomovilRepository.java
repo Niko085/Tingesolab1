@@ -12,9 +12,4 @@ public interface AutomovilRepository extends JpaRepository<AutomovilEntity, Long
 
     public AutomovilEntity findByAnioFabricacion(int anioFabricacion);
 
-
-
-
-
-    //List<AutomovilEntity> findByAnio_fabricacion(int anio_fabricacion);
 }

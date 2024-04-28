@@ -139,28 +139,6 @@ public class HistorialReparacionesService {
         return cantidad;
     }
 
-/*
-    public int getCantidadTipoReparaciones(int tipoReparacion) {
-        List<String> patentes = new ArrayList<>();
-        Set<String> tiposAutomovil = new HashSet<>(); // Cambiamos de List a Set para evitar duplicados
-        List<ReparacionEntity> reparaciones = reparacionService.getReparaciones();
-        for (ReparacionEntity reparacion : reparaciones) {
-            if (reparacion.getTipoReparacion() == tipoReparacion) {
-                patentes.add(reparacion.getPatente());
-            }
-        }
-        for (String patente : patentes) {
-            AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
-            tiposAutomovil.add(automovil.getTipo());
-        }
-        return tiposAutomovil.size();
-    }
-
-
- */
-
-
-
     public int getCantidadTipoReparaciones(int tipoReparacion) {
         List<String> tiposAutomovil = new ArrayList<>(); // Utilizamos una lista en lugar de un Set
 
@@ -209,24 +187,6 @@ public class HistorialReparacionesService {
     }
 
 
-
-
-/*
-    public List<ReparacionesvsTipoAutos> reporteReparacionesvsTipoAutos(){
-        List<ReparacionesvsTipoAutos> reparacionesvsTipoAutos = new ArrayList<>();
-        int cantidadReparaciones = 0;
-        int montoTotalReparaciones = 0;
-        for(int tipoReparacion = 1; tipoReparacion <= 11; tipoReparacion++){
-            cantidadReparaciones = getCantidadTipoReparaciones(tipoReparacion);
-            montoTotalReparaciones = getMontoTipoReparaciones(tipoReparacion);
-            ReparacionesvsTipoAutos reparacionPorTipoAuto = new ReparacionesvsTipoAutos(tipoReparacion, cantidadReparaciones, montoTotalReparaciones);
-            reparacionesvsTipoAutos.add(reparacionPorTipoAuto);
-        }
-        return reparacionesvsTipoAutos;
-    }
-
- */
-
     public List<ReparacionesvsTipoAutos> reporteReparacionesvsTipoAutos(){
         List<ReparacionesvsTipoAutos> reparacionesvsTipoAutos = new ArrayList<>();
 
@@ -273,27 +233,6 @@ public class HistorialReparacionesService {
         return reparacionesvsTipoAutos;
     }
 
-/*
-    public int getCantidadTipoMotor(int tipoReparacion, String tipoMotor) {
-        List<String> patentes = new ArrayList<>();
-        List<String> tiposMotor = new ArrayList<>();
-        List<ReparacionEntity> reparaciones = reparacionService.getReparaciones();
-        for (ReparacionEntity reparacion : reparaciones) {
-            if ((reparacion.getTipoReparacion() == tipoReparacion)) {
-                patentes.add(reparacion.getPatente());
-            }
-        }
-        for (String patente : patentes) {
-            AutomovilEntity automovil = automovilService.getAutomovilByPatente(patente);
-            if (automovil.getMotor().equals(tipoMotor)) {
-                tiposMotor.add(automovil.getMotor());
-            }
-
-
-        }
-        return tiposMotor.size();
-    }
- */
 
     public int getCantidadTipoMotor(int tipoReparacion, String tipoMotor) {
         int cantidad = 0;
@@ -312,35 +251,6 @@ public class HistorialReparacionesService {
     }
 
 
-/*
-    public List<ReparacionesvsTipoMotor> reporteReparacionesvsTipoMotor(){
-        List<ReparacionesvsTipoMotor> reparacionesvsTipoMotores = new ArrayList<>();
-        int cantGasolina;
-        int cantDiesel;
-        int cantHibrido;
-        int cantElectrico;
-        int montoGasolina;
-        int montoDiesel;
-        int montoHibrido;
-        int montoElectrico;
-        int montoTotal;
-        for(int tipoReparacion = 1; tipoReparacion <= 11; tipoReparacion++){
-            cantGasolina = getCantidadTipoMotor(tipoReparacion, "Gasolina");
-            montoGasolina = valorReparacionesService.getMonto(tipoReparacion, "Gasolina") * cantGasolina;
-            cantDiesel = getCantidadTipoMotor(tipoReparacion, "Diesel");
-            montoDiesel = valorReparacionesService.getMonto(tipoReparacion, "Diesel") * cantDiesel;
-            cantHibrido = getCantidadTipoMotor(tipoReparacion, "Hibrido");
-            montoHibrido = valorReparacionesService.getMonto(tipoReparacion, "Hibrido") * cantHibrido;
-            cantElectrico = getCantidadTipoMotor(tipoReparacion, "Electrico");
-            montoElectrico = valorReparacionesService.getMonto(tipoReparacion, "Electrico") * cantElectrico;
-            montoTotal = montoGasolina + montoDiesel + montoHibrido + montoElectrico;
-            ReparacionesvsTipoMotor reparacionPorTipoMotor = new ReparacionesvsTipoMotor(tipoReparacion, cantGasolina, cantDiesel, cantHibrido, cantElectrico, montoTotal);
-            reparacionesvsTipoMotores.add(reparacionPorTipoMotor);
-        }
-        return reparacionesvsTipoMotores;
-    }
-
- */
     public List<ReparacionesvsTipoMotor> reporteReparacionesvsTipoMotor(){
         List<ReparacionesvsTipoMotor> reparacionesvsTipoMotores = new ArrayList<>();
         String nombreReparacion = null;
@@ -391,41 +301,6 @@ public class HistorialReparacionesService {
         return reparacionesvsTipoMotores;
     }
 
-
-
-    /*
-    public List<ReparacionesvsTipoMotor> reporteReparacionesvsTipoMotor() {
-        List<ReparacionesvsTipoMotor> reparacionesvsTipoMotores = new ArrayList<>();
-
-        for (int tipoReparacion = 1; tipoReparacion <= 11; tipoReparacion++) {
-            int cantGasolina = getCantidadTipoMotor(tipoReparacion, "Gasolina");
-            int montoGasolina = getMontoTipoMotor(tipoReparacion, "Gasolina") * cantGasolina;
-
-            int cantDiesel = getCantidadTipoMotor(tipoReparacion, "Diesel");
-            int montoDiesel = getMontoTipoMotor(tipoReparacion, "Diesel") * cantDiesel;
-
-            int cantHibrido = getCantidadTipoMotor(tipoReparacion, "Hibrido");
-            int montoHibrido = getMontoTipoMotor(tipoReparacion, "Hibrido") * cantHibrido;
-
-            int cantElectrico = getCantidadTipoMotor(tipoReparacion, "Electrico");
-            int montoElectrico = getMontoTipoMotor(tipoReparacion, "Electrico") * cantElectrico;
-
-            int montoTotal = montoGasolina + montoDiesel + montoHibrido + montoElectrico;
-
-            ReparacionesvsTipoMotor reparacionPorTipoMotor = new ReparacionesvsTipoMotor(tipoReparacion, cantGasolina, cantDiesel, cantHibrido, cantElectrico, montoTotal);
-            reparacionesvsTipoMotores.add(reparacionPorTipoMotor);
-        }
-
-        return reparacionesvsTipoMotores;
-    }
-
-
-
-    private int getMontoTipoMotor(int tipoReparacion, String tipoMotor) {
-        return valorReparacionesService.getMonto(tipoReparacion, tipoMotor);
-    }
-
-     */
 
     private int calcularTiempoReparacion(HistorialReparacionesEntity historial) {
         LocalDate fechaIngreso = historial.getFechaIngresoTaller();

@@ -17,24 +17,6 @@ public interface ReparacionRepository extends JpaRepository<ReparacionEntity, Lo
 
     public List<ReparacionEntity> findByTipoReparacion(int tipoReparacion);
 
-
-    //public List<ReparacionAutoEntity> findByIdHistorialReparaciones(int id);
-
-    //@Query("SELECT COUNT(r) FROM ReparacionEntity r WHERE r.idHistorialReparaciones = :idHistorialReparaciones")
-    //Integer countReparacionesByIdHistorialReparaciones(@Param("idHistorialReparaciones") Long idHistorialReparaciones);
-
-
-/*
-    @Query(value = "SELECT * FROM reparaciones WHERE reparaciones.patente = :patente", nativeQuery = true)
-    List<ReparacionEntity> getReparacionesByPatente(@Param("patente") String patente);
-
- */
-    //@Query("SELECT SUM(r.monto) FROM ReparacionEntity r WHERE r.patente = :patente")
-    //Double sumReparacionesByPatente(@Param("patente") String patente);
-
-    //@Query("SELECT COUNT(r) FROM ReparacionAutoEntity r WHERE r.idHistorialReparaciones = :idHistorial")
-    //Integer countReparacionesByHistorial(@Param("idHistorial") Long idHistorial);
-
     @Query("SELECT COUNT(r) FROM ReparacionEntity r WHERE r.idHistorialReparaciones = :idHistorial")
     Integer countReparacionesByHistorial(@Param("idHistorial") Long idHistorial);
 

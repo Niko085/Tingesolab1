@@ -29,29 +29,6 @@ public class ReparacionService {
     }
 
 
-
-    public List<ReparacionEntity> getReparacionesByPatente(String patente) {
-        return reparacionRepository.findByPatente(patente);
-    }
-
-    public List<ReparacionEntity> getReparacionesByTipoReparacion(int tipoReparacion) {
-        return reparacionRepository.findByTipoReparacion(tipoReparacion);
-    }
-
-    /*
-    public List<ReparacionAutoEntity> getReparacionesByIdHistorial(int id) {
-        return reparacionAutoRepository.findByIdHistorialReparaciones(id);
-    }
-
-     */
-/*
-    public List<ReparacionEntity> getReparacionesById(Long id) {
-        return reparacionRepository.findById(id);
-    }
-
-
- */
-
     public ReparacionEntity updateReparacion(ReparacionEntity reparacion) {
         return reparacionRepository.save(reparacion);
     }
@@ -72,9 +49,6 @@ public class ReparacionService {
         return reparacionRepository.countReparacionesByHistorial(idHistorial);
     }
 
-    public int ContarReparacionesPorTipo(int tipoReparacion){
-        return reparacionRepository.countReparacionesByTipoReparacion(tipoReparacion);
-    }
 
     public ReparacionEntity getReparacionById(Long id){
         return reparacionRepository.findById(id).get();

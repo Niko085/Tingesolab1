@@ -13,10 +13,6 @@ public class ValorReparacionesService {
     @Autowired
     ValorReparacionesRepository valorReparacionesRepository;
 
-    public ArrayList<ValorReparacionesEntity> getValores(){
-        return (ArrayList<ValorReparacionesEntity>) valorReparacionesRepository.findAll();
-    }
-
     public int getMonto(int numeroReparacion, String tipoMotor){
         return valorReparacionesRepository.findMontoByNumeroReparacionAndTipoMotor(numeroReparacion, tipoMotor);
     }

@@ -15,22 +15,9 @@ public interface HistorialReparacionesRepository extends JpaRepository<Historial
 
     public Optional<HistorialReparacionesEntity> findById(Long id);
 
-    //public List<HistorialReparacionesEntity> findByPatenteAndAndPagadoIsFalse(String patente);
-
     public HistorialReparacionesEntity findByPatenteAndAndPagadoIsFalse(String patente);
 
     public HistorialReparacionesEntity findHistorialByPatente(String patente);
-
-    @Query("SELECT MAX(hr.id) FROM HistorialReparacionesEntity hr")
-    Long findMaxId();
-
-
-    /*
-    @Query(value = "SELECT * FROM paychecks WHERE paychecks.year = :year AND paychecks.month = :month ORDER BY paychecks.year, paychecks.month, paychecks.rut", nativeQuery = true)
-    List<PaycheckEntity> getPaychecksByYearMonth(@Param("year") int year, @Param("month") int month);
-
-     */
-
 
 
 }
