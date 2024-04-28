@@ -51,7 +51,7 @@ export default function Sidemenu({ open, toggleDrawer }) {
           <ListItemIcon>
             <HistoryIcon />
           </ListItemIcon>
-          <ListItemText primary="listado de historiales" />
+          <ListItemText primary="Listado de historiales" />
         </ListItemButton>
 
         <ListItemButton onClick={() => navigate("/IngresarAutomovil/")}>
@@ -62,24 +62,28 @@ export default function Sidemenu({ open, toggleDrawer }) {
         </ListItemButton>
 
         
-        <ListItemButton onClick={() => navigate("/historialReparaciones/edit")}>
+        <ListItemButton onClick={() => navigate("/reparaciones/list")}>
           <ListItemIcon>
-            <AnalyticsIcon />
+            <HistoryIcon />
           </ListItemIcon>
-          <ListItemText primary="Gráficos aaaaaaaillas" />
+          <ListItemText primary="Listado de Reparaciones" />
         </ListItemButton>
+
 
       </List>
 
       <Divider />
 
       <List>
-        <ListItemButton onClick={() => navigate("/employee/discounts")}>
+        <ListItemButton onClick={() => navigate("/reportes/ReporteTiempoPromedio")}>
           <ListItemIcon>
             <DiscountIcon />
           </ListItemIcon>
-          <ListItemText primary="Descuentos" />
+          <ListItemText primary="Reporte tiempo promedio" />
         </ListItemButton>
+
+
+
         <ListItemButton onClick={() => navigate("/paycheck/medicalleave")}>
           <ListItemIcon>
             <MedicationLiquidIcon />

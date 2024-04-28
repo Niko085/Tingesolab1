@@ -8,6 +8,9 @@ import NotFound from './components/NotFound';
 import HistorialReparacionesList from './components/HistorialReparacionesList';
 import AddEditHistorialReparaciones from './components/AddEditHistorialReparaciones';
 import IngresarAutomovil from './components/IngresarAutomovil';
+import ReparacionesList from './components/ReparacionesList';
+import AddEditReparacion from './components/AddEditReparaciones';
+import ReporteTiempoPromedio from './components/ReporteTiempoPromedio';
 
 function App() {
   return (
@@ -28,6 +31,12 @@ function App() {
 
               <Route path="/ingresarAutomovil/add" element={<IngresarAutomovil/>} />
               <Route path="/ingresarAutomovil/edit/:id" element={<IngresarAutomovil/>} />
+
+              <Route path="/reparaciones/list" element={<ReparacionesList/>} />
+              <Route path="/reparaciones/add" element={<AddEditReparacion/>} />
+              <Route path="/reparaciones/edit/:id" element={<AddEditReparacion/>} />
+
+              <Route path="/reportes/ReporteTiempoPromedio" element={<ReporteTiempoPromedio/>} />
               <Route path="*" element={<NotFound/>} />
             </Routes>
           </div>

@@ -56,6 +56,19 @@ const HistorialReparacionesList = () => {
     navigate(`/historialreparaciones/edit/${id}`);
   };
 
+  const handleCalculate = (patente) => {
+    console.log("Calculando historial de reparaciones para la patente:", patente);
+    historialReparacionesService
+      .calculate(patente)
+      .then(() => {
+        console.log("Historial de reparaciones calculado con éxito");
+        init();
+      })
+      .catch((error) => {
+        console.log("Error al calcular historial de reparaciones:", error);
+      });
+  };
+
   return (
     <TableContainer component={Paper}>
       <br />
@@ -75,7 +88,7 @@ const HistorialReparacionesList = () => {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="historial de reparaciones">
         <TableHead>
           <TableRow>
-          <TableCell align="left">Patente</TableCell>
+            <TableCell align="left">Patente</TableCell>
             <TableCell align="left">Fecha Ingreso Taller</TableCell>
             <TableCell align="left">Hora Ingreso Taller</TableCell>
             <TableCell align="right">Monto Total a Pagar</TableCell>
@@ -88,6 +101,7 @@ const HistorialReparacionesList = () => {
             <TableCell align="left">Hora Cliente se Lleva Vehículo</TableCell>
             <TableCell align="left">Pagado</TableCell>
             <TableCell align="left">Operaciones</TableCell>
+            <TableCell align="left">Calcular</TableCell> {/* Nuevo encabezado de columna */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -119,6 +133,7 @@ const HistorialReparacionesList = () => {
                 >
                   Editar
                 </Button>
+
                 <Button
                   variant="contained"
                   color="error"
@@ -130,6 +145,33 @@ const HistorialReparacionesList = () => {
                   Eliminar
                 </Button>
               </TableCell>
+
+              <TableCell> {/* Nueva celda para el botón de calcular */}
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="small"
+                  onClick={() => handleCalculate(historialReparaciones.patente)}
+                  style={{ marginLeft: "0.5rem" }}
+                >
+                  Calcular
+                </Button>
+              </TableCell>
+
+              
+              <TableCell> {/* Nueva celda para el botón de ingresar reparaciones */}
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="small"
+                  onClick={() => handleCalculate(historialReparaciones.patente)}
+                  style={{ marginLeft: "0.5rem" }}
+                >
+                  Ingresar Reparaciones
+                </Button>
+              </TableCell>
+
+
             </TableRow>
           ))}
         </TableBody>

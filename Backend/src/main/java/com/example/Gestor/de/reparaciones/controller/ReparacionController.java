@@ -22,20 +22,25 @@ public class ReparacionController {
         return ResponseEntity.ok(reparaciones);
 
     }
-/*
+
+
     @GetMapping("/{id}")
     public ResponseEntity<ReparacionEntity> getReparacionById(@PathVariable Long id) {
         ReparacionEntity reparacion = reparacionService.getReparacionById(id);
         return ResponseEntity.ok(reparacion);
     }
 
- */
 
+
+
+/*
     @GetMapping("/{patente}")
     public ResponseEntity<List<ReparacionEntity>> getReparacionesByPatente(@PathVariable String patente) {
         List<ReparacionEntity> reparaciones = reparacionService.getReparacionesByPatente(patente);
         return ResponseEntity.ok(reparaciones);
     }
+
+ */
 
     @PostMapping("/")
     public ResponseEntity<ReparacionEntity> saveReparacion(@RequestBody ReparacionEntity reparacion) {

@@ -1,6 +1,7 @@
 package com.example.Gestor.de.reparaciones.services;
 
 import com.example.Gestor.de.reparaciones.dtos.ReparacionesvsTipoAutos;
+import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
 import com.example.Gestor.de.reparaciones.entities.ReparacionEntity;
 import com.example.Gestor.de.reparaciones.repositories.ReparacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,13 @@ public class ReparacionService {
     }
 
      */
+/*
+    public List<ReparacionEntity> getReparacionesById(Long id) {
+        return reparacionRepository.findById(id);
+    }
+
+
+ */
 
     public ReparacionEntity updateReparacion(ReparacionEntity reparacion) {
         return reparacionRepository.save(reparacion);
@@ -66,6 +74,10 @@ public class ReparacionService {
 
     public int ContarReparacionesPorTipo(int tipoReparacion){
         return reparacionRepository.countReparacionesByTipoReparacion(tipoReparacion);
+    }
+
+    public ReparacionEntity getReparacionById(Long id){
+        return reparacionRepository.findById(id).get();
     }
 
 

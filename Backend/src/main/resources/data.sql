@@ -118,14 +118,14 @@ VALUES (41, 'Reparacion de pequeñas grietas en el parabrisas o reemplazo comple
 
 
 --Insertar reparaciones
-INSERT INTO public.reparaciones(id, patente, descripcion, tipo_reparacion, id_historial_reparaciones)
-VALUES (1, 'CFYF55','Reparacion sistema electrico', 5,1),
-       (2, 'CFYF55','Reparacion sistema de frenos', 1,1),
-       (3, 'TW6977','Reparacion sistema de refrigeracion', 1, 2),
-       (4, 'TW6977','Reparacion sistema de combustible', 10,2),
-       (5, 'KDJW65','Reparacion sistema de refrigeracion', 2,2),
-       (6, 'CFYF55','Reparacion sistema electrico', 5,3),
-       (7, 'CFYF55','Reparacion sistema de combustible', 1,3);
+INSERT INTO public.reparaciones(patente, descripcion, tipo_reparacion, id_historial_reparaciones)
+VALUES ('CFYF55','Reparacion sistema electrico', 5,1),
+       ('CFYF55','Reparacion sistema de frenos', 1,1),
+       ('TW6977','Reparacion sistema de refrigeracion', 1, 2),
+       ('TW6977','Reparacion sistema de combustible', 10,2),
+       ('KDJW65','Reparacion sistema de refrigeracion', 2,4),
+       ('CFYF55','Reparacion sistema electrico', 5,3),
+       ('CFYF55','Reparacion sistema de combustible', 1,3);
 
 
 
