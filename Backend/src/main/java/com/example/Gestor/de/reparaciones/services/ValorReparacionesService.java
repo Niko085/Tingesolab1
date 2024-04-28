@@ -20,4 +20,6 @@ public class ValorReparacionesService {
     public int getMonto(int numeroReparacion, String tipoMotor){
         return valorReparacionesRepository.findMontoByNumeroReparacionAndTipoMotor(numeroReparacion, tipoMotor);
     }
+
+
 }

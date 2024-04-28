@@ -11,6 +11,8 @@ import IngresarAutomovil from './components/IngresarAutomovil';
 import ReparacionesList from './components/ReparacionesList';
 import AddEditReparacion from './components/AddEditReparaciones';
 import ReporteTiempoPromedio from './components/ReporteTiempoPromedio';
+import ReporteReparacionesVsTiposAutos from './components/ReporteReparacionesVsTipoAutos';
+import ReporteReparacionesVsTipoMotor from './components/ReporteReparacionesVsTipoMotor';
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
               <Route path="/reparaciones/edit/:id" element={<AddEditReparacion/>} />
 
               <Route path="/reportes/ReporteTiempoPromedio" element={<ReporteTiempoPromedio/>} />
+              <Route path="/reportes/ReporteReparacionesVsTiposAutos" element={<ReporteReparacionesVsTiposAutos/>} />
+              <Route path="/reportes/ReporteReparacionesVsTipoMotor" element={<ReporteReparacionesVsTipoMotor/>} />
               <Route path="*" element={<NotFound/>} />
             </Routes>
           </div>

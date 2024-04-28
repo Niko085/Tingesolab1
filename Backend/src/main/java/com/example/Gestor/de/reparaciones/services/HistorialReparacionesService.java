@@ -6,6 +6,7 @@ import com.example.Gestor.de.reparaciones.dtos.TiemposPromedio;
 import com.example.Gestor.de.reparaciones.entities.AutomovilEntity;
 import com.example.Gestor.de.reparaciones.entities.HistorialReparacionesEntity;
 import com.example.Gestor.de.reparaciones.entities.ReparacionEntity;
+import com.example.Gestor.de.reparaciones.entities.ValorReparacionesEntity;
 import com.example.Gestor.de.reparaciones.repositories.HistorialReparacionesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -229,14 +230,38 @@ public class HistorialReparacionesService {
 
         int cantidadReparaciones = 0;
         int montoTotalReparaciones = 0;
+        String nombreReparacion = null;
 
         // Obtener los datos y agregarlos a la lista
         for(int tipoReparacion = 1; tipoReparacion <= 11; tipoReparacion++){
             cantidadReparaciones = getCantidadTipoReparaciones(tipoReparacion);
             montoTotalReparaciones = getMontoTipoReparaciones(tipoReparacion);
+            if(tipoReparacion == 1) {
+                nombreReparacion = "Reparaciones del Sistema de Frenos";
+            }else if(tipoReparacion == 2){
+                nombreReparacion = "Servicio del Sistema de Refrigeración";
+            }else if(tipoReparacion == 3){
+                nombreReparacion = "Reparaciones del Motor";
+            }else if(tipoReparacion == 4){
+                nombreReparacion = "Reparaciones de la Transmisión:";
+            }else if(tipoReparacion == 5){
+                nombreReparacion = "Reparación del Sistema Eléctrico";
+            }else if(tipoReparacion == 6){
+                nombreReparacion = "Reparaciones del Sistema de Escape";
+            }else if(tipoReparacion == 7){
+                nombreReparacion = "Reparación de Neumáticos y Ruedas";
+            }else if(tipoReparacion == 8){
+                nombreReparacion = "Reparaciones de la Suspensión y la Dirección";
+            }else if(tipoReparacion == 9){
+                nombreReparacion = "Reparación del Sistema de Aire Acondicionado y Calefacción";
+            }else if(tipoReparacion == 10){
+                nombreReparacion = "Reparaciones del Sistema de Combustible";
+            }else if(tipoReparacion == 11){
+                nombreReparacion = "Reparación y Reemplazo del Parabrisas y Cristales";
+            }
 
             // Crear objeto ReparacionesvsTipoAutos y agregarlo a la lista
-            ReparacionesvsTipoAutos reparacionPorTipoAuto = new ReparacionesvsTipoAutos(tipoReparacion, cantidadReparaciones, montoTotalReparaciones);
+            ReparacionesvsTipoAutos reparacionPorTipoAuto = new ReparacionesvsTipoAutos(nombreReparacion, cantidadReparaciones, montoTotalReparaciones);
             reparacionesvsTipoAutos.add(reparacionPorTipoAuto);
         }
 
@@ -316,6 +341,7 @@ public class HistorialReparacionesService {
  */
     public List<ReparacionesvsTipoMotor> reporteReparacionesvsTipoMotor(){
         List<ReparacionesvsTipoMotor> reparacionesvsTipoMotores = new ArrayList<>();
+        String nombreReparacion = null;
 
         // Obtener los datos y agregarlos a la lista
         for(int tipoReparacion = 1; tipoReparacion <= 11; tipoReparacion++){
@@ -328,9 +354,32 @@ public class HistorialReparacionesService {
             int cantElectrico = getCantidadTipoMotor(tipoReparacion, "Electrico");
             int montoElectrico = valorReparacionesService.getMonto(tipoReparacion, "Electrico") * cantElectrico;
             int  montoTotal = montoGasolina + montoDiesel + montoHibrido + montoElectrico;
+            if(tipoReparacion == 1) {
+                nombreReparacion = "Reparaciones del Sistema de Frenos";
+            }else if(tipoReparacion == 2){
+                nombreReparacion = "Servicio del Sistema de Refrigeración";
+            }else if(tipoReparacion == 3){
+                nombreReparacion = "Reparaciones del Motor";
+            }else if(tipoReparacion == 4){
+                nombreReparacion = "Reparaciones de la Transmisión:";
+            }else if(tipoReparacion == 5){
+                nombreReparacion = "Reparación del Sistema Eléctrico";
+            }else if(tipoReparacion == 6){
+                nombreReparacion = "Reparaciones del Sistema de Escape";
+            }else if(tipoReparacion == 7){
+                nombreReparacion = "Reparación de Neumáticos y Ruedas";
+            }else if(tipoReparacion == 8){
+                nombreReparacion = "Reparaciones de la Suspensión y la Dirección";
+            }else if(tipoReparacion == 9){
+                nombreReparacion = "Reparación del Sistema de Aire Acondicionado y Calefacción";
+            }else if(tipoReparacion == 10){
+                nombreReparacion = "Reparaciones del Sistema de Combustible";
+            }else if(tipoReparacion == 11){
+                nombreReparacion = "Reparación y Reemplazo del Parabrisas y Cristales";
+            }
 
             // Crear objeto ReparacionesvsTipoMotor y agregarlo a la lista
-            ReparacionesvsTipoMotor reparacionPorTipoMotor = new ReparacionesvsTipoMotor(tipoReparacion, cantGasolina, cantDiesel, cantHibrido, cantElectrico, montoTotal);
+            ReparacionesvsTipoMotor reparacionPorTipoMotor = new ReparacionesvsTipoMotor(nombreReparacion, cantGasolina, cantDiesel, cantHibrido, cantElectrico, montoTotal);
             reparacionesvsTipoMotores.add(reparacionPorTipoMotor);
         }
 

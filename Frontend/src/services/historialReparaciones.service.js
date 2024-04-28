@@ -20,10 +20,4 @@ const remove = id => {
     return httpClient.delete(`/api/historialreparaciones/${id}`);
 }
 
-function obtenerReporteTiempoPromedio() {
-    return axios.get('/api/historialreparaciones/reporte/marcas-vs-tiempo-promedio');
-}
-
-
-
-export default { getAll, create, get, update, remove , obtenerReporteTiempoPromedio};
+export default { getAll, create, get, update, remove};

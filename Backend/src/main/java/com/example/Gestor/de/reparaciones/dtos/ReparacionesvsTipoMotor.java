@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReparacionesvsTipoMotor {
-    private int tipoReparacion;
+    private String tipoReparacion;
     private int cantidadGasolina;
     private int cantidadDiesel;
     private int cantidadHibrido;

@@ -13,5 +13,8 @@ public interface ValorReparacionesRepository extends JpaRepository<ValorReparaci
     @Query("SELECT vr.monto FROM ValorReparacionesEntity vr WHERE vr.numeroReparacion = :numeroReparacion AND vr.tipoMotor = :tipoMotor")
     int findMontoByNumeroReparacionAndTipoMotor(int numeroReparacion, String tipoMotor);
 
+/*
+    public String findByNumeroReparacionAndTipoMotor(int numero, String tipoMotor);
 
+ */
 }
