@@ -123,6 +123,7 @@ const HistorialReparacionesList = () => {
             <TableCell align="left">Hora Cliente se Lleva Vehículo</TableCell>
             <TableCell align="left">Pagado</TableCell>
             <TableCell align="left">Operaciones</TableCell>
+            <TableCell align="left">Seleccionar Reparaciones</TableCell>
             <TableCell align="left">Calcular</TableCell>
           </TableRow>
         </TableHead>
@@ -178,6 +179,23 @@ const HistorialReparacionesList = () => {
                       </Button>
                     )}
                   </>
+                )}
+              </TableCell>
+
+              <TableCell>
+                {!historialReparacion.pagado && (
+                  <Link
+                    to={`/reparaciones/select/${historialReparacion.id}`}
+                    style={{ textDecoration: "none", marginBottom: "1rem", marginLeft: "1rem" }}
+                  >
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      startIcon={<BuildIcon />}
+                    >
+                      Seleccionar Reparaciones
+                    </Button>
+                  </Link>
                 )}
               </TableCell>
 

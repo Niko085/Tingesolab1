@@ -118,21 +118,25 @@ VALUES ('Reparacion de pequeñas grietas en el parabrisas o reemplazo completo d
 
 
 --Insertar reparaciones
+--INSERT INTO public.reparaciones(patente, descripcion, tipo_reparacion, id_historial_reparaciones)
+--VALUES ('CFYF55','Reparacion sistema electrico', 5,1),
+--       ('CFYF55','Reparacion sistema de frenos', 1,1),
+--       ('TW6977','Reparacion sistema de refrigeracion', 1, 2),
+--       ('TW6977','Reparacion sistema de combustible', 10,2),
+--       ('CFYF55','Reparacion sistema electrico', 5,3),
+--       ('CFYF55','Reparacion sistema de combustible', 1,3),
+--       ('KDJW65','Reparacion sistema de refrigeracion', 2,4);
+
+
+
+
+
+
+
+--Insertar reparaciones
 INSERT INTO public.reparaciones(patente, descripcion, tipo_reparacion, id_historial_reparaciones)
 VALUES ('CFYF55','Reparacion sistema electrico', 5,1),
-       ('CFYF55','Reparacion sistema de frenos', 1,1),
-       ('TW6977','Reparacion sistema de refrigeracion', 1, 2),
-       ('TW6977','Reparacion sistema de combustible', 10,2),
-       ('KDJW65','Reparacion sistema de refrigeracion', 2,4),
-       ('CFYF55','Reparacion sistema electrico', 5,3),
-       ('CFYF55','Reparacion sistema de combustible', 1,3);
-
-
-
-
-
-
-
+       ('CFYF55','Reparacion sistema de frenos', 1,1);
 
 
 

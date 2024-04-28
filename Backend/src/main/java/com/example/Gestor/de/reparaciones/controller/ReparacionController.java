@@ -23,14 +23,11 @@ public class ReparacionController {
 
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<ReparacionEntity> getReparacionById(@PathVariable Long id) {
         ReparacionEntity reparacion = reparacionService.getReparacionById(id);
         return ResponseEntity.ok(reparacion);
     }
-
-
 
 
 /*
@@ -47,14 +44,6 @@ public class ReparacionController {
         ReparacionEntity reparacionNew = reparacionService.saveReparacion(reparacion);
         return ResponseEntity.ok(reparacionNew);
     }
-/*
-    @GetMapping("/{rut}/{year}/{month}")
-    public ResponseEntity<List<ReparacionEntity>> listExtraHoursByRut(@PathVariable("rut") String rut, @PathVariable("year") int year, @PathVariable("month") int month) {
-        List<ReparacionEntity> extraHours = reparacionService.getExtraHoursByRutYearMonth(rut,year,month);
-        return ResponseEntity.ok(extraHours);
-    }
-
- */
 
     @PutMapping("/")
     public ResponseEntity<ReparacionEntity> updateReparacion(@RequestBody ReparacionEntity reparacion){
@@ -68,6 +57,10 @@ public class ReparacionController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/historial/{id}")
+    public ResponseEntity<List<ReparacionEntity>> listReparacionesByIdHistorial(@PathVariable Long id) {
+        List<ReparacionEntity> reparaciones = reparacionService.getReparacionByIdHistorialReparaciones(id);
+        return ResponseEntity.ok(reparaciones);
 
-
+    }
 }
