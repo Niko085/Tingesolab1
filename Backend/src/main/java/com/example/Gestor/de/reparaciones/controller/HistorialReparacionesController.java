@@ -79,6 +79,8 @@ public class HistorialReparacionesController {
     }
 
 
+
+
 /*
     @GetMapping("/calculate")
     public ResponseEntity<Void> calculatePaychecks(@RequestParam("year") int year, @RequestParam("month") int month) {

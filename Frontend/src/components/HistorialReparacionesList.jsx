@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BuildIcon from "@mui/icons-material/Build";
+import axios from "axios";
 
 const HistorialReparacionesList = () => {
   const [historialReparaciones, setHistorialReparaciones] = useState([]);
@@ -58,11 +59,11 @@ const HistorialReparacionesList = () => {
 
   const handleCalculate = (patente) => {
     console.log("Calculando historial de reparaciones para la patente:", patente);
-    historialReparacionesService
-      .calculate(patente)
+    axios
+      .get(`http://localhost:8090/api/historialreparaciones/calculate?patente=${patente}`)
       .then(() => {
         console.log("Historial de reparaciones calculado con éxito");
-        init();
+        init(); // Actualiza la lista de historiales después de calcular
       })
       .catch((error) => {
         console.log("Error al calcular historial de reparaciones:", error);
@@ -105,29 +106,29 @@ const HistorialReparacionesList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {historialReparaciones.map((historialReparaciones) => (
+          {historialReparaciones.map((historialReparacion) => (
             <TableRow
-              key={historialReparaciones.id}
+              key={historialReparacion.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="left">{historialReparaciones.patente}</TableCell>
-              <TableCell align="left">{historialReparaciones.fechaIngresoTaller}</TableCell>
-              <TableCell align="left">{historialReparaciones.horaIngresoTaller}</TableCell>
-              <TableCell align="right">{historialReparaciones.montoTotalPagar}</TableCell>
-              <TableCell align="right">{historialReparaciones.recargos}</TableCell>
-              <TableCell align="right">{historialReparaciones.descuentos}</TableCell>
-              <TableCell align="right">{historialReparaciones.iva}</TableCell>
-              <TableCell align="left">{historialReparaciones.fechaSalidaTaller}</TableCell>
-              <TableCell align="left">{historialReparaciones.horaSalidaTaller}</TableCell>
-              <TableCell align="left">{historialReparaciones.fechaClienteSeLlevaVehiculo}</TableCell>
-              <TableCell align="left">{historialReparaciones.horaClienteSeLlevaVehiculo}</TableCell>
-              <TableCell align="left">{historialReparaciones.pagado ? 'Sí' : 'No'}</TableCell>
+              <TableCell align="left">{historialReparacion.patente}</TableCell>
+              <TableCell align="left">{historialReparacion.fechaIngresoTaller}</TableCell>
+              <TableCell align="left">{historialReparacion.horaIngresoTaller}</TableCell>
+              <TableCell align="right">{historialReparacion.montoTotalPagar}</TableCell>
+              <TableCell align="right">{historialReparacion.recargos}</TableCell>
+              <TableCell align="right">{historialReparacion.descuentos}</TableCell>
+              <TableCell align="right">{historialReparacion.iva}</TableCell>
+              <TableCell align="left">{historialReparacion.fechaSalidaTaller}</TableCell>
+              <TableCell align="left">{historialReparacion.horaSalidaTaller}</TableCell>
+              <TableCell align="left">{historialReparacion.fechaClienteSeLlevaVehiculo}</TableCell>
+              <TableCell align="left">{historialReparacion.horaClienteSeLlevaVehiculo}</TableCell>
+              <TableCell align="left">{historialReparacion.pagado ? 'Sí' : 'No'}</TableCell>
               <TableCell>
                 <Button
                   variant="contained"
                   color="info"
                   size="small"
-                  onClick={() => handleEdit(historialReparaciones.id)}
+                  onClick={() => handleEdit(historialReparacion.id)}
                   style={{ marginLeft: "0.5rem" }}
                   startIcon={<EditIcon />}
                 >
@@ -138,7 +139,7 @@ const HistorialReparacionesList = () => {
                   variant="contained"
                   color="error"
                   size="small"
-                  onClick={() => handleDelete(historialReparaciones.id)}
+                  onClick={() => handleDelete(historialReparacion.id)}
                   style={{ marginLeft: "0.5rem" }}
                   startIcon={<DeleteIcon />}
                 >
@@ -151,26 +152,12 @@ const HistorialReparacionesList = () => {
                   variant="contained"
                   color="secondary"
                   size="small"
-                  onClick={() => handleCalculate(historialReparaciones.patente)}
+                  onClick={() => handleCalculate(historialReparacion.patente)}
                   style={{ marginLeft: "0.5rem" }}
                 >
                   Calcular
                 </Button>
               </TableCell>
-
-              
-              <TableCell> {/* Nueva celda para el botón de ingresar reparaciones */}
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  size="small"
-                  onClick={() => handleCalculate(historialReparaciones.patente)}
-                  style={{ marginLeft: "0.5rem" }}
-                >
-                  Ingresar Reparaciones
-                </Button>
-              </TableCell>
-
 
             </TableRow>
           ))}
