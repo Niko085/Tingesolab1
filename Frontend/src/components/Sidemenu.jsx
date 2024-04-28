@@ -92,8 +92,14 @@ export default function Sidemenu({ open, toggleDrawer }) {
           <ListItemText primary="Reporte reparaciones Vs tipo de motor" />
         </ListItemButton>
 
+        <Divider />
 
-
+        <ListItemButton onClick={() => navigate("/bonos/list")}>
+          <ListItemIcon>
+            <MedicationLiquidIcon />
+          </ListItemIcon>
+          <ListItemText primary="Datos de descuento por bonos" />
+        </ListItemButton>
 
       </List>
     </Box>

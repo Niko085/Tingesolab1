@@ -14,6 +14,8 @@ import ReporteTiempoPromedio from './components/ReporteTiempoPromedio';
 import ReporteReparacionesVsTiposAutos from './components/ReporteReparacionesVsTipoAutos';
 import ReporteReparacionesVsTipoMotor from './components/ReporteReparacionesVsTipoMotor';
 import ReparacionSelectionForm from './components/SeleccionarReparacion';
+import BonosList from './components/DescuentoBonosList';
+import AddEditBono from './components/AddEditDescuentoBonos';
 
 function App() {
   return (
@@ -45,6 +47,10 @@ function App() {
 
               <Route path="/agregarReparacion/list" element={<ReparacionSelectionForm/>} />
               <Route path="/reparaciones/select/:id" element={<ReparacionSelectionForm />} />
+
+              <Route path="/bonos/list" element={<BonosList/>} />
+              <Route path="/bonos/add" element={<AddEditBono/>} />
+              <Route path="/bonos/edit/:id" element={<AddEditBono/>} />
 
               <Route path="*" element={<NotFound/>} />
             </Routes>
