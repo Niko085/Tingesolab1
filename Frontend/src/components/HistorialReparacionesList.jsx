@@ -59,9 +59,9 @@ const HistorialReparacionesList = () => {
     navigate(`/historialreparaciones/edit/${id}`);
   };
 
-  const handleAddReparacion = (id) => {
-    console.log("Agregar reparacion con ID:", id);
-    navigate(`/reparaciones/select/${id}`);
+  const handleAddReparacion = (idH, patenteH) => {
+    console.log("Agregar reparacion con ID:", idH);
+    navigate(`/reparaciones/select/${idH}/${patenteH}`);
   };
 
   const handleCalculate = (patente) => {
@@ -196,7 +196,7 @@ const HistorialReparacionesList = () => {
                     color="secondary"
                     size="small"
                     startIcon={<BuildIcon />}
-                    onClick={() => handleAddReparacion(historialReparacion.id)}
+                    onClick={() => handleAddReparacion(historialReparacion.id, historialReparacion.patente)}
                   >
                     Agregar reparación
                   </Button>

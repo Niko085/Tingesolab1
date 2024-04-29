@@ -15,8 +15,12 @@ const ReparacionSelectionForm = () => {
   const [patente, setPatente] = useState("");
   const [tipoReparacion, setTipoReparacion] = useState("");
   const [descripcion, setDescripcion] = useState("");
+  const {idH, patenteH} = useParams();
+  const [id, setId] = useState("");
   const [idHistorialReparaciones, setIdHistorialReparaciones] = useState("");
-  const { id } = useParams();
+  //const [idHistorialReparaciones, setIdHistorialReparaciones] = useState("");
+  //const [id, setIdHistorialReparaciones] = useState("");
+  //const { idHistorialReparaciones } = useParams();
   const [titleReparacionForm, setTitleReparacionForm] = useState("");
   const navigate = useNavigate();
 
@@ -44,12 +48,12 @@ const ReparacionSelectionForm = () => {
   useEffect(() => {
 
       setTitleReparacionForm("Nueva reparacion");
-      historialReparacionesService
-        .get(id)
+      reparacionService
+        .get(idH)
         .then((reparacion) => {
           console.log(reparacion.data);
           //Se establecen los valores del auto en el formulario
-          setPatente(reparacion.data.patente);
+          setPatente(patenteH);
           setIdHistorialReparaciones(reparacion.data.id);
  
         })

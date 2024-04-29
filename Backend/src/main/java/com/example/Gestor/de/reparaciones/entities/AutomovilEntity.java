@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "automoviles")
 @Data
@@ -24,6 +26,21 @@ public class AutomovilEntity {
     private String motor;//gasolina, diésel, híbrido, eléctrico
     private int cantAsientos;
     private int kilometraje;
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AutomovilEntity that = (AutomovilEntity) o;
+        return Objects.equals(patente, that.patente);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(patente);
+    }
 }
 
 

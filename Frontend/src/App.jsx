@@ -46,7 +46,7 @@ function App() {
               <Route path="/reportes/ReporteReparacionesVsTipoMotor" element={<ReporteReparacionesVsTipoMotor/>} />
 
               <Route path="/agregarReparacion/list" element={<ReparacionSelectionForm/>} />
-              <Route path="/reparaciones/select/:id" element={<ReparacionSelectionForm />} />
+              <Route path="/reparaciones/select/:idH/:patenteH" element={<ReparacionSelectionForm />} />
 
               <Route path="/bonos/list" element={<BonosList/>} />
               <Route path="/bonos/add" element={<AddEditBono/>} />
