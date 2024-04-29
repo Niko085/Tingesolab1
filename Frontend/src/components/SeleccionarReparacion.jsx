@@ -25,20 +25,20 @@ const ReparacionSelectionForm = () => {
     //Objeto con los datos del auto
     const reparacion = { patente, tipoReparacion, descripcion, idHistorialReparaciones, id };
 
-      //Crear nueva reparacion
-      reparacionService
-        .create(reparacion)
-        .then((response) => {
-          console.log("La reparacion ha sido añadida.", response.data);
-          navigate("/reparaciones/list");
-        })
-        .catch((error) => {
-          console.log(
-            "Ha ocurrido un error al intentar crear una nueva reparacion.",
-            error
-          );
-        });
-  };
+    //Crear nueva reparacion
+    reparacionService
+      .create(reparacion)
+      .then((response) => {
+        console.log("La reparacion ha sido añadida.", response.data);
+        navigate("/reparaciones/list");
+      })
+      .catch((error) => {
+        console.log(
+          "Ha ocurrido un error al intentar crear una nueva reparacion.",
+          error
+        );
+      });
+};
 
   useEffect(() => {
     if (id) {
@@ -48,16 +48,14 @@ const ReparacionSelectionForm = () => {
         .then((reparacion) => {
           //Se establecen los valores del auto en el formulario
           setPatente(reparacion.data.patente);
-          setTipoReparacion(reparacion.data.tipoReparacion);
-          setDescripcion(reparacion.data.descripcion);
-          setIdHistorialReparaciones(reparacion.data.idHistorialReparaciones);
+          setIdHistorialReparaciones(reparacion.data.id);
  
         })
         .catch((error) => {
           console.log("Se ha producido un error.", error);
         });
     } else {
-      setTitleReparacionForm("Nueva reparacion");
+      setTitleReparacionForm("Nueva reparación");
     }
   }, []);
 
@@ -75,7 +73,7 @@ const ReparacionSelectionForm = () => {
         borderRadius: "25px",
         boxShadow: "0px 0px 100px rgba(0, 0, 0, 0.3)",
         backgroundColor: "#f9f9f9",
-        maxWidth: "650px",
+        maxWidth: "450px",
         margin: "auto",
         marginTop: "30px",
       }}
@@ -83,28 +81,37 @@ const ReparacionSelectionForm = () => {
       <h3>{titleReparacionForm}</h3>
       <hr />
       <form>
-        <FormControl fullWidth>
-          <TextField
-            id="patente"
-            label="Patente"
-            value={patente}
-            variant="standard"
-            onChange={(a) => setPatente(a.target.value)}
-            helperText="Ej: CFTF45"
-          />
-        </FormControl>
-  
-        <FormControl fullWidth>
-          <TextField
-            id="tipoReparacion"
-            label="Tipo de reparacion"
-            value={tipoReparacion}
-            variant="standard"
-            onChange={(a) => setTipoReparacion(a.target.value)}
-            helperText="Ej: 1"
-          />
-        </FormControl>
-  
+
+
+
+      <div style={{ display: "flex",padding: "0.5rem", gap: "2rem" }}>
+          <FormControl fullWidth>
+            <TextField
+              id="tipoReparacion"
+              label="Tipo de reparacion"
+              value={tipoReparacion}
+              select
+              variant="standard"
+              defaultValue="Sedan"
+              onChange={(a) => setTipoReparacion(a.target.value)}
+              style={{ flex: 1 }}
+            >
+              <MenuItem value={"1"}>Reparaciones del Sistema de Frenos</MenuItem>
+              <MenuItem value={"2"}>Servicio del Sistema de Refrigeración</MenuItem>
+              <MenuItem value={"3"}>Reparaciones del Motor</MenuItem>
+              <MenuItem value={"4"}>Reparaciones de la Transmisión</MenuItem>
+              <MenuItem value={"5"}>Reparación del Sistema Eléctrico</MenuItem>
+              <MenuItem value={"6"}>Reparaciones del Sistema de Escape</MenuItem>
+              <MenuItem value={"7"}>Reparación de Neumáticos y Ruedas</MenuItem>
+              <MenuItem value={"8"}>Reparaciones de la Suspensión y la Dirección</MenuItem>
+              <MenuItem value={"9"}>Reparación del Sistema de Aire Acondicionado y Calefacción</MenuItem>
+              <MenuItem value={"10"}>Reparaciones del Sistema de Combustible</MenuItem>
+              <MenuItem value={"11"}>Reparación y Reemplazo del Parabrisas y Cristales</MenuItem>
+            </TextField>
+          </FormControl>
+        </div>
+
+
         <FormControl fullWidth>
           <TextField
             id="descripcion"
@@ -113,18 +120,6 @@ const ReparacionSelectionForm = () => {
             variant="standard"
             onChange={(a) => setDescripcion(a.target.value)}
             helperText="Ej: Getz"
-          />
-        </FormControl>
-  
-        <FormControl fullWidth>
-          <TextField
-            id="idHistorialReparaciones"
-            label="id del historial de reparaciones"
-            type="number"
-            value={idHistorialReparaciones}
-            variant="standard"
-            inputProps={{ min: "0" }} // Establece el valor mínimo permitido como 0
-            onChange={(a) => setIdHistorialReparaciones(a.target.value)}
           />
         </FormControl>
 

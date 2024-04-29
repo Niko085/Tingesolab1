@@ -57,8 +57,11 @@ const AddEditAutomovil = () => {
           );
         });
     }
-  };
 
+
+  };
+    // Obtener el año actual
+    const year = new Date().getFullYear();
   useEffect(() => {
     if (id) {
       setTitleAutomovilForm("Editar Automovil");
@@ -138,17 +141,23 @@ const AddEditAutomovil = () => {
           />
         </FormControl>
   
-        <FormControl fullWidth>
+      <FormControl fullWidth>
           <TextField
             id="anioFabricacion"
             label="Año de fabricación"
             type="number"
             value={anioFabricacion}
             variant="standard"
-            inputProps={{ min: "0" }} // Establece el valor mínimo permitido como 0
-            onChange={(a) => setAnioFabricacion(a.target.value)}
+            inputProps={{ min: "1980", max: year }} // Establece el valor máximo como el año actual
+            onChange={(a) => {
+              // Solo actualiza el estado si el valor ingresado es válido
+              const value = parseInt(a.target.value);
+              if (!isNaN(value) && value <= year) {
+                setAnioFabricacion(value);
+              }
+            }}
           />
-        </FormControl>
+      </FormControl>
 
         <FormControl fullWidth>
           <TextField
@@ -157,7 +166,7 @@ const AddEditAutomovil = () => {
             type="number"
             value={cantAsientos}
             variant="standard"
-            inputProps={{ min: "0" }}
+            inputProps={{ min: "2", max: "5" }}
             onChange={(a) => setCantAsientos(a.target.value)}
           />
         </FormControl>
@@ -169,7 +178,7 @@ const AddEditAutomovil = () => {
             type="number"
             value={kilometraje}
             variant="standard"
-            inputProps={{ min: "0" }} 
+            inputProps={{ min: "100" }} 
             onChange={(a) => setKilometraje(a.target.value)}
             helperText="Ej: 120000"
           />

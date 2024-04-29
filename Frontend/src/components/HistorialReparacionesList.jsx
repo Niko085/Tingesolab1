@@ -13,6 +13,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BuildIcon from "@mui/icons-material/Build";
 import axios from "axios";
+import IconButton from '@mui/material/IconButton';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const HistorialReparacionesList = () => {
   const [historialReparaciones, setHistorialReparaciones] = useState([]);
@@ -55,6 +57,11 @@ const HistorialReparacionesList = () => {
   const handleEdit = (id) => {
     console.log("Editando historial de reparaciones con ID:", id);
     navigate(`/historialreparaciones/edit/${id}`);
+  };
+
+  const handleAddReparacion = (id) => {
+    console.log("Agregar reparacion con ID:", id);
+    navigate(`/reparaciones/select/${id}`);
   };
 
   const handleCalculate = (patente) => {
@@ -167,8 +174,8 @@ const HistorialReparacionesList = () => {
                       Eliminar
                     </Button>
 
-                    {historialReparacion.montoTotalPagar !== 0 && (
-                      <Button
+                    {/*historialReparacion.montoTotalPagar !== 0 && (
+                     <Button
                         variant="contained"
                         color="secondary"
                         size="small"
@@ -177,25 +184,21 @@ const HistorialReparacionesList = () => {
                       >
                         Pagar
                       </Button>
-                    )}
+                    )*/}
                   </>
                 )}
               </TableCell>
 
               <TableCell>
                 {!historialReparacion.pagado && (
-                  <Link
-                    to={`/reparaciones/select/${historialReparacion.id}`}
-                    style={{ textDecoration: "none", marginBottom: "1rem", marginLeft: "1rem" }}
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<BuildIcon />}
+                    onClick={() => handleAddReparacion(historialReparacion.id)}
                   >
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      startIcon={<BuildIcon />}
-                    >
-                      Seleccionar Reparaciones
-                    </Button>
-                  </Link>
+                    Agregar reparación
+                  </Button>
                 )}
               </TableCell>
 
@@ -207,8 +210,9 @@ const HistorialReparacionesList = () => {
                     size="small"
                     onClick={() => handleCalculate(historialReparacion.patente)}
                     style={{ marginLeft: "0.5rem" }}
+                    startIcon={<AttachMoneyIcon />}
                   >
-                    Calcular
+                    Calcular y pagar
                   </Button>
                 )}
               </TableCell>

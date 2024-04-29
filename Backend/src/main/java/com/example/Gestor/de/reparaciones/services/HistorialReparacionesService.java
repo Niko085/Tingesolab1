@@ -116,7 +116,7 @@ public class HistorialReparacionesService {
         historial.setDescuentos(descuentos);
         historial.setIva(iva);
         historial.setMontoTotalPagar((montoTotal + recargos - descuentos) + iva);
-        //historial.setPagado(false); //está extra, pero por si las moscas
+        historial.setPagado(true); //está extra, pero por si las moscas
 
         // Guardar o actualizar el historial en la base de datos
         historialReparacionesRepository.save(historial);
@@ -205,7 +205,7 @@ public class HistorialReparacionesService {
             }else if(tipoReparacion == 3){
                 nombreReparacion = "Reparaciones del Motor";
             }else if(tipoReparacion == 4){
-                nombreReparacion = "Reparaciones de la Transmisión:";
+                nombreReparacion = "Reparaciones de la Transmisión";
             }else if(tipoReparacion == 5){
                 nombreReparacion = "Reparación del Sistema Eléctrico";
             }else if(tipoReparacion == 6){
