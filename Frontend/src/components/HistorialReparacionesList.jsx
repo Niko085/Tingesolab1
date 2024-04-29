@@ -194,6 +194,7 @@ const HistorialReparacionesList = () => {
                   <Button
                     variant="contained"
                     color="secondary"
+                    size="small"
                     startIcon={<BuildIcon />}
                     onClick={() => handleAddReparacion(historialReparacion.id)}
                   >

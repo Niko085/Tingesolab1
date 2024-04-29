@@ -62,6 +62,7 @@ const AddEditAutomovil = () => {
   };
     // Obtener el año actual
     const year = new Date().getFullYear();
+    
   useEffect(() => {
     if (id) {
       setTitleAutomovilForm("Editar Automovil");
@@ -166,7 +167,7 @@ const AddEditAutomovil = () => {
             type="number"
             value={cantAsientos}
             variant="standard"
-            inputProps={{ min: "2", max: "5" }}
+            inputProps={{ min: "2", max: "15" }}
             onChange={(a) => setCantAsientos(a.target.value)}
           />
         </FormControl>

@@ -64,22 +64,13 @@ const ReparacionesList = () => {
   return (
     <TableContainer component={Paper}>
       <br />
-      <Link
-        to="/reparaciones/add"
-        style={{ textDecoration: "none", marginBottom: "1rem" }}
-      >
-        <Button variant="contained" color="primary">
-          Añadir Reparación
-        </Button>
-      </Link>
-      <br /> <br />
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
             <TableCell align="left">Patente</TableCell>
-            <TableCell align="left">Tipo de Reparación</TableCell>
+            <TableCell align="left">Id de reparación</TableCell>
             <TableCell align="left">Descripción</TableCell>
-            <TableCell align="left">ID Historial Reparaciones</TableCell>
+            {/*<TableCell align="left">ID Historial Reparaciones</TableCell>*/}
             <TableCell align="left">Acciones</TableCell>
           </TableRow>
         </TableHead>
@@ -89,7 +80,7 @@ const ReparacionesList = () => {
               <TableCell align="left">{reparacion.patente}</TableCell>
               <TableCell align="left">{reparacion.tipoReparacion}</TableCell>
               <TableCell align="left">{reparacion.descripcion}</TableCell>
-              <TableCell align="left">{reparacion.idHistorialReparaciones}</TableCell>
+              {/*<TableCell align="left">{reparacion.idHistorialReparaciones}</TableCell>*/}
               <TableCell>
                 <Button
                   variant="contained"

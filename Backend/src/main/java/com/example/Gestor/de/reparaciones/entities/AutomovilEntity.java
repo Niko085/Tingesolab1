@@ -24,5 +24,6 @@ public class AutomovilEntity {
     private String motor;//gasolina, diésel, híbrido, eléctrico
     private int cantAsientos;
     private int kilometraje;
-
 }
+
+

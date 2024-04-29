@@ -8,6 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import SaveIcon from "@mui/icons-material/Save";
 import reparacionService from "../services/reparacion.service";
+import historialReparacionesService from "../services/historialReparaciones.service";
 
 const ReparacionSelectionForm = () => {
   //Esto es para poder escribir en el formulario
@@ -41,11 +42,12 @@ const ReparacionSelectionForm = () => {
 };
 
   useEffect(() => {
-    if (id) {
-      setTitleReparacionForm("Editar reparacion");
-      reparacionService
+
+      setTitleReparacionForm("Nueva reparacion");
+      historialReparacionesService
         .get(id)
         .then((reparacion) => {
+          console.log(reparacion.data);
           //Se establecen los valores del auto en el formulario
           setPatente(reparacion.data.patente);
           setIdHistorialReparaciones(reparacion.data.id);
@@ -54,10 +56,35 @@ const ReparacionSelectionForm = () => {
         .catch((error) => {
           console.log("Se ha producido un error.", error);
         });
-    } else {
-      setTitleReparacionForm("Nueva reparación");
-    }
+
   }, []);
+
+  useEffect(() => {
+    // Establecer la descripción según el tipo de reparación seleccionado
+    if (tipoReparacion === "1") {
+      setDescripcion("Reparaciones del Sistema de Frenos");
+    } else if (tipoReparacion === "2") {
+      setDescripcion("Servicio del Sistema de Refrigeración");
+    } else if (tipoReparacion === "3") {
+      setDescripcion("Reparaciones del Motor");
+    } else if (tipoReparacion === "4") {
+      setDescripcion("Reparaciones de la Transmisión");
+    } else if (tipoReparacion === "5") {
+      setDescripcion("Reparación del Sistema Eléctrico");
+    } else if (tipoReparacion === "6") {
+      setDescripcion("Reparaciones del Sistema de Escape");
+    } else if (tipoReparacion === "7") {
+      setDescripcion("Reparación de Neumáticos y Ruedas");
+    } else if (tipoReparacion === "8") {
+      setDescripcion("Reparaciones de la Suspensión y la Dirección");
+    } else if (tipoReparacion === "9") {
+      setDescripcion("Reparación del Sistema de Aire Acondicionado y Calefacción");
+    } else if (tipoReparacion === "10") {
+      setDescripcion("Reparaciones del Sistema de Combustible");
+    } else if (tipoReparacion === "11") {
+      setDescripcion("Reparación y Reemplazo del Parabrisas y Cristales");
+    }
+  }, [tipoReparacion]);
 
   //Estilo del formulario
   return (
@@ -110,18 +137,6 @@ const ReparacionSelectionForm = () => {
             </TextField>
           </FormControl>
         </div>
-
-
-        <FormControl fullWidth>
-          <TextField
-            id="descripcion"
-            label="Reparacion"
-            value={descripcion}
-            variant="standard"
-            onChange={(a) => setDescripcion(a.target.value)}
-            helperText="Ej: Getz"
-          />
-        </FormControl>
 
         <FormControl>
           <br />

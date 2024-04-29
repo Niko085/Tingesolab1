@@ -15,7 +15,7 @@ public class AutomovilController {
     @Autowired
     AutomovilService automovilService;
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<AutomovilEntity>> listAutomoviles() {
         List<AutomovilEntity> automoviles = automovilService.getAutomoviles();
         return ResponseEntity.ok(automoviles);
