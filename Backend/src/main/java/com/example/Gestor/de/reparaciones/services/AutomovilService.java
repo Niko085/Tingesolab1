@@ -32,13 +32,10 @@ public class AutomovilService {
         return automovilRepository.save(automovil);
     }
 
-    public boolean deleteAutomovil(Long id) throws Exception {
-        try{
-            automovilRepository.deleteById(id);
-            return true;
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
 
+
+    public boolean deleteAutomovil(Long id) throws Exception {
+        try{automovilRepository.deleteById(id);
+            return true;} catch (Exception e) {throw new Exception(e.getMessage());}
     }
 }

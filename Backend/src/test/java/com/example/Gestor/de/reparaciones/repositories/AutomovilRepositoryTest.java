@@ -10,9 +10,9 @@ import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-//@DataJpaTest
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-//@ActiveProfiles("test")
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ActiveProfiles("test")
 public class AutomovilRepositoryTest {
 
     @Autowired
@@ -21,7 +21,7 @@ public class AutomovilRepositoryTest {
     @Autowired
     private AutomovilRepository automovilRepository;
 
-    //@Test
+    @Test
     public void whenFindByPatente_thenReturnAutomovil() {
         // Given
         AutomovilEntity automovil = new AutomovilEntity(1L, "QWER13", "Toyota", "Rav3", "Pickup", 2010, "hibrido", 5, 120000);
