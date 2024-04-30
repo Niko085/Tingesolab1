@@ -1,0 +1,75 @@
+en:PS C:\Users\nicol\OneDrive - usach.cl\Compu\Escritorio\Tingeso PEP 1\Tingesolab1\Ba
+ckend> 
+
+Paso 1(crear el build):
+docker build -t niko085/imagenc .
+
+Paso 2(sube la imagen al docker):
+docker push niko085/imagenc
+
+Paso 3(Se obtiene la imagen):
+docker pull niko085/imagenc  
+
+Paso 4(crear red entre contenedores)(definimos network):
+docker network create netimagenc
+
+Paso 4.1(para ver que se creo la red): 
+docker network list 
+
+Paso 5(Crear volume):
+docker volume create bdvolumeimagenc
+
+Paso 6:
+docker run -p 5435:5432 --name postgrescontainerc -e POSTGRES_PASSWORD=12345678 --network netimagenc -v bdvolumeimagenc:/var/lib/postgresql/data -d postgres
+
+Paso 6.1(ver contenedores):
+docker container list
+o
+docker ps
+
+
+
+
+
+Ahora dentro de docker desktop en el exect del container seleccionado
+
+Paso 7:psql -U postgres
+Paso 8(ver bases de datos):\l
+Paso 9(crear base de datos):create database "tingesodb";
+Paso 9.1(se pueden ver de nuevo las bases de datos):\l
+
+
+Correr contenedor
+Paso 10:
+docker run --name backendcontainer -p 8090:8090 -e DB_HOST=netimagenc -e DB_PASSWORD=12345678 --network netimagenc -d niko085/imagenc
+
+
+
+
+
+Ahora docker compose
+Front
+Paso 1(generar el build):
+npm run build
+
+Paso 2:
+docker build -t niko085/gestion-reparaciones-frontend .
+
+Paso 3:
+docker push niko085/gestion-reparaciones-frontend 
+
+Paso 4:
+docker pull niko085/gestion-reparaciones-frontend 
+
+
+Para ejecutar:
+docker compose up -d
+
+ver el estado de cada uno: docker compose ps
+
+
+
+
+
+Reiniciar los contenedores:
+docker-compose restart nginx-frontend

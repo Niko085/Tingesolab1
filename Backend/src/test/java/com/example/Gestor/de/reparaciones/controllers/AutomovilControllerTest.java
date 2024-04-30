@@ -42,16 +42,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-//@WebMvcTest(AutomovilControllerTest.class)
+@WebMvcTest(AutomovilControllerTest.class)
 public class AutomovilControllerTest {
-  //  @Autowired
+    @Autowired
     private MockMvc mockMvc;
 
-    //@MockBean
+    @MockBean
     private AutomovilService automovilService;
+/*
 
-
-    //@Test
+    @Test
     public void listaAutos_DebeRetornarAutos() throws Exception{
         AutomovilEntity automovil1 = new AutomovilEntity(1L,"QWER13","Toyota","Rav3", "Pickup",2010,"hibrido",5,120000);
         AutomovilEntity automovil2 = new AutomovilEntity(2L,"QWER12", "Toyota","Rav4", "Furgoneta",2020, "Gasolina", 5, 120000);
@@ -69,7 +69,5 @@ public class AutomovilControllerTest {
     }
 
 
-
+ */
 }
-
-

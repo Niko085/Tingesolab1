@@ -126,8 +126,8 @@ VALUES ('CFYF55','Reparacion sistema electrico', 5,1),
        ('TW6977','Reparacion sistema de refrigeracion', 1, 2),
        ('TW6977','Reparacion sistema de combustible', 10,2),
        ('CFYF55','Reparacion sistema electrico', 5,3),
-       ('CFYF55','Reparacion sistema de combustible', 1,3),
-       ('KDJW65','Reparacion sistema de refrigeracion', 2,4);
+       ('CFYF55','Reparacion sistema de combustible', 1,4),
+       ('KDJW65','Reparacion sistema de refrigeracion', 2,5);
 
 
 
