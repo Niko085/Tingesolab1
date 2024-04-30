@@ -41,7 +41,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 
 	</dependencies>
@@ -61,8 +65,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>Gestor-de-reparaciones-0.0.1-SNAPSHOT
-		</finalName>
+		<finalName>Gestor-de-reparaciones</finalName>
 	</build>
 
 </project>

@@ -32,11 +32,11 @@ public class AutomovilServiceTest {
     @Mock
     HistorialReparacionesService historialReparacionesService;
 
-    //@Test
+    @Test
     public void testGetAutomovilesList() throws Exception {
         //Give
         AutomovilEntity automovil1 = new AutomovilEntity();
-        automovil1.setPatente("ASDF17");
+        automovil1.setPatente("CFYF55");
         automovil1.setMarca("Hyundai");
         automovil1.setModelo("i9");
         automovil1.setTipo("Sedan");
@@ -46,7 +46,7 @@ public class AutomovilServiceTest {
         automovil1.setKilometraje(12000);
 
         AutomovilEntity automovil2 = new AutomovilEntity();
-        automovil2.setPatente("UJHY16");
+        automovil2.setPatente("TW6977");
         automovil2.setMarca("Ford");
         automovil2.setModelo("i5");
         automovil2.setTipo("Sedan");
@@ -92,7 +92,6 @@ public class AutomovilServiceTest {
 
         //When
         AutomovilEntity autoPrueba = automovilService.saveAutomovil(automovil);
-        //AutomovilEntity autoPrueba = automovil;
 
         //Then
         assertEquals(automovil, autoPrueba);
@@ -143,44 +142,6 @@ public class AutomovilServiceTest {
         assertEquals(automovil4.getPatente(), getAutoIdTestPatente.getPatente());
         automovilService.deleteAutomovil(automovil4.getId());
     }
-
-/*
-    @Test
-    public void testUpdateAutomovil() throws Exception{
-        //Give
-        AutomovilEntity automovil5 = new AutomovilEntity();
-        automovil5.setPatente("UTNR62");
-        automovil5.setMarca("Honda");
-        automovil5.setModelo("Accent");
-        automovil5.setTipo("Suv");
-        automovil5.setAnioFabricacion(2018);
-        automovil5.setMotor("Hibrido");
-        automovil5.setCantAsientos(5);
-        automovil5.setKilometraje(11000);
-
-        AutomovilEntity automovil6 = new AutomovilEntity();
-        automovil6.setPatente("AUNT19");
-        automovil6.setMarca("Honda");
-        automovil6.setModelo("Civic");
-        automovil6.setTipo("PickUp");
-        automovil6.setAnioFabricacion(2018);
-        automovil6.setMotor("Electrico");
-        automovil6.setCantAsientos(5);
-        automovil6.setKilometraje(11000);
-
-
-        //When
-        AutomovilEntity saveAutoUpdate = automovilService.saveAutomovil(automovil5);
-
-
-
-        //Then
-        assertEquals(automovil5.getPatente(), automovil6.getPatente());
-
-    }
-
- */
-
 
 
     @Test
@@ -263,7 +224,6 @@ public class AutomovilServiceTest {
         automovilService.deleteAutomovil(automovil7.getId()+1);
 
         // Then
-        //assertThrows(NoSuchElementException.class, () -> automovilService.getAutomovilById(savedAutomovil.getId()));
         assertFalse(automovilRepository.existsById(automovil7.getId()));
         automovilService.deleteAutomovil(automovil7.getId());
     }

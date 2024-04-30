@@ -1,5 +1,5 @@
 FROM openjdk:17
 ARG JAR_FILE=./target/*.jar
-COPY ${JAR_FILE} Gestor-de-reparaciones-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} Gestor-de-reparaciones.jar
 EXPOSE 8090
-ENTRYPOINT ["java","-jar","./Gestor-de-reparaciones-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","./Gestor-de-reparaciones.jar"]
