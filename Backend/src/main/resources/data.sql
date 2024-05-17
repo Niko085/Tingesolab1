@@ -106,7 +106,7 @@ VALUES ('Limpieza o reemplazo de inyectores de combustible, Reparacioon o reempl
        ('Limpieza o reemplazo de inyectores de combustible, Reparacioon o reemplazo de la bomba de combustible y solución de problemas de suministro de combustible.', 'Reparaciones del Sistema de Combustible', 220000, 'Hibrido',10),
        ('Limpieza o reemplazo de inyectores de combustible, Reparacioon o reemplazo de la bomba de combustible y solución de problemas de suministro de combustible.', 'Reparaciones del Sistema de Combustible', 0, 'Electrico',10);
 
--- Reparacioon y Reemplazo del Parabrisas y Cristales
+-- Reparacion y Reemplazo del Parabrisas y Cristales
 INSERT INTO public.valorreparaciones(descripcion, tipo_reparacion, monto, tipo_motor,numero_reparacion)
 VALUES ('Reparacion de pequeñas grietas en el parabrisas o reemplazo completo de parabrisas y ventanas dañadas.', 'Reparacioon y Reemplazo del Parabrisas y Cristales', 80000, 'Gasolina',11),
        ('Reparacion de pequeñas grietas en el parabrisas o reemplazo completo de parabrisas y ventanas dañadas.', 'Reparacioon y Reemplazo del Parabrisas y Cristales', 80000, 'Diesel',11),
